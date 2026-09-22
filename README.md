@@ -12,3 +12,4 @@ Static portfolio package prepared for `morrischuang.site`.
 - `work/shared/` — shared styles and interaction code used by case-study pages.
 
 No build step is required. Deploy the repository root as a static site / Worker static assets source.
+Deployment trigger
