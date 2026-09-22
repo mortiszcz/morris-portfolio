@@ -2,6 +2,41 @@
   "version": 1,
   "projects": [
     {
+      "key": "jelly75-kd201",
+      "title": "JELLY75 KD201",
+      "summary": "CMF & interaction design for a 75% mechanical keyboard",
+      "description": "JELLY75 KD201 — a CMF-led keyboard case study covering market research, colorway development and interactive material specification.",
+      "accent": "#c8e83a",
+      "path": "jelly75-kd201/index.html",
+      "cover": "jelly75-kd201/assets/cover.webp",
+      "chapters": [
+        {
+          "id": "heroSection",
+          "label": "Overview"
+        },
+        {
+          "id": "processSection",
+          "label": "Research"
+        },
+        {
+          "id": "directionsSection",
+          "label": "CMF directions"
+        },
+        {
+          "id": "stackSection",
+          "label": "Colorways"
+        },
+        {
+          "id": "designSection",
+          "label": "Design"
+        },
+        {
+          "id": "durabilitySection",
+          "label": "Durability"
+        }
+      ]
+    },
+    {
       "key": "ultra-scan",
       "title": "ULTRA SCAN 03",
       "summary": "Wearable scanning system",

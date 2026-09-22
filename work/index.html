@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Product Design — ULTRA SCAN, MANTA, FLEX</title>
-<meta name="description" content="Three industrial design case studies: ULTRA SCAN wearable scanner, MANTA search and rescue drone, FLEX 03 shared micro-mobility.">
+<title>Product Design — JELLY75, ULTRA SCAN, MANTA, FLEX</title>
+<meta name="description" content="Four industrial design case studies: JELLY75 keyboard CMF, ULTRA SCAN wearable scanner, MANTA search and rescue drone, and FLEX 03 shared micro-mobility.">
 <style>
 :root{--bg:#0a0b0c;--surface:#141517;--ink:#f4f4f1;--muted:rgba(244,244,241,.68);--faint:rgba(244,244,241,.52);--line:rgba(244,244,241,.14);--gut:clamp(16px,3.4vw,54px)}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -15,9 +15,9 @@ a{color:inherit;text-decoration:none}
 .label{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
 header.top{padding:clamp(60px,15vh,160px) 0 clamp(32px,6vh,64px)}
 h1{font-size:clamp(38px,7.5vw,96px);font-weight:600;letter-spacing:-.045em;line-height:.98;margin:20px 0 18px;max-width:16ch}
-.sub{font-size:clamp(16px,1.5vw,20px);color:var(--muted);max-width:58ch}
+.sub{font-size:clamp(16px,1.5vw,20px);color:var(--muted);max-width:62ch}
 .grid{display:grid;gap:12px;padding-bottom:clamp(56px,10vh,120px)}
-@media(min-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
 .card{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);background:var(--surface);overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.25,1)}
 .card:hover{transform:translateY(-4px)}
 .card .shot{aspect-ratio:4/3;overflow:hidden;background:#101112}
@@ -42,11 +42,22 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:12px;color
 <div class="wrap">
   <header class="top">
     <p class="label rv">Portfolio 2026 · Product design</p>
-    <h1 class="rv" style="--d:70ms">Three projects, start to finish.</h1>
-    <p class="sub rv" style="--d:140ms">A wearable scanner for warehouse floors, a search-and-rescue drone for open water, and a shared e-scooter built around folding. Each case study runs from research through mechanism to final design.</p>
+    <h1 class="rv" style="--d:70ms">Four projects, start to finish.</h1>
+    <p class="sub rv" style="--d:140ms">A CMF-led mechanical keyboard, a wearable scanner for warehouse floors, a search-and-rescue drone for open water, and a shared e-scooter built around folding. Each case study runs from research through development to final design.</p>
   </header>
   <main class="grid">
-    <a class="card rv" href="ultra-scan/index.html" style="--a:#f5b21a;--d:0ms">
+    <a class="card rv" href="jelly75-kd201/index.html" style="--a:#c8e83a;--d:0ms">
+      <span class="bar"></span>
+      <div class="shot"><img src="jelly75-kd201/assets/cover.webp" alt="JELLY75 KD201" loading="lazy" decoding="async"></div>
+      <div class="txt">
+        <p class="label">CMF &amp; interaction · ASUS</p>
+        <h2>JELLY75 <span class="n">KD201</span></h2>
+        <p>A CMF-led keyboard case study spanning market research, colorway families and interactive material specification.</p>
+        <div class="meta"><span class="chip">CMF</span><span class="chip">Keyboard</span><span class="chip">Research</span></div>
+        <span class="go">View case study →</span>
+      </div>
+    </a>
+    <a class="card rv" href="ultra-scan/index.html" style="--a:#f5b21a;--d:90ms">
       <span class="bar"></span>
       <div class="shot"><img src="ultra-scan/assets/untitled.111110.webp" alt="ULTRA SCAN 03" loading="lazy" decoding="async"></div>
       <div class="txt">
@@ -57,7 +68,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:12px;color
         <span class="go">View case study →</span>
       </div>
     </a>
-    <a class="card rv" href="manta/index.html" style="--a:#f4552a;--d:90ms">
+    <a class="card rv" href="manta/index.html" style="--a:#f4552a;--d:180ms">
       <span class="bar"></span>
       <div class="shot"><img src="manta/assets/808.webp" alt="MANTA 01" loading="lazy" decoding="async"></div>
       <div class="txt">
@@ -68,7 +79,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:12px;color
         <span class="go">View case study →</span>
       </div>
     </a>
-    <a class="card rv" href="flex-03/index.html" style="--a:#f5261a;--d:180ms">
+    <a class="card rv" href="flex-03/index.html" style="--a:#f5261a;--d:270ms">
       <span class="bar"></span>
       <div class="shot"><img src="flex-03/assets/hai-fridge-rendering1.665.webp" alt="FLEX 03" loading="lazy" decoding="async"></div>
       <div class="txt">
@@ -80,7 +91,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:12px;color
       </div>
     </a>
   </main>
-  <footer><span>Portfolio 2026 · Product Design</span><span>ULTRA SCAN · MANTA · FLEX</span></footer>
+  <footer><span>Portfolio 2026 · Product Design</span><span>JELLY75 · ULTRA SCAN · MANTA · FLEX</span></footer>
 </div>
 <script>
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
