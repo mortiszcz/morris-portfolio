@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "projects": [
+    {
+      "key": "ultra-scan",
+      "title": "ULTRA SCAN 03",
+      "summary": "Wearable scanning system",
+      "description": "ULTRA SCAN 03 — wearable barcode scanning system for warehouse and retail operations.",
+      "accent": "#f5b21a",
+      "path": "ultra-scan/index.html",
+      "cover": "ultra-scan/assets/untitled.111110.webp",
+      "chapters": [
+        {
+          "id": "ultra-scan-cover",
+          "label": "Cover"
+        },
+        {
+          "id": "ultra-scan-research",
+          "label": "Research"
+        },
+        {
+          "id": "ultra-scan-development",
+          "label": "Development"
+        },
+        {
+          "id": "ultra-scan-refinement",
+          "label": "Refinement"
+        },
+        {
+          "id": "ultra-scan-final",
+          "label": "Final design"
+        }
+      ]
+    },
+    {
+      "key": "manta",
+      "title": "MANTA 01",
+      "summary": "Maritime search & rescue drone",
+      "description": "MANTA 01 — maritime search and rescue drone with a deployable lifebuoy payload. IDA 2019 Bronze.",
+      "accent": "#f4552a",
+      "path": "manta/index.html",
+      "cover": "manta/assets/808.webp",
+      "chapters": [
+        {
+          "id": "manta-cover",
+          "label": "Cover"
+        },
+        {
+          "id": "manta-research",
+          "label": "Research"
+        },
+        {
+          "id": "manta-development",
+          "label": "Development"
+        },
+        {
+          "id": "manta-final",
+          "label": "Final design"
+        }
+      ]
+    },
+    {
+      "key": "flex-03",
+      "title": "FLEX 03",
+      "summary": "Urban shared micro-mobility",
+      "description": "FLEX 03 — urban shared micro-mobility solution, master degree project in collaboration with Phoenix.",
+      "accent": "#f5261a",
+      "path": "flex-03/index.html",
+      "cover": "flex-03/assets/hai-fridge-rendering1.665.webp",
+      "chapters": [
+        {
+          "id": "flex-03-cover",
+          "label": "Cover"
+        },
+        {
+          "id": "flex-03-trends",
+          "label": "Trends"
+        },
+        {
+          "id": "flex-03-system",
+          "label": "Eco-design"
+        },
+        {
+          "id": "flex-03-development",
+          "label": "Development"
+        },
+        {
+          "id": "flex-03-final",
+          "label": "Final design"
+        }
+      ]
+    }
+  ]
+}

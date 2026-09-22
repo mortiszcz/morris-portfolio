@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* Generic rules from the InDesign "Publish Online" export, scoped to the page canvas (.scaler)
+   so they never leak into the host portfolio. */
+.scaler div,.scaler dl,.scaler dt,.scaler dd,.scaler h1,.scaler h2,.scaler h3,.scaler h4,.scaler h5,.scaler h6,.scaler p,.scaler pre,.scaler code,.scaler blockquote,.scaler figure{margin:0;padding:0;border-width:0;text-rendering:optimizeSpeed;}
+.scaler div > svg{position:absolute;}
+.scaler div.基本圖形框架{border-color:#000000;border-width:1px;border-style:solid;}
+.scaler div.基本文字框{border-style:solid;}
+.scaler img._idGenObjectAttribute-1{height:100.00%;min-width:100%;width:100.00%;}
+.scaler img._idGenObjectAttribute-2{left:0px;position:absolute;top:0px;}
+.scaler div._idGenObjectStyle-Disabled{background-color:transparent;border-width:0px;}

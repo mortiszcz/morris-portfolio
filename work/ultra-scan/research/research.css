@@ -1,0 +1,139 @@
+@charset "utf-8";
+/* Chapter 02 research boards (System evaluation, User research, Design considerations).
+   Everything is scoped under .rsx; the tooltip uses .rsx-tip. */
+@font-face{font-family:"IBM Plex Sans";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-sans-400.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Sans";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/ibm-plex-sans-500.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Sans";font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-sans-600.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Sans";font-style:normal;font-weight:700;font-display:swap;src:url(fonts/ibm-plex-sans-700.woff2) format("woff2")}
+.rsx{--bg:#0a0a0b;--ink:#dcdddd;--hi:#efefef;--mute:#85898c;--y:#f8b62d;--line:#2a2a2c;--line2:#3a3a3d;color-scheme:dark;}
+@media (prefers-color-scheme:dark){.rsx{--bg:#0a0a0b;--ink:#dcdddd;--hi:#efefef;--mute:#85898c;--y:#f8b62d;--line:#2a2a2c;--line2:#3a3a3d;color-scheme:dark;}}
+.rsx{--bg:#0a0a0b;--ink:#dcdddd;--hi:#efefef;--mute:#85898c;--y:#f8b62d;--line:#2a2a2c;--line2:#3a3a3d;color-scheme:dark;}
+.rsx *,.rsx *::before,.rsx *::after{box-sizing:border-box}
+.rsx{box-sizing:border-box;}
+.rsx{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--bg)}
+.rsx{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1}
+.rsx svg{display:block;max-width:100%;height:auto;overflow:visible}
+.rsx svg text{font-family:"IBM Plex Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif!important}
+.rsx #b1,.rsx #b2,.rsx #b3{overflow:hidden}
+.rsx .scrolly{position:relative}
+.rsx .pin{position:relative!important}
+.rsx .pin{position:sticky;top:0;height:100vh;height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:max(16px,env(safe-area-inset-top,0px)) 24px max(16px,env(safe-area-inset-bottom,0px))}
+.rsx .board{width:min(100%,calc((100dvh - 150px) * var(--ar)));position:relative}
+.rsx .cap{width:min(100%,calc((100dvh - 150px) * var(--ar)));display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;min-height:64px;border-top:1px solid var(--line);padding-top:14px}
+.rsx .cap .no{font-size:13px;color:var(--y);min-width:44px}
+.rsx .cap h3{margin:0 0 3px;font-size:17px;font-weight:500;color:var(--hi);letter-spacing:-.005em}
+.rsx .cap p{margin:0;font-size:14px;color:var(--mute);max-width:78ch;line-height:1.45}
+.rsx .ctl{display:flex;gap:10px;align-items:center}
+.rsx .dots{display:flex;gap:6px;align-items:center}
+.rsx .dots button{appearance:none;border:0;padding:10px 0;background:none;cursor:pointer;width:clamp(26px,3vw,46px)}
+.rsx .dots button i{display:block;height:3px;border-radius:2px;background:var(--line2);overflow:hidden;width:100%!important}
+.rsx .dots button i b{display:block;height:100%;background:var(--y);transform:scaleX(0);transform-origin:left}
+.rsx .dots button:hover i{background:#55555a}
+.rsx .pp{appearance:none;border:1px solid var(--line2);background:none;border-radius:999px;width:32px;height:32px;display:grid;place-items:center;cursor:pointer;color:var(--ink)}
+.rsx .pp:hover{border-color:var(--y);color:var(--y)}
+.rsx .pp svg{width:14px;height:14px}
+.rsx .pp path{fill:currentColor;display:none}
+.rsx .pp[data-s="play"] .i-play,.rsx .pp[data-s="pause"] .i-pause,.rsx .pp[data-s="re"] .i-re{display:block}
+.rsx .dots-old{display:flex;gap:8px;align-items:center}
+.rsx button:focus-visible,.rsx [tabindex]:focus-visible{outline:2px solid var(--y);outline-offset:3px}
+.rsx .seg{display:inline-flex;border:1px solid var(--line2);border-radius:999px;padding:3px;margin-left:10px;vertical-align:middle}
+.rsx .seg[hidden]{display:none}
+.rsx .seg button{appearance:none;border:0;background:none;color:var(--mute);font:inherit;font-size:12px;padding:4px 11px;border-radius:999px;cursor:pointer}
+.rsx .seg button[aria-pressed="true"]{background:#dcdddd;color:#0a0a0b}
+.rsx .zbar{position:absolute;top:10px;right:10px;display:flex;gap:4px;align-items:center;background:rgba(10,10,11,.88);border:1px solid var(--line2);border-radius:999px;padding:4px 4px 4px 14px;font-size:12.5px;color:var(--mute);z-index:3;backdrop-filter:blur(6px)}
+.rsx .zbar .zl{margin-right:8px;white-space:nowrap;max-width:62ch;overflow:hidden;text-overflow:ellipsis}
+.rsx #eval.zoomed .zbar .zl{color:var(--hi)}
+.rsx .zbar button{appearance:none;border:0;background:none;color:var(--ink);font:inherit;font-size:12.5px;padding:5px 10px;border-radius:999px;cursor:pointer;display:none}
+.rsx #eval.zoomed .zbar button{display:block}
+.rsx .zbar button:hover{background:#2a2a2c;color:var(--y)}
+.rsx .chapter+.chapter{border-top:1px solid var(--line)}
+.rsx-tip{position:fixed;z-index:30;pointer-events:none;background:#dcdddd;color:#0a0a0b;font-size:12.5px;line-height:1.35;padding:7px 10px;border-radius:6px;opacity:0;transform:translate(-50%,calc(-100% - 14px));transition:opacity .15s;max-width:260px}
+.rsx-tip b{font-weight:600}
+.rsx-tip.show{opacity:1}
+.rsx .foot{padding:12vh 24px 10vh;text-align:center;color:var(--mute);font-size:13px}
+@media (max-width:760px){.rsx .cap{grid-template-columns:1fr;gap:8px}
+.rsx .dots{justify-content:flex-start}
+.rsx .pin{gap:10px;padding-left:12px;padding-right:12px}
+.rsx .board,.rsx .cap{width:100%}
+.rsx .cap p{font-size:13px}}
+@media (prefers-reduced-motion:reduce){.rsx *,.rsx *::before,.rsx *::after{transition:none!important;animation:none!important}}
+.rsx .stg{font-size:13.6px;fill:#404040;font-weight:500}
+.rsx .nt{font-size:11.7px;fill:#dcdddd}
+.rsx .note{font-size:9.6px;fill:#dcdddd}
+.rsx .kw{fill:#f8b62d}
+.rsx .node rect{fill:#0a0a0b;fill-opacity:0;stroke:#85898c;stroke-width:1;transition:stroke .35s,fill-opacity .35s,stroke-width .35s}
+.rsx .node.sq rect{stroke:#dcdddd}
+.rsx .node,.rsx .cn{transition:opacity .35s ease,transform .45s cubic-bezier(.2,.7,.15,1)}
+.rsx .node{cursor:help;transform-box:fill-box;transform-origin:center}
+.rsx .chev{cursor:help}
+.rsx #eval[data-step="-1"] .node,.rsx #eval[data-step="-1"] .cn{opacity:0}
+.rsx .node.off{opacity:0;transform:translateY(6px)}
+.rsx .cn.off{opacity:0}
+.rsx .node.hot rect{stroke:#f8b62d;stroke-width:1.7;fill:#f8b62d;fill-opacity:.1}
+.rsx .node.cold{opacity:.3}
+.rsx .node.hl rect{stroke:#f8b62d;stroke-width:1.7}
+.rsx .cf.go{animation:cf .9s ease-out}
+@keyframes cf{0%{opacity:.26}100%{opacity:0}}
+.rsx .chev.ping polygon{animation:cp .9s ease-out}
+@keyframes cp{0%{fill:#f8b62d}100%{fill:#dcdddd}}
+.rsx #stmt,.rsx #frac{transition:opacity .6s}
+.rsx #jr1 .chev.cur polygon,.rsx #b1 .chev.cur polygon{fill:#f8b62d}
+.rsx #b1 .node{cursor:zoom-in}
+.rsx #eval.zoomed #b1 .node{cursor:help}
+.rsx #b1 .chev{cursor:zoom-in}
+.rsx #eval[data-step="-1"] #stmt,.rsx #eval[data-step="0"] #stmt,.rsx #eval[data-step="1"] #stmt{opacity:.2}
+.rsx .dimc .node:not(.inc),.rsx .dimc .cn:not(.inc){opacity:.14}
+.rsx [data-z]{transition:opacity .55s ease}
+.rsx #user[data-step="-1"] [data-z="persona"],.rsx #user[data-step="-1"] [data-z="scen"],.rsx #user[data-step="0"] [data-z="scen"],.rsx #user[data-step="-1"] [data-z="goal"],.rsx #user[data-step="0"] [data-z="goal"],.rsx #user[data-step="1"] [data-z="goal"]{opacity:0}
+.rsx #user [data-z]{transition:opacity .35s ease}
+.rsx #flowfill{transform-box:fill-box;transform-origin:left center;transform:scaleX(0);transition:transform .6s cubic-bezier(.2,.7,.15,1)}
+.rsx [data-g~="vc"],.rsx [data-g~="gc"]{stroke-dasharray:1;stroke-dashoffset:1}
+.rsx [data-g~="bul"],.rsx [data-g~="pinfo"],.rsx [data-g~="wi"],.rsx [data-g~="wh"],.rsx [data-g~="where"],.rsx [data-g~="when"],.rsx [data-g~="hf"],.rsx [data-g~="arw"],.rsx [data-g~="acc"],.rsx [data-g~="concl"],.rsx [data-g~="perf"],.rsx [data-g~="act"],.rsx [data-g~="use"],.rsx [data-g~="why"],.rsx #lens1,.rsx #lens2,.rsx #lens3,.rsx #lens4{transition:opacity .25s ease}
+.rsx .h{opacity:0!important}
+.rsx #user .it-pop{transition:opacity .25s ease}
+.rsx #ring circle{transform-box:fill-box;transform-origin:center;opacity:0}
+.rsx #user[data-step="0"] #ring circle,.rsx #user[data-step="4"] #ring circle{animation:ripple 3.2s cubic-bezier(.2,.6,.3,1) infinite}
+.rsx #user[data-step="0"] #ring circle+circle,.rsx #user[data-step="4"] #ring circle+circle{animation-delay:1.6s}
+@keyframes ripple{0%{opacity:.7;transform:scale(1)}100%{opacity:0;transform:scale(1.55)}}
+.rsx [data-g~="photo"]{transition:filter 1s ease}
+.rsx #user[data-step="0"] [data-g~="photo"]{filter:contrast(1.05)}
+.rsx #hits>*{cursor:help}
+.rsx .fz [data-g]:not(.on):not([data-g~="photo"]):not([data-g~="pc"]):not([data-g~="flow"]):not([data-g~="flowh"]):not([data-g~="eu"]):not([data-g~="fn"]){opacity:.18}
+.rsx .fz #lens1,.rsx .fz #lens2,.rsx .fz #lens3,.rsx .fz #lens4{opacity:.2}
+.rsx .on{opacity:1!important}
+.rsx [data-z]{transition:opacity .55s ease}
+.rsx [data-g~="ph"]{transition:opacity .6s ease,filter .6s ease}
+.rsx .pre [data-g~="ph"]{opacity:0}
+.rsx [data-g~="diag"]{transition:stroke-dashoffset .1s linear}
+.rsx .dimph [data-g~="ph"]:not(.sel),.rsx .dimph [data-g~="hc"]:not(.sel){opacity:.28}
+.rsx .dimph [data-g~="pz"]:not(.sel){opacity:.3}
+.rsx [data-g~="pz"]{transition:opacity .35s}
+.rsx .pzf .fr,.rsx .pzf .chip{opacity:0;transition:opacity .3s}
+.rsx .pzf.sel .fr,.rsx .pzf.sel .chip{opacity:1}
+.rsx [data-g~="hc"]{cursor:pointer}
+.rsx [data-g~="hc"].sel{stroke:#f8b62d;stroke-width:3}
+.rsx [data-g~="hc"]{transition:opacity .4s,transform .5s cubic-bezier(.2,.7,.15,1);transform-box:fill-box;transform-origin:center}
+.rsx [data-g~="hc"].sel{transform:scale(1.12)}
+.rsx [data-g~="sh"],.rsx [data-g~="bb"]{transform-box:fill-box;transform-origin:left center;transition:transform .9s cubic-bezier(.2,.7,.15,1)}
+.rsx .z [data-g~="sh"]{transform:scaleX(0)}
+.rsx .zb [data-g~="bb"]{transform:scaleX(0)}
+.rsx [data-g~="day"]{transform-box:fill-box;transform-origin:left center}
+.rsx [data-g~="ov"]{transition:opacity .35s,filter .35s}
+.rsx .dimov [data-g~="ov"]:not(.sel){opacity:.08}
+.rsx .dimov [data-g~="ld"]:not(.sel),.rsx .dimov [data-g~="lb"]:not(.sel){opacity:.3}
+.rsx [data-g~="lb"],.rsx [data-g~="lb2"],.rsx [data-g~="ov"],.rsx [data-g~="pt"],.rsx [data-g~="ph"]{cursor:help}
+.rsx .dimpt [data-g~="pt"]:not(.sel),.rsx .dimpt [data-g~="pl"]:not(.sel),.rsx .dimpt [data-g~="lb2"]:not(.sel){opacity:.25}
+.rsx [data-g~="pt"].sel{filter:brightness(1.35)}
+.rsx [data-g~="pt"],.rsx [data-g~="pl"],.rsx [data-g~="lb2"],.rsx [data-g~="ld"],.rsx [data-g~="lb"]{transition:opacity .35s,filter .35s}
+.rsx #scrub,.rsx #ph{transition:opacity .4s}
+.rsx #design[data-step="-1"] #scrub{opacity:0;pointer-events:none}
+.rsx #design:not([data-step="0"]) #ph{opacity:0}
+.rsx #knob:focus-visible rect{stroke-width:3.5;stroke:#fff}
+.rsx{background:transparent;color:var(--ink);font-family:"IBM Plex Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.rsx .pin{padding-top:calc(66px + env(safe-area-inset-top,0px))}
+.rsx .board,.rsx .cap{width:min(100%,calc((100dvh - 196px) * var(--ar)))}
+.rsx .chapter+.chapter{border-top:0}
+.rsx div>svg{position:relative}   /* InDesign export CSS makes every div>svg absolute */
+.rsx,.rsx *{text-rendering:auto}   /* InDesign export CSS sets optimizeSpeed on every div/p */
+.rsx-band{padding-bottom:0!important}
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Product Design — ULTRA SCAN, MANTA, FLEX</title>
+<meta name="description" content="Three industrial design case studies: ULTRA SCAN wearable scanner, MANTA search and rescue drone, FLEX 03 shared micro-mobility.">
+<style>
+:root{--bg:#0a0b0c;--surface:#141517;--ink:#f4f4f1;--muted:rgba(244,244,241,.68);--faint:rgba(244,244,241,.52);--line:rgba(244,244,241,.14);--gut:clamp(16px,3.4vw,54px)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:'Inter','Helvetica Neue',Helvetica,Arial,'Noto Sans TC',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1560px;margin:0 auto;padding:0 var(--gut)}
+.label{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+header.top{padding:clamp(60px,15vh,160px) 0 clamp(32px,6vh,64px)}
+h1{font-size:clamp(38px,7.5vw,96px);font-weight:600;letter-spacing:-.045em;line-height:.98;margin:20px 0 18px;max-width:16ch}
+.sub{font-size:clamp(16px,1.5vw,20px);color:var(--muted);max-width:58ch}
+.grid{display:grid;gap:12px;padding-bottom:clamp(56px,10vh,120px)}
+@media(min-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);background:var(--surface);overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.25,1)}
+.card:hover{transform:translateY(-4px)}
+.card .shot{aspect-ratio:4/3;overflow:hidden;background:#101112}
+.card .shot img{transition:transform 1s cubic-bezier(.2,.7,.25,1);opacity:.92}
+.card:hover .shot img{transform:scale(1.05)}
+.card .txt{padding:clamp(18px,2.2vw,28px);display:flex;flex-direction:column;gap:10px;flex:1}
+.card h2{font-size:clamp(24px,2.6vw,34px);font-weight:600;letter-spacing:-.035em;line-height:1}
+.card h2 .n{color:var(--a)}
+.card p{font-size:14.5px;color:var(--muted)}
+.card .go{margin-top:auto;padding-top:14px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--a)}
+.card .bar{position:absolute;top:0;left:0;right:0;height:3px;background:var(--a);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.25,1);z-index:1}
+.card:hover .bar{transform:scaleX(1)}
+.meta{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:11.5px;padding:5px 10px;border:1px solid var(--line);border-radius:999px;color:var(--faint)}
+footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:12px;color:var(--faint);display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:space-between}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .8s cubic-bezier(.2,.7,.25,1);transition-delay:var(--d,0ms)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <p class="label rv">Portfolio 2026 · Product design</p>
+    <h1 class="rv" style="--d:70ms">Three projects, start to finish.</h1>
+    <p class="sub rv" style="--d:140ms">A wearable scanner for warehouse floors, a search-and-rescue drone for open water, and a shared e-scooter built around folding. Each case study runs from research through mechanism to final design.</p>
+  </header>
+  <main class="grid">
+    <a class="card rv" href="ultra-scan/index.html" style="--a:#f5b21a;--d:0ms">
+      <span class="bar"></span>
+      <div class="shot"><img src="ultra-scan/assets/untitled.111110.webp" alt="ULTRA SCAN 03" loading="lazy" decoding="async"></div>
+      <div class="txt">
+        <p class="label">Wearable hardware</p>
+        <h2>ULTRA SCAN <span class="n">03</span></h2>
+        <p>A scanning system worn on the hand, so the operator keeps both hands on the work.</p>
+        <div class="meta"><span class="chip">Warehouse</span><span class="chip">Retail</span><span class="chip">Ergonomics</span></div>
+        <span class="go">View case study →</span>
+      </div>
+    </a>
+    <a class="card rv" href="manta/index.html" style="--a:#f4552a;--d:90ms">
+      <span class="bar"></span>
+      <div class="shot"><img src="manta/assets/808.webp" alt="MANTA 01" loading="lazy" decoding="async"></div>
+      <div class="txt">
+        <p class="label">Search &amp; rescue · IDA Bronze</p>
+        <h2>MANTA <span class="n">01</span></h2>
+        <p>An industrial drone that carries flotation to the water before a rescuer has to enter it.</p>
+        <div class="meta"><span class="chip">Biomimicry</span><span class="chip">Aerodynamics</span><span class="chip">VTOL</span></div>
+        <span class="go">View case study →</span>
+      </div>
+    </a>
+    <a class="card rv" href="flex-03/index.html" style="--a:#f5261a;--d:180ms">
+      <span class="bar"></span>
+      <div class="shot"><img src="flex-03/assets/hai-fridge-rendering1.665.webp" alt="FLEX 03" loading="lazy" decoding="async"></div>
+      <div class="txt">
+        <p class="label">Micro-mobility · with Phoenix</p>
+        <h2>FLEX <span class="n">03</span></h2>
+        <p>A shared e-scooter designed around folding, indoor parking and a swappable battery network.</p>
+        <div class="meta"><span class="chip">Eco-design</span><span class="chip">Mechanism</span><span class="chip">Service</span></div>
+        <span class="go">View case study →</span>
+      </div>
+    </a>
+  </main>
+  <footer><span>Portfolio 2026 · Product Design</span><span>ULTRA SCAN · MANTA · FLEX</span></footer>
+</div>
+<script>
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+</script>
+</body>
+</html>
