@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morris Chuang | Industrial Designer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --card-bg: #161616;
+            --accent: #ffffff;
+            --text-secondary: #a0a0a0;
+            --border: #222;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--accent);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1100px; margin: auto; padding: 0 2rem; }
+
+        /* --- Header --- */
+        nav {
+            padding: 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 8rem 0;
+            text-align: left;
+        }
+        .hero h1 { font-size: 4rem; margin: 0; line-height: 1.1; }
+        .hero p { font-size: 1.5rem; color: var(--text-secondary); max-width: 600px; }
+        .badge { border: 1px solid var(--accent); padding: 5px 12px; font-size: 0.8rem; text-transform: uppercase; border-radius: 20px; }
+
+        /* --- Projects Grid --- */
+        .section-title { font-size: 2rem; margin-bottom: 3rem; border-left: 4px solid var(--accent); padding-left: 1rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            border: 1px solid var(--border);
+        }
+        .project-card:hover { transform: translateY(-10px); }
+        .project-info { padding: 1.5rem; }
+        .project-info h3 { margin: 0; font-size: 1.2rem; }
+        .project-info p { color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem; }
+
+        /* --- Experience & Education --- */
+        .info-section { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin: 6rem 0; }
+        .timeline-item { margin-bottom: 2rem; }
+        .timeline-item h4 { margin: 0; font-size: 1.1rem; }
+        .timeline-item span { color: var(--text-secondary); font-size: 0.85rem; }
+
+        /* --- Skills --- */
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
+        .skill-tag { background: #222; padding: 6px 15px; border-radius: 4px; font-size: 0.85rem; }
+
+        /* --- Contact --- */
+        .footer { padding: 5rem 0; border-top: 1px solid var(--border); text-align: center; }
+        .contact-link { font-size: 1.5rem; color: var(--accent); text-decoration: none; border-bottom: 2px solid var(--accent); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .info-section { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav>
+            <div class="logo">MORRIS CHUANG</div>
+            <div>INDUSTRIAL DESIGNER</div>
+        </nav>
+
+        <section class="hero">
+            <span class="badge">Based in Shanghai</span>
+            <h1>Blending user aspirations with functionality.</h1>
+            <p>I stay current with the latest developments, actively infusing cutting-edge concepts into high-impact designs for the future.</p>
+        </section>
+
+        <section id="projects">
+            <h2 class="section-title">Selected Projects</h2>
+            <div class="grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>ROG Zephyrus Duo G16</h3>
+                        <p>High-performance two-screen laptop concept with Duo Stealth Hinge.</p>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>ProArt P16</h3>
+                        <p>The first-ever creator laptop featuring NVIDIA RTX Spark technology.</p>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>CipherLab UltraScan</h3>
+                        <p>Innovative wearable barcode scanner solution for industrial logistics.</p>
+                    </div>
+                </div>
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>SAR Manta</h3>
+                        <p>Search and rescue unmanned aerial vehicle inspired by biomimetic forms.</p>
+                    </div>
+                </div>
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>FLEX E-Scooter</h3>
+                        <p>Urban shared micro-mobility solution focusing on portability and battery swap.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div>
+                <h2 class="section-title">Experience</h2>
+                <div class="timeline-item">
+                    <h4>Bosch | Industrial Designer</h4>
+                    <span>2025 - Present | Shanghai</span>
+                </div>
+                <div class="timeline-item">
+                    <h4>ASUS | Senior Industrial Designer</h4>
+                    <span>2023 - 2025 | Taipei/Shanghai</span>
+                </div>
+                <div class="timeline-item">
+                    <h4>Phoenix | Thesis Student / Intern</h4>
+                    <span>2021 - 2022 | Germany/China</span>
+                </div>
+            </div>
+            <div>
+                <h2 class="section-title">Education</h2>
+                <div class="timeline-item">
+                    <h4>Lund University</h4>
+                    <span>Master of Fine Arts, Industrial Design | 2019 - 2022</span>
+                </div>
+                <div class="timeline-item">
+                    <h4>University of Nottingham</h4>
+                    <span>B.Eng, Product Design (First Class Honors) | 2015 - 2019</span>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 6rem;">
+            <h2 class="section-title">Expertise</h2>
+            <h3>Software</h3>
+            <div class="skills-grid">
+                <div class="skill-tag">Solidworks</div>
+                <div class="skill-tag">Creo</div>
+                <div class="skill-tag">Keyshot</div>
+                <div class="skill-tag">Gravity Sketch</div>
+                <div class="skill-tag">Adobe Suite</div>
+            </div>
+            <h3 style="margin-top: 2rem;">Design Approach</h3>
+            <p>Empathize & Discover → Ideation & Define → Prototype & Implement</p>
+        </section>
+
+        <footer class="footer">
+            <p>Let's shape the world of tomorrow.</p>
+            <a href="mailto:morriszzczz@hotmail.com" class="contact-link">morriszzczz@hotmail.com</a>
+            <p style="margin-top: 2rem; color: var(--text-secondary);">
+                +86 13917531052 | +886 0966 260 274
+            </p>
+        </footer>
+    </div>
+
+</body>
+</html>

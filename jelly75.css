@@ -1,0 +1,150 @@
+body[data-project="jelly75"] {
+  --accent: #e9a565;
+  --jelly-green: #c5d875;
+  --jelly-orange: #eea668;
+  background:
+    radial-gradient(60% 44% at 88% 17%, rgba(197, 216, 117, .14), transparent 72%),
+    radial-gradient(55% 40% at 8% 30%, rgba(238, 166, 104, .13), transparent 74%),
+    var(--canvas);
+}
+
+.jelly-hero-visual {
+  isolation: isolate;
+  background:
+    linear-gradient(130deg, rgba(238, 166, 104, .2), transparent 43%),
+    linear-gradient(315deg, rgba(197, 216, 117, .18), transparent 48%),
+    #15181a;
+}
+.jelly-hero-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+.jelly-hero-visual::after {
+  z-index: 3;
+  background:
+    linear-gradient(90deg, var(--canvas), transparent 38%),
+    linear-gradient(0deg, rgba(4,6,8,.55), transparent 48%);
+  mix-blend-mode: normal;
+}
+.jelly-hero-visual .jelly-product {
+  position: absolute;
+  z-index: 1;
+  inset: auto;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 28px 38px rgba(0,0,0,.36));
+}
+.jelly-product--orange { top: 1%; right: -2%; width: 70% !important; transform: rotate(-5deg); }
+.jelly-product--green { left: 2%; bottom: -10%; width: 60% !important; transform: rotate(7deg); }
+.jelly-placeholder-note {
+  position: absolute;
+  z-index: 4;
+  right: 24px;
+  bottom: 22px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255,255,255,.24);
+  color: rgba(255,255,255,.7);
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.colourways {
+  width: min(var(--page-max), calc(100% - var(--gutter) * 2));
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  margin: var(--section-space) auto;
+  background: var(--line);
+}
+.colourway {
+  position: relative;
+  min-height: min(48vw, 660px);
+  overflow: hidden;
+  background: var(--surface);
+}
+.colourway img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.82) contrast(1.02); }
+.colourway::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(5,7,9,.9), transparent 54%); }
+.colourway-copy { position: absolute; z-index: 1; left: clamp(22px, 4vw, 58px); right: clamp(22px, 4vw, 58px); bottom: clamp(22px, 4vw, 52px); }
+.colourway-copy span { color: var(--accent); font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.colourway-copy h3 { margin: 9px 0 7px; color: #f7f7f2; font-size: clamp(32px, 4vw, 62px); letter-spacing: -.045em; line-height: .92; }
+.colourway-copy p { max-width: 36ch; margin: 0; color: rgba(247,247,242,.68); font-size: 14px; }
+
+.cmf-slots {
+  width: min(var(--page-max), calc(100% - var(--gutter) * 2));
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin: var(--section-space) auto;
+  background: var(--line);
+}
+.cmf-slot {
+  position: relative;
+  min-height: clamp(340px, 35vw, 540px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(22px, 3vw, 42px);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at var(--glow-x, 76%) var(--glow-y, 18%), color-mix(in srgb, var(--slot-accent) 34%, transparent), transparent 36%),
+    linear-gradient(145deg, color-mix(in srgb, var(--surface) 82%, var(--slot-accent) 18%), var(--surface));
+}
+.cmf-slot::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px dashed color-mix(in srgb, var(--ink) 28%, transparent);
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--ink) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--ink) 5%, transparent) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+.cmf-slot:nth-child(1) { --slot-accent: var(--jelly-orange); }
+.cmf-slot:nth-child(2) { --slot-accent: var(--jelly-green); --glow-x: 30%; --glow-y: 30%; }
+.cmf-slot:nth-child(3) { --slot-accent: #eef0e8; --glow-x: 70%; --glow-y: 70%; }
+.cmf-slot > * { position: relative; z-index: 1; }
+.cmf-slot span { color: var(--slot-accent); font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.cmf-slot h3 { margin: 10px 0 8px; font-size: clamp(25px, 3vw, 43px); letter-spacing: -.04em; line-height: .96; }
+.cmf-slot p { max-width: 35ch; margin: 0; color: var(--muted); font-size: 14px; }
+
+.jelly-evidence {
+  width: min(var(--page-max), calc(100% - var(--gutter) * 2));
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(14px, 2vw, 28px);
+  margin: var(--section-space) auto;
+}
+.evidence-card { display: grid; align-content: start; gap: 15px; border-top: 1px solid var(--line); padding-top: 15px; }
+.evidence-card figure { aspect-ratio: 4 / 3; margin: 0; overflow: hidden; background: var(--surface); }
+.evidence-card img { width: 100%; height: 100%; display: block; object-fit: cover; }
+.evidence-card span { color: var(--accent); font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.evidence-card h3 { margin: -4px 0 0; font-size: clamp(23px, 2.6vw, 38px); letter-spacing: -.04em; line-height: .98; }
+.evidence-card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+@media (max-width: 820px) {
+  .jelly-product--orange { top: 7%; right: -8%; width: 84% !important; }
+  .jelly-product--green { left: -9%; bottom: -4%; width: 74% !important; }
+  .colourways { width: 100%; grid-template-columns: 1fr; }
+  .colourway { min-height: 620px; }
+  .cmf-slots { width: 100%; grid-template-columns: 1fr; }
+  .cmf-slot { min-height: 390px; }
+  .jelly-evidence { width: 100%; grid-template-columns: 1fr; padding-inline: var(--gutter); }
+}
+
+@media (max-width: 480px) {
+  .jelly-product--orange { top: 11%; right: -12%; width: 98% !important; }
+  .jelly-product--green { left: -18%; bottom: 0; width: 88% !important; }
+  .jelly-placeholder-note { right: 16px; bottom: 14px; }
+  .colourway { min-height: 500px; }
+}
