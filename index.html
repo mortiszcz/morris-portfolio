@@ -29,7 +29,10 @@
     .motion-reel { position:absolute; z-index:0; top:clamp(-210px,-13vw,-150px); left:max(-220px,calc((100vw - 2350px) / 2)); width:var(--editor-reel-width,min(88vw,1800px)); min-width:0; height:var(--editor-reel-height,840px); margin:0; overflow:hidden; border:0; border-radius:0; opacity:var(--editor-reel-opacity,1); background:transparent; mix-blend-mode:normal; filter:blur(var(--editor-reel-blur,0px)); translate:var(--editor-x,0px) var(--editor-y,0px); }
     body.light .motion-reel { opacity:var(--editor-reel-opacity,1); mix-blend-mode:normal; filter:blur(var(--editor-reel-blur,0px)); }
     .motion-reel::after { display:none; }
-    .motion-reel video { display:block; width:100%; height:100%; object-fit:cover; }
+    .motion-reel video, .motion-reel .motion-reel-poster { position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; }
+    .motion-reel video { visibility:hidden; }
+    .motion-reel.has-alpha-video video { visibility:visible; }
+    .motion-reel.has-alpha-video .motion-reel-poster { visibility:hidden; }
     .portrait { position:absolute; z-index:2; top:126px; right:max(60px,calc((100vw - 1500px) / 2)); width:var(--editor-portrait-width,450px); height:var(--editor-portrait-height,530px); display:grid; place-items:end center; padding:clamp(12px,1vw,18px) clamp(8px,.8vw,14px) 0; overflow:hidden; border:1px solid var(--line); border-radius:var(--editor-portrait-radius,5%); background:radial-gradient(92% 74% at 72% 8%,#ffffff 0%,#f7f7f6 54%,#e4e4e1 100%); translate:var(--editor-x,0px) var(--editor-y,0px); }
     .portrait img { position:static !important; inset:auto !important; display:block; width:100% !important; height:100% !important; max-width:100% !important; max-height:100% !important; margin:0 !important; padding:0 !important; object-fit:contain !important; object-position:center bottom !important; transform:none !important; translate:none !important; }
     .hero-intro { position:absolute; z-index:3; left:max(40px,calc((100vw - 1320px) / 2)); bottom:42px; width:var(--editor-intro-width,min(54vw,780px)); max-width:var(--editor-intro-max,780px); translate:var(--editor-x,0px) var(--editor-y,0px); }
@@ -205,7 +208,7 @@
     </nav>
 
         <section class="hero">
-          <figure class="motion-reel" data-editor-target="reel"><video autoplay muted loop playsinline preload="metadata" aria-label="Motion design showcase"><source src="assets/animo-showcase-stream-1080p.mp4" type="video/webm"></video></figure>
+          <figure class="motion-reel" data-editor-target="reel"><video muted loop playsinline preload="metadata" aria-label="Motion design showcase"><source src="assets/animo-showcase-stream-1080p.webm" type='video/webm; codecs="vp9"'></video><img class="motion-reel-poster" src="assets/animo-showcase-poster.webp" width="1600" height="900" alt="Motion design showcase" fetchpriority="high"></figure>
           <figure class="portrait" data-editor-target="portrait"><img src="assets/morris-chuang-profile-2026-cutout.webp" alt="Portrait of Morris Chuang"></figure>
           <div class="hero-intro" data-editor-target="intro"><h1 data-editor-text="hero-title">Hi, I'm Morris.</h1><p class="impeccable-hero-copy" data-editor-text="hero-copy">An industrial designer with international experience across Sweden, Germany, the UK and China. <span>I bridge engineering, aesthetics and user‑centred thinking to shape complex technologies into thoughtful, high‑performance products—from creator and gaming devices to professional tools.</span></p></div>
       </section>
@@ -524,10 +527,37 @@
     }
   };
   addEventListener('scroll', update, {passive:true}); update();
-  const video = document.querySelector('.motion-reel video');
+  const reel = document.querySelector('.motion-reel');
+  const video = reel.querySelector('video');
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
-  const applyMotion = () => { if (motion.matches) video.pause(); else video.play().catch(() => {}); };
+  let transparentVideo = false;
+  let videoUnavailable = false;
+  const applyMotion = () => {
+    reel.classList.toggle('has-alpha-video', transparentVideo && !motion.matches);
+    if (motion.matches || videoUnavailable) video.pause();
+    else video.play().catch(() => reel.classList.remove('has-alpha-video'));
+  };
+  const verifyVideoAlpha = () => {
+    // Some browsers decode VP9 but discard its alpha plane. Keep the transparent
+    // still until a decoded frame proves that its empty corner is transparent.
+    const probe = document.createElement('canvas');
+    probe.width = probe.height = 1;
+    try {
+      const context = probe.getContext('2d', { willReadFrequently:true });
+      context.drawImage(video, 0, 0, 1, 1, 0, 0, 1, 1);
+      transparentVideo = context.getImageData(0, 0, 1, 1).data[3] < 16;
+    } catch (_) { transparentVideo = false; }
+    videoUnavailable = !transparentVideo;
+    applyMotion();
+  };
+  video.addEventListener('loadeddata', verifyVideoAlpha, { once:true });
+  video.addEventListener('error', () => {
+    videoUnavailable = true;
+    transparentVideo = false;
+    applyMotion();
+  });
   applyMotion(); motion.addEventListener('change', applyMotion);
+  if (video.readyState >= 2) verifyVideoAlpha();
   const theme = document.querySelector('.mode');
   const labelTheme = () => theme.setAttribute('aria-label', document.body.classList.contains('light') ? 'Switch to dark theme' : 'Switch to light theme');
   labelTheme(); document.addEventListener('morris-themechange', labelTheme);

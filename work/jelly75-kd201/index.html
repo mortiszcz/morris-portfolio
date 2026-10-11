@@ -31,82 +31,6 @@
 
   .page{ min-height:100vh; background:var(--bg); }
 
-  /* ---------- nav ---------- */
-  nav{
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:18px 20px;
-  }
-  .logo{ display:flex; align-items:center; gap:9px; }
-  .logo svg{ width:22px; height:22px; }
-  .logo span{
-    font-family:'Fraunces', serif; font-style:italic; font-weight:500;
-    font-size:22px; color:var(--ink); letter-spacing:-0.01em;
-  }
-  .logo small{
-    font-family:'JetBrains Mono', monospace; font-size:10px; color:var(--muted-2);
-    letter-spacing:0.08em; margin-left:2px; font-style:normal;
-  }
-
-  .pill{
-    display:none;
-    position:absolute; left:50%; transform:translateX(-50%);
-    background:rgba(255,255,255,0.07);
-    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-    border:1px solid rgba(255,255,255,0.14);
-    border-radius:999px; padding:6px; align-items:center; gap:2px;
-  }
-  .pill a{
-    font-family:'JetBrains Mono', monospace;
-    font-size:12.5px; font-weight:500; letter-spacing:0.01em;
-    color:var(--muted); padding:9px 16px; border-radius:999px;
-    transition:background .2s ease,color .2s ease;
-    white-space:nowrap;
-  }
-  .pill a:hover{ background:rgba(255,255,255,0.12); color:var(--ink); }
-  .pill a.active{ color:var(--ink); background:rgba(255,255,255,0.14); }
-
-  .cta-nav{
-    display:none;
-    background:var(--accent); color:#12130c;
-    font-family:'JetBrains Mono', monospace;
-    font-size:12.5px; font-weight:600; letter-spacing:0.01em;
-    padding:11px 22px; border-radius:999px;
-    transition:transform .2s ease, background .2s ease;
-  }
-  .cta-nav:hover{ background:var(--accent-dim); transform:translateY(-1px); }
-
-  .hamburger{
-    display:flex; align-items:center; justify-content:center;
-    width:38px; height:38px; border-radius:999px;
-    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14);
-    color:var(--ink);
-  }
-
-  @media (min-width:768px){
-    .pill{ display:flex; }
-    .cta-nav{ display:inline-block; }
-    .hamburger{ display:none; }
-  }
-
-  .mobile-menu{
-    position:fixed; top:66px; left:16px; right:16px; z-index:99;
-    background:rgba(15,16,11,0.92);
-    backdrop-filter:blur(16px);
-    border:1px solid rgba(255,255,255,0.12);
-    border-radius:18px; padding:10px;
-    display:flex; flex-direction:column; gap:2px;
-    opacity:0; pointer-events:none; transform:translateY(-8px);
-    transition:opacity .25s ease, transform .25s ease;
-  }
-  .mobile-menu.open{ opacity:1; pointer-events:auto; transform:translateY(0); }
-  .mobile-menu a{
-    font-family:'JetBrains Mono', monospace; font-size:13px;
-    padding:13px 14px; border-radius:10px; color:var(--muted);
-  }
-  .mobile-menu a:active{ background:rgba(255,255,255,0.08); color:var(--ink); }
-  .mobile-menu .cta-nav{ display:block; text-align:center; margin-top:6px; }
-
   /* ---------- hero ---------- */
   .hero{
     position:relative; width:100%; overflow:hidden;
@@ -675,11 +599,7 @@
   .closing-link:hover{ background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.4); transform:translateY(-1px); }
   .more-projects{ scroll-margin-top:24px; }
 
-  footer{
-    padding:32px 20px 44px; text-align:center;
-    font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--muted-2);
-    border-top:1px solid rgba(255,255,255,0.06);
-  }
+
 
 </style>
 <style>/* Independent implementation inspired by the public Step Wipe preview. */
@@ -1131,36 +1051,27 @@ html.is-touch .hint .dot::after{content:'';position:absolute;inset:-5px;border-r
   .w>span{transition:none;}
 }
 </style>
+<link rel="stylesheet" href="../shared/css/project-shell.css">
+<script src="../shared/js/project-shell.js" defer></script>
 </head>
 <body>
 <div class="page">
 
-  <nav>
-    <div class="logo">
-      <svg viewBox="0 0 256 256" fill="#ffffff"><path d="M 256 256 L 128 256 L 0 128 L 128 128 Z M 256 128 L 128 128 L 0 0 L 128 0 Z"/></svg>
-      <span>Jelly75<small>KD201</small></span>
+  <nav id="project-nav" class="project-nav" aria-label="Project navigation" style="--project-accent:#c8e83a;--project-nav-bg:#0a0b08">
+    <a class="project-nav__brand" href="../../index.html#work" aria-label="JELLY75 KD201 — back to selected work"><i aria-hidden="true"></i>JELLY75 <small>KD201</small></a>
+    <div class="project-nav__chapters" id="project-chapters">
+      <a class="project-nav__link" href="#heroSection">Overview</a>
+      <a class="project-nav__link" href="#processSection">Research</a>
+      <a class="project-nav__link" href="#directionsSection">CMF directions</a>
+      <a class="project-nav__link" href="#stackSection">Colorways</a>
+      <a class="project-nav__link" href="#designSection">Design</a>
+      <a class="project-nav__link" href="#durabilitySection">Durability</a>
     </div>
-
-    <div class="pill">
-      <a href="#" class="active">Overview</a>
-      <a href="#">Switches</a>
-      <a href="#">Colorways</a>
-      <a href="#">Specs</a>
-      <a href="#">Support</a>
+    <div class="project-nav__actions">
+      <a class="project-nav__all" href="../../index.html#work">All projects <svg class="project-nav__arrow" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 10 10 2M2 2h8v8"/></svg></a>
+      <button class="project-nav__toggle" type="button" aria-expanded="false" aria-controls="project-chapters" hidden>Menu</button>
     </div>
-
-    <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
   </nav>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#">Overview</a>
-    <a href="#">Switches</a>
-    <a href="#">Colorways</a>
-    <a href="#">Specs</a>
-    <a href="#">Support</a>
-  </div>
 
   <section class="hero" id="heroSection">
     <div class="dot-field-container" id="dotField" aria-hidden="true">
@@ -1716,17 +1627,13 @@ html.is-touch .hint .dot::after{content:'';position:absolute;inset:-5px;border-r
       </div>
     </section>
 
-    <section class="closing">
-      <h2>More work</h2>
-      <p>Jelly75 KD201 is one of several projects. The others follow below.</p>
-      <a class="closing-link" href="#moreProjects">See other projects <span aria-hidden="true">↓</span></a>
-    </section>
-
-    <!-- Reserved slot: additional portfolio projects go here when this page is moved to the main site. -->
-    <section class="more-projects" id="moreProjects" data-slot="more-projects" aria-label="More projects"></section>
   </main>
 
-  <footer>ASUS JELLY75 KEYBOARD · KD201</footer>
+  <footer class="project-footer" style="--project-accent:#c8e83a">
+    <span class="project-footer__title">JELLY75 KD201 — 75% mechanical keyboard</span>
+    <nav class="project-footer__links" aria-label="Other projects"><a href="../../duo-portfolio-scroll-scaffold.html">ROG DUO G16</a><a href="../../proart-p16.html">PROART P16</a><a href="../ultra-scan/index.html">ULTRA SCAN 03</a><a href="../manta/index.html">MANTA 01</a><a href="../flex-03/index.html">FLEX 03</a><a href="../../index.html#work">All projects</a></nav>
+    <span class="project-footer__credit">Portfolio 2026 · Morris Chuang</span>
+  </footer>
 
 </div>
 
@@ -1757,11 +1664,6 @@ let currentColorway = 'volt';
     im.onload = () => { colorways[key].img = im; };
     im.src = colorways[key].src;
   });
-
-  // ---------- mobile menu ----------
-  const hamburgerBtn = document.getElementById('hamburgerBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  hamburgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open'));
 
   // ---------- canvases ----------
   const hero = document.getElementById('heroSection');

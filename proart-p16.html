@@ -7,6 +7,8 @@
   <title>ProArt P16 | Morris Chuang</title>
   <link rel="stylesheet" href="case-study.css">
   <link rel="stylesheet" href="webflow-editor.css">
+  <link rel="stylesheet" href="work/shared/css/project-shell.css">
+  <script src="work/shared/js/project-shell.js" defer></script>
 </head>
 <body data-theme="dark" data-project="proart">
   <!-- THESIS: A creator laptop case study framed as a progression from creative need to a refined physical tool, not a retail product page. OWN-WORLD: A dark studio field, warm copper accent, square media planes and restrained technical lines. STORY: The visitor sees how form, interfaces and CMF align for creators. FIRST VIEWPORT: Title and role align left over a wide product image; project facts anchor the lower rail. FORM: Bespoke editorial case-study system extending Duo G16. FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md. -->
@@ -159,7 +161,20 @@
 </style>
 <div id="proart-rebuild" data-theme="light">
   <a class="skip-link" href="#pa-overview">Skip to case study</a>
-  <header class="pa-nav"><a href="index.html">MORRIS CHUANG</a><nav class="pa-nav__links" aria-label="Case study navigation"><a href="#pa-landing">Overview</a><a href="#pa-scene-research">Research</a><a href="#pa-scene-design">Design</a><a href="#pa-scene-final">Final</a></nav><div class="pa-nav__actions"><a href="index.html#work">ALL WORK</a></div></header>
+  <nav id="project-nav" class="project-nav" aria-label="Project navigation" style="--project-accent:#cda873;--project-nav-bg:rgba(17,16,15,.92)">
+    <a class="project-nav__brand" href="index.html#work" aria-label="ProArt P16 — back to selected work"><i aria-hidden="true"></i>PROART <small>P16</small></a>
+    <div class="project-nav__chapters" id="project-chapters">
+      <a class="project-nav__link" href="#pa-landing">Overview</a>
+      <a class="project-nav__link" href="#pa-scene-research">Research</a>
+      <a class="project-nav__link" href="#pa-scene-design">Design</a>
+      <a class="project-nav__link" href="#pa-cmf-finish">CMF</a>
+      <a class="project-nav__link" href="#pa-scene-final">Final</a>
+    </div>
+    <div class="project-nav__actions">
+      <a class="project-nav__all" href="index.html#work">All projects <svg class="project-nav__arrow" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 10 10 2M2 2h8v8"/></svg></a>
+      <button class="project-nav__toggle" type="button" aria-expanded="false" aria-controls="project-chapters" hidden>Menu</button>
+    </div>
+  </nav>
   <main>
     <section class="pa-hero" id="pa-overview" aria-labelledby="pa-title"><h1 class="pa-sr-only" id="pa-title">ProArt P16 finish comparison</h1><div class="pa-hero__visual"><div class="pa-compare pa-hero__compare" data-compare role="slider" aria-label="Compare Nano Black and Neo White ProArt P16" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0"><div class="pa-panel pa-panel--black"><img src="assets/proart-moodboard/nano-black-reference.webp" alt="Nano Black ProArt P16 on a light background"><span>Nano Black</span></div><div class="pa-panel pa-panel--white"><img src="assets/proart-moodboard/neo-white-reference.webp" alt="Neo White ProArt P16 on a dark background"><span>Neo White</span></div><b class="pa-compare__line" aria-hidden="true"></b><b class="pa-compare__handle" aria-hidden="true">DRAG</b></div></div><p class="pa-hero__caption"><span>Nano Black / light field</span><span>Neo White / dark field</span></p></section>
     <section class="pa-pdf-section pa-pdf-section--dark" id="pa-research"><div class="pa-pdf-shell"><header class="pa-pdf-head pa-reveal"><p class="pa-label">01 / TA RESEARCH</p><div><h2>Next era of creativity<br>and AI productivity.</h2><p>ProArt P16 was defined around experience curators: creators who need workstation performance to feel composed, immediate and portable across distinct modes of work.</p></div></header><div class="pa-pdf-grid"><figure class="pa-pdf-card pa-pdf-card--wide pa-pdf-card--contain"><div class="pa-pdf-card__media"><img src="assets/proart-pdf/011_Im1.png" alt="Creator context profiles for ProArt P16" loading="lazy"></div><figcaption><span>TA RESEARCH</span><b>Experience curator profiles</b></figcaption></figure><figure class="pa-pdf-card pa-pdf-card--five pa-pdf-card--contain"><div class="pa-pdf-card__media"><img src="assets/proart-pdf/009_Im6.png" alt="ProArt platform direction framework" loading="lazy"></div><figcaption><span>PLATFORM DIRECTION</span><b>Function, identity and CMF</b></figcaption></figure></div></div></section>
@@ -203,7 +218,11 @@
     </div>
   </main>
   <section class="pa-finish-interaction" id="pa-cmf-finish" aria-labelledby="pa-cmf-finish-title"><header class="pa-finish-interaction__head"><div><p class="pa-label">CMF APPLICATION / INTERACTION</p><h2 id="pa-cmf-finish-title">Compare the final finishes.</h2></div></header><div class="pa-compare" data-compare role="slider" aria-label="Compare Nano Black and Neo White ProArt P16" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0"><div class="pa-panel pa-panel--black"><img src="assets/proart-moodboard/nano-black-reference.webp" alt="Nano Black ProArt P16 on a light background"><span>Nano Black</span></div><div class="pa-panel pa-panel--white"><img src="assets/proart-moodboard/neo-white-reference.webp" alt="Neo White ProArt P16 on a dark background"><span>Neo White</span></div><p class="pa-compare__copy">Nano Black and Neo White share one form language. Drag through the two resolved material directions after the CMF is defined.</p><b class="pa-compare__line" aria-hidden="true"></b><b class="pa-compare__handle" aria-hidden="true">DRAG</b></div><p class="pa-finish-interaction__caption"><span>Nano Black / light field</span><span>Neo White / dark field</span></p></section>
-  <footer class="pa-footer"><span>© 2026 Morris Chuang</span><a href="mailto:morriszzczz@hotmail.com">morriszzczz@hotmail.com</a></footer>
+  <footer class="project-footer" style="--project-accent:#cda873">
+    <span class="project-footer__title">ProArt P16 — A refined tool for creative work.</span>
+    <nav class="project-footer__links" aria-label="Other projects"><a href="duo-portfolio-scroll-scaffold.html">ROG DUO G16</a><a href="work/jelly75-kd201/index.html">JELLY75 KD201</a><a href="work/ultra-scan/index.html">ULTRA SCAN 03</a><a href="work/manta/index.html">MANTA 01</a><a href="work/flex-03/index.html">FLEX 03</a><a href="index.html#work">All projects</a></nav>
+    <span class="project-footer__credit">Portfolio 2026 · Morris Chuang</span>
+  </footer>
 </div>
 <div class="proart-editor-toolbar" aria-label="ProArt 本機設計工具">
   <button type="button" class="proart-editor-primary" id="proartEditorToggle" aria-pressed="false">編輯版面</button>
@@ -294,7 +313,20 @@
   function snapshot(){serializeAdded();return JSON.stringify(state);}
   function updateUndo(){undo.disabled=history.length<2;}
   function persist(checkpoint=false){serializeAdded();try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(_){alert('圖片或修改內容太大，無法儲存在本機瀏覽器。請使用較小的圖片。');}if(checkpoint){const latest=snapshot();if(history.at(-1)!==latest){history.push(latest);if(history.length>50)history.shift();}updateUndo();}}
-  function assignIds(){[...document.querySelectorAll(editableSelector)].forEach((target,index)=>{if(target.closest('.proart-editor-toolbar')||target.classList.contains('proart-editor-node'))return;const id=`item-${index}`;target.dataset.proartEditorId=id;const saved=state.items[id];if(!saved)return;if(saved.style)target.setAttribute('style',saved.style);if(saved.hidden)target.style.display='none';if(saved.text!==undefined&&isText(target))target.textContent=saved.text;});}
+  function assignIds(){
+    const contentTargets=[...document.querySelectorAll(editableSelector)].filter(target=>!target.closest('.project-nav,.project-footer'));
+    contentTargets.forEach((target,index)=>{
+      if(target.closest('.proart-editor-toolbar')||target.classList.contains('proart-editor-node'))return;
+      // Reserve the six legacy navigation IDs to keep saved content edits aligned.
+      const id=`item-${index+6}`;
+      target.dataset.proartEditorId=id;
+      const saved=state.items[id];
+      if(!saved)return;
+      if(saved.style)target.setAttribute('style',saved.style);
+      if(saved.hidden)target.style.display='none';
+      if(saved.text!==undefined&&isText(target))target.textContent=saved.text;
+    });
+  }
   function createNode(data){const target=data.type==='image'?document.createElement('img'):document.createElement('div');target.className=`proart-editor-node ${data.type==='text'?'proart-editor-text':''}`;target.dataset.proartEditorId=data.id||`added-${nextAddedId++}`;target.dataset.nodeType=data.type;if(data.type==='image'){target.src=data.src;target.alt='新增圖片';}else target.textContent=data.text||'輸入文字';target.setAttribute('style',data.style||`left:10vw;top:${window.scrollY+110}px;width:260px;height:auto;`);document.body.append(target);return target;}
   state.added.forEach(data=>{const target=createNode(data);const number=Number(String(idOf(target)).replace('added-',''));if(Number.isFinite(number))nextAddedId=Math.max(nextAddedId,number+1);});
   assignIds();history.push(snapshot());updateUndo();

@@ -510,21 +510,26 @@
   @media (max-width:760px){.bento-stage,.objective-board{width:100%;border-inline:0;}.objective-board{font-size:80%;}.objective-scroll{height:180vh;}.objective-sticky{height:74vw;min-height:420px;top:64px;}.objective-laptop--old{left:16%;top:29%;}.objective-laptop--new{left:60%;top:29%;}.objective-car--old{left:16%;top:67%;}.objective-car--new{left:60%;top:67%;}}
 </style>
 <link rel="stylesheet" href="duo-motion-assets/scenes.css" />
+<link rel="stylesheet" href="work/shared/css/project-shell.css" />
+<script src="work/shared/js/project-shell.js" defer></script>
 </head>
 <body>
 
 <!-- ============================== NAV ============================== -->
-<header class="site-header" id="siteHeader">
-  <div class="logo"><a href="index.html">Morris Chuang</a></div>
-  <nav>
-    <a href="#reveal">作品呈現</a>
-    <a href="#background">設計脈絡</a>
-    <a href="#concept">概念發展</a>
-    <a href="#features">設計亮點</a>
-    <a href="#final">最終設計</a>
-    <a href="#footer">聯絡</a>
-  </nav>
-</header>
+<nav id="project-nav" class="project-nav" aria-label="Project navigation" style="--project-accent:#3654ff;--project-nav-bg:rgba(18,20,26,.92)">
+  <a class="project-nav__brand" href="index.html#work" aria-label="ROG Zephyrus Duo G16 — back to selected work"><i aria-hidden="true"></i>ROG DUO <small>G16</small></a>
+  <div class="project-nav__chapters" id="project-chapters">
+    <a class="project-nav__link" href="#top">Overview</a>
+    <a class="project-nav__link" href="#background">Research</a>
+    <a class="project-nav__link" href="#concept">Concept</a>
+    <a class="project-nav__link" href="#prototype">Prototype</a>
+    <a class="project-nav__link" href="#final">Final</a>
+  </div>
+  <div class="project-nav__actions">
+    <a class="project-nav__all" href="index.html#work">All projects <svg class="project-nav__arrow" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 10 10 2M2 2h8v8"/></svg></a>
+    <button class="project-nav__toggle" type="button" aria-expanded="false" aria-controls="project-chapters" hidden>Menu</button>
+  </div>
+</nav>
 
 <!-- ============================== HERO ============================== -->
 <header class="hero" id="top">
@@ -674,12 +679,10 @@
 </main>
 
 <!-- ============================== FOOTER ============================== -->
-<footer class="site-footer" id="footer">
-  <div class="foot-note">© 2026 Morris Chuang.</div>
-  <div class="foot-links">
-    <a href="index.html#work">Selected Work</a>
-    <a href="mailto:morriszzczz@hotmail.com">Email</a>
-  </div>
+<footer class="project-footer" id="footer" style="--project-accent:#3654ff">
+  <span class="project-footer__title">ROG Duo G16 — Dual-screen performance, reimagined.</span>
+  <nav class="project-footer__links" aria-label="Other projects"><a href="proart-p16.html">PROART P16</a><a href="work/jelly75-kd201/index.html">JELLY75 KD201</a><a href="work/ultra-scan/index.html">ULTRA SCAN 03</a><a href="work/manta/index.html">MANTA 01</a><a href="work/flex-03/index.html">FLEX 03</a><a href="index.html#work">All projects</a></nav>
+  <span class="project-footer__credit">Portfolio 2026 · Morris Chuang</span>
 </footer>
 
 <!-- 本機設計模式：不需帳號、網路或付費服務。 -->
@@ -697,16 +700,6 @@
 
 <script src="duo-local-editor/moveable.min.js"></script>
 <script>
-/* ==========================================================================
-   1) NAV — 捲動超過一定距離就切換成實色背景(避免一直蓋在透明 hero 上看不清楚)
-   ========================================================================== */
-(function(){
-  const header = document.getElementById('siteHeader');
-  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
-  window.addEventListener('scroll', onScroll, { passive:true });
-  onScroll();
-})();
-
 /* Hero 先等待透明產品 PNG 完成解碼，再開始動畫；避免解碼與縮放同時發生造成首幀卡頓。 */
 (function(){
   const hero = document.getElementById('top');
@@ -1140,11 +1133,13 @@
     }
   }
   function assignExistingIds(){
-    [...document.querySelectorAll(editableSelector)].forEach((target, index) => {
+    const contentTargets = [...document.querySelectorAll(editableSelector)].filter(target => !target.closest('.project-nav,.project-footer'));
+    contentTargets.forEach((target, index) => {
       if (target.closest('.local-editor-toolbar') || target.classList.contains('local-editor-node')) return;
       // 圖片位於場景圖層中時，改由外層管理位置與尺寸；避免拖動圖片後留下卡片容器。
       if (target.matches('.objective-piece > img, .bento-stage > img')) return;
-      const id = target.dataset.localEditorId || `item-${index}`;
+      // 保留舊導覽的 8 個編輯 ID，讓已儲存的內容修改仍對應原本物件。
+      const id = target.dataset.localEditorId || `item-${index + 8}`;
       target.dataset.localEditorId = id;
       const saved = state.items[id];
       if (!saved) return;
