@@ -1,0 +1,128 @@
+/* Ultra Scan-inspired project banner, adapted to the Duo visual system. */
+.site-header{
+  min-height:60px;padding:11px clamp(16px,3vw,36px)!important;
+  display:grid!important;grid-template-columns:minmax(210px,1fr) auto minmax(210px,1fr);
+  align-items:center;gap:18px;color:#f5f7fb;
+  background:rgba(8,10,16,.78)!important;
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  box-shadow:none!important;
+}
+.site-header.scrolled{background:rgba(8,10,16,.94)!important;border-bottom-color:rgba(255,255,255,.14)}
+.portfolio-progress{position:absolute;left:0;right:0;top:0;height:2px;background:transparent;overflow:hidden;pointer-events:none}
+.portfolio-progress span{display:block;width:0;height:100%;background:#3654ff;box-shadow:0 0 14px #3654ff;will-change:width}
+.project-brand{justify-self:start;display:flex;align-items:baseline;gap:8px;white-space:nowrap;font:600 13px/1 Inter,sans-serif;letter-spacing:.025em}
+.project-brand i{align-self:center;width:8px;height:8px;border-radius:2px;background:#3654ff;box-shadow:0 0 12px #3654ffaa;animation:duo-brand-pulse 3.2s ease-in-out infinite}
+.project-brand strong{font-weight:700}
+.project-brand small{font-size:9px;letter-spacing:.2em;color:rgba(255,255,255,.42);font-weight:600}
+@keyframes duo-brand-pulse{0%,100%{opacity:1}50%{opacity:.42}}
+.project-pill{justify-self:center;display:flex!important;align-items:center;gap:2px!important;padding:4px;border:1px solid rgba(255,255,255,.15);border-radius:999px;background:rgba(255,255,255,.05);font-size:12px!important}
+.project-pill a{flex:none;padding:7px 12px;border-radius:999px;color:rgba(255,255,255,.58);font-size:11px;font-weight:600;letter-spacing:.015em;transition:color .25s,background .25s,box-shadow .25s}
+.project-pill a:hover{color:#fff;background:rgba(255,255,255,.09)}
+.project-pill a.on{color:#fff;background:#3654ff;box-shadow:0 5px 18px rgba(54,84,255,.35)}
+.project-meta{justify-self:end;text-align:right;white-space:nowrap;font:600 9.5px/1.2 Inter,sans-serif;letter-spacing:.16em;color:rgba(255,255,255,.4)}
+.reveal-progress{
+  left:6vw!important;right:6vw!important;top:calc(60px + 2.6vh)!important;height:auto!important;
+  display:grid;grid-template-columns:auto minmax(80px,1fr) auto;align-items:center;gap:14px;
+  background:transparent!important;color:rgba(255,255,255,.46);
+  z-index:3!important;font:600 9px/1 Inter,sans-serif;letter-spacing:.16em;white-space:nowrap;
+}
+.reveal-progress-track{height:1px;background:rgba(255,255,255,.2);overflow:hidden}
+.reveal-progress-bar{height:100%;background:#3654ff!important;box-shadow:0 0 10px rgba(54,84,255,.75)}
+.reveal-copy{z-index:3!important;max-width:min(470px,44vw)!important;bottom:7vh!important}
+.reveal-frame-label{font-family:Inter,sans-serif!important;font-size:.66rem!important;font-weight:600;letter-spacing:.15em!important;color:rgba(255,255,255,.5)!important}
+.reveal-copy h2{max-width:460px;font-family:'ROG','Sora',sans-serif;font-size:clamp(1.65rem,3vw,3.45rem);font-weight:400;line-height:1.02;letter-spacing:.015em;text-wrap:balance}
+.reveal-copy p{max-width:440px;margin-top:1rem;font-size:clamp(.82rem,1.1vw,1rem);line-height:1.65;color:rgba(255,255,255,.68)!important}
+@media(max-width:1040px){
+  .site-header{grid-template-columns:auto 1fr;gap:14px}
+  .project-meta{display:none}
+  .project-pill{justify-self:end}
+  .project-pill a{padding-inline:9px;font-size:10px}
+}
+@media(max-width:700px){
+  .site-header,.site-header.scrolled{min-height:86px;padding:9px 16px 8px!important;display:flex!important;flex-wrap:wrap;gap:8px 14px}
+  .project-brand{width:100%}
+  .project-pill{width:100%;justify-self:auto;overflow-x:auto;scrollbar-width:none;justify-content:flex-start}
+  .project-pill::-webkit-scrollbar{display:none}
+  .project-pill a{padding:6px 6px;font-size:8px}
+  .reveal-progress{top:calc(86px + 2vh)!important;left:18px!important;right:18px!important;gap:8px;font-size:7px;letter-spacing:.1em}
+  .reveal-progress span:last-child{display:none}
+  .reveal-copy{left:18px!important;right:18px;bottom:5vh!important;max-width:none!important}
+  .reveal-copy h2{font-size:clamp(1.55rem,8vw,2.3rem)}
+}
+@media(prefers-reduced-motion:reduce){.project-brand i{animation:none}}
+
+/* Hero product — smaller, centered slightly left, touching the DUO title without overpowering it. */
+.hero-product-overlay{
+  --hero-product-x:15vw!important;
+  --hero-product-scale:.84;
+  transform:translate3d(var(--hero-product-x),0,0) scale(calc(var(--hero-product-scale) * 1.14));
+}
+@keyframes hero-stage-settle{
+  0%{opacity:.42;transform:translate3d(calc(var(--hero-product-x) + 4vw),12px,0) scale(calc(var(--hero-product-scale) * 1.14));filter:blur(3px)}
+  38%{opacity:1;filter:blur(0)}
+  100%{opacity:1;transform:translate3d(var(--hero-product-x),0,0) scale(var(--hero-product-scale));filter:blur(0)}
+}
+.hero-content{max-width:600px}
+.hero-detail-motion>p{max-width:510px;font-size:clamp(.9rem,1.12vw,1.08rem);line-height:1.62;color:rgba(255,255,255,.76)}
+.hero-cta .btn{font-size:.72rem;letter-spacing:.08em}
+
+/* Sequence storytelling — ROG typography, chromatic depth and stronger scroll-linked motion. */
+.reveal-sticky{--reveal-stage-scale:.9;--reveal-stage-shift:2.5vw;--reveal-copy-shift:11px;--reveal-bg-shift:-1.5vw;--reveal-energy:0;--reveal-color-opacity:.18}
+.reveal-sticky::before{
+  filter:blur(10px) brightness(.7) saturate(1.35)!important;
+  transform:scale(var(--reveal-bg-scale)) translate3d(var(--reveal-bg-shift),0,0)!important;
+}
+.reveal-sticky::after{
+  content:"";position:absolute;inset:-18%;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 18% 38%,rgba(58,91,255,.72),transparent 31%),
+    radial-gradient(circle at 78% 28%,rgba(159,68,255,.58),transparent 34%),
+    radial-gradient(circle at 66% 80%,rgba(0,219,255,.42),transparent 30%);
+  opacity:var(--reveal-color-opacity);filter:blur(34px) saturate(1.5);
+  transform:translate3d(calc(var(--reveal-bg-shift) * -1),0,0) scale(1.08);
+  will-change:transform,opacity;
+}
+.reveal-canvas{
+  transform:translate3d(var(--reveal-stage-shift),0,0) scale(var(--reveal-stage-scale));
+  filter:drop-shadow(0 24px 34px rgba(0,0,0,.46)) drop-shadow(0 0 calc(8px + var(--reveal-energy) * 20px) rgba(77,101,255,.42));
+  will-change:transform,filter;
+}
+.reveal-copy{
+  transform:translate3d(var(--reveal-copy-shift),0,0);
+  will-change:transform;
+}
+.reveal-copy::before{
+  content:"";position:absolute;left:-18px;top:1.75rem;bottom:.15rem;width:3px;border-radius:4px;
+  background:linear-gradient(180deg,#4771ff 0%,#a84dff 52%,#27dbff 100%);
+  box-shadow:0 0 20px rgba(92,92,255,.75);
+  transform:scaleY(calc(.72 + var(--reveal-energy) * .28));transform-origin:bottom;
+}
+.reveal-frame-label{
+  font-family:'ROG','Sora',sans-serif!important;color:#78c9ff!important;
+  text-shadow:0 0 14px rgba(55,151,255,.65);
+}
+.reveal-copy h2{
+  display:grid;gap:.05em;max-width:570px!important;margin-bottom:.35em!important;
+  font-family:'ROG','Sora',sans-serif!important;font-size:clamp(2rem,3.4vw,4.1rem)!important;
+  line-height:.93!important;letter-spacing:.025em!important;
+}
+.reveal-copy h2 span:first-child{color:#f7f8ff;text-shadow:0 8px 28px rgba(0,0,0,.58)}
+.reveal-copy h2 span:last-child{
+  color:#7ba3ff;background:linear-gradient(100deg,#78a5ff 4%,#b773ff 48%,#35e5ff 94%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 14px rgba(84,92,255,.28));
+}
+.reveal-copy p{max-width:500px!important;color:rgba(239,243,255,.75)!important;font-size:clamp(.78rem,1.02vw,.98rem)!important;line-height:1.7!important}
+.reveal-progress-bar{background:linear-gradient(90deg,#3654ff,#a44eff 58%,#23d9ff)!important;box-shadow:0 0 14px rgba(96,91,255,.9)!important}
+@media(max-width:700px){
+  .hero-product-overlay{--hero-product-x:-3vw!important;--hero-product-scale:.82}
+  .reveal-canvas{transform:translate3d(calc(var(--reveal-stage-shift) * .45),0,0) scale(calc(.96 + (var(--reveal-stage-scale) - .9) * .45))}
+  .reveal-copy::before{left:-9px;top:1.45rem}
+  .reveal-copy h2{font-size:clamp(1.8rem,8.5vw,2.55rem)!important}
+  .reveal-copy p{font-size:.78rem!important;line-height:1.58!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-product-overlay{animation:none!important;opacity:1!important;transform:translate3d(var(--hero-product-x),0,0) scale(var(--hero-product-scale))!important;filter:none!important}
+  .reveal-canvas,.reveal-copy,.reveal-sticky::after{transform:none!important}
+}

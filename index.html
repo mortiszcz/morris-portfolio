@@ -204,7 +204,7 @@
     <nav aria-label="Primary navigation">
       <a class="brand" href="#top">Morris Chuang</a>
       <div class="nav-links"><a href="#top">Intro</a><a href="#focus">Focus</a><a href="#work">Work</a><a href="#experience">Experience</a><a href="#education">Education</a></div>
-      <div class="nav-actions"><button class="mode" type="button" aria-label="Toggle colour mode">◐</button><a class="contact" href="mailto:morriszzczz@hotmail.com">Contact&nbsp; •</a></div>
+      <div class="nav-actions"><a class="contact" href="mailto:morriszzczz@hotmail.com">Contact&nbsp; •</a></div>
     </nav>
 
         <section class="hero">
@@ -228,7 +228,7 @@
       </div>
     </section>
 <section id="work" class="study-section" aria-labelledby="work-title"><div class="study-heading"><div><p class="study-kicker">03 / Selected work</p><h2 id="work-title">Ideas made<br>physical.</h2></div><p>Six projects across computing, everyday tools and mobility. Each one explores a different relationship between people and technology.</p></div><div class="projects">
-<a class="project" id="project-duo" href="duo-portfolio-scroll-scaffold.html#background"><div class="project-media"><img src="assets/work-duo-g16.webp" alt="ROG Zephyrus Duo G16" decoding="async"></div><div class="project-copy"><div><h3>ROG Zephyrus Duo G16</h3><small>Dual-screen laptop</small><p class="study-project-summary">Integrating two screens, a concealed hinge and a coherent product architecture.</p></div><div class="study-project-footer"><span>Product architecture · Form development</span><b>View project ↗</b></div></div></a>
+<a class="project" id="project-duo" href="duo-portfolio-scroll-scaffold.html"><div class="project-media"><img src="assets/work-duo-g16.webp" alt="ROG Zephyrus Duo G16" decoding="async"></div><div class="project-copy"><div><h3>ROG Zephyrus Duo G16</h3><small>Dual-screen laptop</small><p class="study-project-summary">Integrating two screens, a concealed hinge and a coherent product architecture.</p></div><div class="study-project-footer"><span>Product architecture · Form development</span><b>View project ↗</b></div></div></a>
 <a class="project" id="project-proart" href="proart-p16.html"><div class="project-media"><img src="assets/work-proart-p16.webp" alt="ProArt P16" decoding="async"></div><div class="project-copy"><div><h3>ProArt P16</h3><small>Creator laptop</small><p class="study-project-summary">A restrained design language that brings clarity to a complex creative tool.</p></div><div class="study-project-footer"><span>Industrial design · CMF</span><b>View project ↗</b></div></div></a>
 <a class="project" id="project-jelly" href="work/jelly75-kd201/index.html"><div class="project-media"><img src="assets/jelly75/hero-design.webp" alt="ASUS Jelly75 KD201" decoding="async"></div><div class="project-copy"><div><h3>ASUS Jelly75 KD201</h3><small>Mechanical keyboard</small><p class="study-project-summary">Exploring colour, translucency and material contrast for a more personal desktop.</p></div><div class="study-project-footer"><span>Colour strategy · Material expression</span><b>View project ↗</b></div></div></a>
 <a class="project" id="project-ultrascan" href="work/ultra-scan/index.html"><div class="project-media"><img src="assets/work-ultrascan-new.webp" alt="CipherLab UltraScan" decoding="async"></div><div class="project-copy"><div><h3>CipherLab UltraScan</h3><small>Wearable scanner concept</small><p class="study-project-summary">Rethinking the relationship between the hand, the scanner and a continuous workflow.</p></div><div class="study-project-footer"><span>User research · Wearable ergonomics</span><b>View project ↗</b></div></div></a>
@@ -264,13 +264,6 @@
     </footer>
   </div>
   <script>
-    const stored = localStorage.getItem('morris-theme');
-    if (stored === 'light') document.body.classList.add('light');
-    document.querySelector('.mode').addEventListener('click', () => {
-      document.body.classList.toggle('light');
-      localStorage.setItem('morris-theme', document.body.classList.contains('light') ? 'light' : 'dark');
-      document.dispatchEvent(new Event('morris-themechange'));
-    });
     document.querySelectorAll('.project').forEach((card) => {
       const media = card.querySelector('.project-media') || card;
       const canvas = document.createElement('canvas');
@@ -558,9 +551,6 @@
   });
   applyMotion(); motion.addEventListener('change', applyMotion);
   if (video.readyState >= 2) verifyVideoAlpha();
-  const theme = document.querySelector('.mode');
-  const labelTheme = () => theme.setAttribute('aria-label', document.body.classList.contains('light') ? 'Switch to dark theme' : 'Switch to light theme');
-  labelTheme(); document.addEventListener('morris-themechange', labelTheme);
 })();
 </script>
 </body>

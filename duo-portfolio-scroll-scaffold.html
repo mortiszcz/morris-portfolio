@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ROG Zephyrus Duo G16 — Morris Chuang</title>
+<title>ROG Zephyrus Duo G16 | Morris Chuang</title>
+<link rel="icon" href="data:," />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -78,38 +79,6 @@
   img,video,canvas{max-width:100%;display:block;}
   button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
   :focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
-
-  /* ---------------- Local design mode ----------------
-     這一組工具完全在本機 HTML 中運作；資料儲存在這台電腦的瀏覽器。 */
-  .local-editor-toolbar{
-    position:fixed;right:18px;bottom:18px;z-index:9999;display:flex;align-items:center;gap:8px;
-    padding:10px;border:1px solid rgba(255,255,255,.16);border-radius:14px;
-    background:rgba(13,15,21,.92);backdrop-filter:blur(16px);box-shadow:0 14px 38px rgba(0,0,0,.28);
-    color:#fff;font-size:13px;
-  }
-  .local-editor-toolbar button{
-    padding:9px 11px;border-radius:9px;background:rgba(255,255,255,.1);transition:background .18s var(--ease);
-  }
-  .local-editor-toolbar button:hover{background:rgba(255,255,255,.2);}
-  .local-editor-toolbar .editor-primary{background:#3654ff;}
-  .local-editor-toolbar .editor-primary:hover{background:#4a65ff;}
-  .local-editor-toolbar [hidden]{display:none;}
-  .local-editor-hint{position:fixed;left:50%;bottom:24px;z-index:9998;transform:translateX(-50%);padding:8px 13px;border-radius:100px;background:rgba(13,15,21,.88);color:#fff;font-size:12px;pointer-events:none;}
-  body.is-local-editing{overflow-x:hidden;}
-  body.is-local-editing [data-local-editor-id]{cursor:move;}
-  body.is-local-editing [data-local-editor-id]:hover{outline:1px dashed rgba(54,84,255,.95);outline-offset:4px;}
-  body.is-local-editing a[data-local-editor-id]{pointer-events:none;}
-  body.is-local-editing .hero-product-overlay,body.is-local-editing .hero-product-overlay img{pointer-events:auto;}
-  .local-editor-node{position:absolute;z-index:9000;min-width:80px;min-height:32px;box-sizing:border-box;}
-  .local-editor-text{padding:10px 12px;border:1px dashed rgba(255,255,255,.38);background:rgba(13,15,21,.35);color:#fff;font:600 20px/1.25 'Inter',sans-serif;}
-  .moveable-control-box{z-index:10000!important;}
-  .moveable-line,.moveable-control{background:#3654ff!important;border-color:#fff!important;}
-  .moveable-control{width:12px!important;height:12px!important;margin-top:-6px!important;margin-left:-6px!important;}
-  @media (max-width:700px){
-    .local-editor-toolbar{right:10px;bottom:10px;gap:5px;padding:7px;}
-    .local-editor-toolbar button{padding:8px;font-size:12px;}
-    .local-editor-hint{bottom:68px;max-width:90vw;text-align:center;}
-  }
 
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 6vw;}
   .eyebrow{
@@ -208,7 +177,7 @@
   .hero-velocity-row{position:relative;z-index:1;overflow:visible;height:clamp(1.9rem,5.13vw,6.84rem);}
   .hero-velocity-row + .hero-velocity-row{margin-top:0;}
   .hero-velocity-row-inner{display:flex;width:max-content;will-change:transform;}
-  .hero-velocity-copy{display:block;flex:none;padding-right:.55em;font-family:'ROG','Sora',sans-serif;font-size:clamp(2rem,5.4vw,7.2rem);line-height:1;letter-spacing:.09em;color:rgba(255,255,255,.9);white-space:nowrap;text-shadow:0 3px 18px rgba(0,0,0,.72);}
+  .hero-velocity-copy{display:block;flex:none;padding-right:.55em;font-family:'ROG','Sora',sans-serif;font-size:clamp(2rem,5.4vw,7.2rem);font-weight:400;line-height:1;letter-spacing:.09em;color:rgba(255,255,255,.94);white-space:nowrap;text-shadow:0 3px 18px rgba(0,0,0,.72);-webkit-text-stroke:.018em currentColor;paint-order:stroke fill;}
   .hero-velocity-row:nth-of-type(3) .hero-velocity-copy{color:rgba(255,255,255,.65);}
   @media (prefers-reduced-motion:reduce){.hero-velocity-row-inner{transform:none!important;}}
   @media (max-width:700px){.hero-velocity-rail{top:47%;left:-60vw;width:230vw;}.hero-velocity-guide{height:2px;}}
@@ -510,26 +479,26 @@
   @media (max-width:760px){.bento-stage,.objective-board{width:100%;border-inline:0;}.objective-board{font-size:80%;}.objective-scroll{height:180vh;}.objective-sticky{height:74vw;min-height:420px;top:64px;}.objective-laptop--old{left:16%;top:29%;}.objective-laptop--new{left:60%;top:29%;}.objective-car--old{left:16%;top:67%;}.objective-car--new{left:60%;top:67%;}}
 </style>
 <link rel="stylesheet" href="duo-motion-assets/scenes.css" />
+<link rel="stylesheet" href="duo-motion-assets/navigation.css" />
 <link rel="stylesheet" href="work/shared/css/project-shell.css" />
-<script src="work/shared/js/project-shell.js" defer></script>
 </head>
 <body>
 
 <!-- ============================== NAV ============================== -->
-<nav id="project-nav" class="project-nav" aria-label="Project navigation" style="--project-accent:#3654ff;--project-nav-bg:rgba(18,20,26,.92)">
-  <a class="project-nav__brand" href="index.html#work" aria-label="ROG Zephyrus Duo G16 — back to selected work"><i aria-hidden="true"></i>ROG DUO <small>G16</small></a>
-  <div class="project-nav__chapters" id="project-chapters">
-    <a class="project-nav__link" href="#top">Overview</a>
-    <a class="project-nav__link" href="#background">Research</a>
-    <a class="project-nav__link" href="#concept">Concept</a>
-    <a class="project-nav__link" href="#prototype">Prototype</a>
-    <a class="project-nav__link" href="#final">Final</a>
-  </div>
-  <div class="project-nav__actions">
-    <a class="project-nav__all" href="index.html#work">All projects <svg class="project-nav__arrow" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 10 10 2M2 2h8v8"/></svg></a>
-    <button class="project-nav__toggle" type="button" aria-expanded="false" aria-controls="project-chapters" hidden>Menu</button>
-  </div>
-</nav>
+<header class="site-header" id="siteHeader">
+  <div class="portfolio-progress" aria-hidden="true"><span id="portfolioProgress"></span></div>
+  <a class="project-brand" href="#top" aria-label="回到 ROG Zephyrus Duo 專案首頁">
+    <i aria-hidden="true"></i><strong>ROG ZEPHYRUS DUO</strong><small>G16</small>
+  </a>
+  <nav class="project-pill" aria-label="專案章節">
+    <a data-target="#top" href="#top">OVERVIEW</a>
+    <a data-target="#background" href="#background">RESEARCH</a>
+    <a data-target="#concept" href="#concept">DEVELOPMENT</a>
+    <a data-target="#features" href="#features">DETAILS</a>
+    <a data-target="#final" href="#final">FINAL DESIGN</a>
+  </nav>
+  <div class="project-meta">DUAL-SCREEN PERFORMANCE SYSTEM</div>
+</header>
 
 <!-- ============================== HERO ============================== -->
 <header class="hero" id="top">
@@ -550,10 +519,10 @@
   <div class="hero-content reveal-on-scroll is-visible">
     <div class="hero-title-motion"><h1>ROG ZEPHYRUS DUO G16</h1></div>
     <div class="hero-detail-motion">
-      <p>從目標使用者研究、雙螢幕互動架構到轉軸原型，探索下一代 Zephyrus Duo 的設計過程。</p>
+      <p>Reframing the dual-screen laptop as one unified performance architecture — where display, keyboard and hinge move with a single intent.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="#background">閱讀案例</a>
-        <a class="btn btn-ghost" href="#final">查看最終設計</a>
+        <a class="btn btn-primary" href="#background">EXPLORE THE CASE</a>
+        <a class="btn btn-ghost" href="#final">VIEW FINAL DESIGN</a>
       </div>
     </div>
   </div>
@@ -566,12 +535,16 @@
      捲動時依「目前捲動進度 0~1」選出對應影格並繪製到 canvas。 -->
 <section class="reveal" id="reveal">
   <div class="reveal-sticky">
-    <div class="reveal-progress"><div class="reveal-progress-bar" id="revealProgressBar"></div></div>
+    <div class="reveal-progress" aria-label="產品展開動畫進度">
+      <span>FORM IN MOTION</span>
+      <div class="reveal-progress-track"><div class="reveal-progress-bar" id="revealProgressBar"></div></div>
+      <span>DUAL DISPLAY / GX651</span>
+    </div>
     <canvas class="reveal-canvas" id="revealCanvas" aria-hidden="true"></canvas>
     <div class="reveal-copy">
-      <span class="reveal-frame-label" id="revealFrameLabel">Frame 1 / 120</span>
-      <h2>畫面隨你捲動的位置逐格變化</h2>
-      <p>這段會依捲動位置，從 120 張已預載的序列影格中選出對應畫面。</p>
+      <span class="reveal-frame-label" id="revealFrameLabel">FORM IN MOTION · 001 / 120</span>
+      <h2><span>ONE MOTION.</span><span>TWO FULL-SCALE WORKSPACES.</span></h2>
+      <p>A synchronized hinge lifts the second display as the system opens, transforming a compact silhouette into an expanded dual-screen workstation.</p>
     </div>
   </div>
 </section>
@@ -685,21 +658,19 @@
   <span class="project-footer__credit">Portfolio 2026 · Morris Chuang</span>
 </footer>
 
-<!-- 本機設計模式：不需帳號、網路或付費服務。 -->
-<div class="local-editor-toolbar" aria-label="本機設計工具">
-  <button type="button" class="editor-primary" id="localEditorToggle" aria-pressed="false">編輯版面</button>
-  <button type="button" id="localEditorAddText" hidden>＋文字</button>
-  <button type="button" id="localEditorAddImage" hidden>＋圖片</button>
-  <select id="localEditorLayers" aria-label="選擇可編輯圖層" hidden><option value="">選擇圖層…</option></select>
-  <button type="button" id="localEditorUndo" hidden disabled>↶ 撤回</button>
-  <button type="button" id="localEditorDelete" hidden>刪除</button>
-  <button type="button" id="localEditorReset" hidden>重設</button>
-</div>
-<div class="local-editor-hint" id="localEditorHint" hidden>點選物件後拖曳；拉控制點可調整尺寸。雙擊文字可直接修改。</div>
-<input id="localEditorImageInput" type="file" accept="image/*" hidden />
-
-<script src="duo-local-editor/moveable.min.js"></script>
 <script>
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+if (!location.hash) addEventListener('pageshow', () => scrollTo({ top:0, behavior:'instant' }), { once:true });
+/* ==========================================================================
+   1) NAV — 捲動超過一定距離就切換成實色背景(避免一直蓋在透明 hero 上看不清楚)
+   ========================================================================== */
+(function(){
+  const header = document.getElementById('siteHeader');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+})();
+
 /* Hero 先等待透明產品 PNG 完成解碼，再開始動畫；避免解碼與縮放同時發生造成首幀卡頓。 */
 (function(){
   const hero = document.getElementById('top');
@@ -905,8 +876,15 @@
     drawFrame(frames[frameIndex], w, h);
 
     sticky.style.setProperty('--reveal-bg-scale', (1 + displayedProgress * 0.25).toFixed(4));
+    sticky.style.setProperty('--reveal-stage-scale', (0.9 + displayedProgress * 0.12).toFixed(4));
+    sticky.style.setProperty('--reveal-stage-shift', `${((0.5 - displayedProgress) * 5).toFixed(3)}vw`);
+    sticky.style.setProperty('--reveal-copy-shift', `${((0.5 - displayedProgress) * 22).toFixed(2)}px`);
+    sticky.style.setProperty('--reveal-bg-shift', `${((displayedProgress - 0.5) * 3).toFixed(3)}vw`);
+    const revealEnergy = Math.min(1, Math.abs(targetProgress - displayedProgress) * 14 + Math.abs(momentumProgress) * 280);
+    sticky.style.setProperty('--reveal-energy', revealEnergy.toFixed(4));
+    sticky.style.setProperty('--reveal-color-opacity', (0.18 + displayedProgress * 0.16 + revealEnergy * 0.12).toFixed(4));
 
-    frameLabel.textContent = `Frame ${frameIndex + 1} / ${TOTAL_FRAMES}`;
+    frameLabel.textContent = `FORM IN MOTION · ${String(frameIndex + 1).padStart(3, '0')} / ${TOTAL_FRAMES}`;
     progressBar.style.width = (displayedProgress * 100).toFixed(1) + '%';
   }
 
@@ -1055,302 +1033,10 @@
   });
 })();
 
-/* ===========================================================================
-   7) LOCAL DESIGN MODE — 本機圖層編輯器
-   ---------------------------------------------------------------------------
-   使用離線保存的 Moveable，提供拖曳、八方向縮放與旋轉。所有改動只存在於
-   此電腦的瀏覽器 localStorage；「重設」可隨時回到這份 HTML 的原始排版。
-   =========================================================================== */
-(function(){
-  // 作品集內容已換成 Duo case study，使用新 key 避免舊版編輯座標套到新結構。
-  // v3：場景改為分層物件，避免舊版「單一圖片」的儲存座標套用到新圖層。
-  const STORAGE_KEY = 'duo-local-design-mode-v3';
-  const toggle = document.getElementById('localEditorToggle');
-  const addTextButton = document.getElementById('localEditorAddText');
-  const addImageButton = document.getElementById('localEditorAddImage');
-  const undoButton = document.getElementById('localEditorUndo');
-  const deleteButton = document.getElementById('localEditorDelete');
-  const resetButton = document.getElementById('localEditorReset');
-  const hint = document.getElementById('localEditorHint');
-  const imageInput = document.getElementById('localEditorImageInput');
-  const layerPicker = document.getElementById('localEditorLayers');
-  const editableSelector = [
-    'img','canvas','.media-placeholder','.hero-content','.reveal-copy','.case-intro',
-    '.case-spread-copy','.case-split-copy','.case-final','.bento-stage','.bento-float',
-    '.objective-board','.objective-ambient','.objective-copy','.objective-year','.objective-piece',
-    '.objective-inspiration','.objective-arrow','h1','h2','h3','p','a','.logo','.scroll-hint','.foot-note'
-  ].join(',');
-  const textSelector = 'h1,h2,h3,p,a,.logo,.scroll-hint,.foot-note,.local-editor-text';
-  let editing = false;
-  let selected = null;
-  let nextAddedId = 1;
-  let state = { items:{}, added:[] };
-  const history = [];
-
-  try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-    state.items = saved.items || {};
-    state.added = saved.added || [];
-  } catch (_) {}
-
-  function isText(target){ return target.matches(textSelector); }
-  function getId(target){ return target.dataset.localEditorId; }
-  function record(target){
-    const id = getId(target);
-    if (!id || target.classList.contains('local-editor-node')) return;
-    const item = state.items[id] ||= {};
-    item.style = target.getAttribute('style') || '';
-    item.hidden = target.style.display === 'none';
-    if (isText(target)) item.text = target.textContent;
-  }
-  function serializeAdded(){
-    state.added = [...document.querySelectorAll('.local-editor-node')].map(target => ({
-      id:getId(target),
-      type:target.dataset.nodeType,
-      style:target.getAttribute('style') || '',
-      text:target.dataset.nodeType === 'text' ? target.textContent : '',
-      src:target.dataset.nodeType === 'image' ? target.getAttribute('src') : ''
-    }));
-  }
-  function snapshot(){
-    serializeAdded();
-    return JSON.stringify(state);
-  }
-  function updateUndoButton(){
-    undoButton.disabled = history.length < 2;
-  }
-  function persist(checkpoint = false){
-    serializeAdded();
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
-    catch (_) { alert('圖片或修改內容太大，無法儲存到本機瀏覽器。請使用較小的圖片。'); }
-    if (checkpoint) {
-      const latest = snapshot();
-      if (history.at(-1) !== latest) {
-        history.push(latest);
-        if (history.length > 50) history.shift();
-      }
-      updateUndoButton();
-    }
-  }
-  function assignExistingIds(){
-    const contentTargets = [...document.querySelectorAll(editableSelector)].filter(target => !target.closest('.project-nav,.project-footer'));
-    contentTargets.forEach((target, index) => {
-      if (target.closest('.local-editor-toolbar') || target.classList.contains('local-editor-node')) return;
-      // 圖片位於場景圖層中時，改由外層管理位置與尺寸；避免拖動圖片後留下卡片容器。
-      if (target.matches('.objective-piece > img, .bento-stage > img')) return;
-      // 保留舊導覽的 8 個編輯 ID，讓已儲存的內容修改仍對應原本物件。
-      const id = target.dataset.localEditorId || `item-${index + 8}`;
-      target.dataset.localEditorId = id;
-      const saved = state.items[id];
-      if (!saved) return;
-      if (saved.style) target.setAttribute('style', saved.style);
-      if (saved.hidden) target.style.display = 'none';
-      if (saved.text !== undefined && isText(target)) (target.querySelector(':scope > .motion-entry') || target).textContent = saved.text;
-    });
-  }
-  function createAddedNode(data){
-    const target = data.type === 'image' ? document.createElement('img') : document.createElement('div');
-    target.className = `local-editor-node ${data.type === 'text' ? 'local-editor-text' : ''}`;
-    target.dataset.localEditorId = data.id || `added-${nextAddedId++}`;
-    target.dataset.nodeType = data.type;
-    if (data.type === 'image') {
-      target.src = data.src;
-      target.alt = '新增圖片';
-    } else {
-      target.textContent = data.text || '輸入文字';
-    }
-    target.setAttribute('style', data.style || `left:10vw;top:${window.scrollY + 100}px;width:260px;height:auto;`);
-    document.body.append(target);
-    return target;
-  }
-  state.added.forEach(data => {
-    const target = createAddedNode(data);
-    const number = Number(String(getId(target)).replace('added-', ''));
-    if (Number.isFinite(number)) nextAddedId = Math.max(nextAddedId, number + 1);
-  });
-  assignExistingIds();
-  history.push(snapshot());
-  updateUndoButton();
-
-  if (!window.Moveable) {
-    console.warn('Moveable did not load; local design mode is unavailable.');
-    toggle.disabled = true;
-    toggle.textContent = '設計工具未載入';
-    return;
-  }
-
-  const moveable = new Moveable(document.body, {
-    target:null,
-    draggable:true,
-    resizable:true,
-    rotatable:true,
-    keepRatio:false,
-    throttleDrag:0,
-    throttleResize:1,
-    throttleRotate:1,
-    renderDirections:['nw','n','ne','w','e','sw','s','se'],
-    origin:false,
-    edge:false
-  });
-  function refresh(){ moveable.updateRect(); }
-  function scanLayers(){
-    const oldValue = layerPicker.value;
-    layerPicker.replaceChildren(new Option('選擇圖層…', ''));
-    document.querySelectorAll('[data-local-editor-id]').forEach(target => {
-      if (!target.getClientRects().length || target.closest('.local-editor-toolbar')) return;
-      const section = target.closest('section,header,footer')?.id || '頁面';
-      const label = target.dataset.editorLabel || target.getAttribute('aria-label') || target.getAttribute('alt') || target.textContent.trim().slice(0, 32) || target.tagName;
-      layerPicker.add(new Option(`${section} · ${label}`, getId(target)));
-    });
-    layerPicker.value = oldValue;
-  }
-  // New scene layers use named IDs after the original index-based IDs have been assigned.
-  // This preserves existing v3 edits without migrating or clearing localStorage.
-  window.addEventListener('duo:layers-ready', () => {
-    document.querySelectorAll('[data-local-editor-id]').forEach(target => {
-      const saved = state.items[getId(target)];
-      if (!saved) return;
-      if (saved.style) target.setAttribute('style', saved.style);
-      if (saved.hidden) target.style.display = 'none';
-      if (saved.text !== undefined && isText(target)) (target.querySelector(':scope > .motion-entry') || target).textContent = saved.text;
-    });
-    scanLayers();
-  });
-  layerPicker.addEventListener('change', () => {
-    const target = [...document.querySelectorAll('[data-local-editor-id]')].find(node => getId(node) === layerPicker.value);
-    if (!target) return;
-    target.scrollIntoView({block:'center', behavior:'instant'});
-    setSelected(target);
-  });
-  function setSelected(target){
-    if (selected?.isContentEditable) selected.blur();
-    selected = target;
-    moveable.target = target;
-    moveable.keepRatio = !!target?.matches('img,canvas,figure,.objective-piece');
-    layerPicker.value = target ? getId(target) : '';
-    deleteButton.disabled = !target;
-    requestAnimationFrame(refresh);
-  }
-  function clearSelection(){
-    if (selected?.isContentEditable) selected.blur();
-    selected = null;
-    moveable.target = null;
-    deleteButton.disabled = true;
-  }
-  function commit(target, checkpoint = false){ record(target); persist(checkpoint); refresh(); }
-  moveable
-    .on('drag', event => {
-      event.target.style.transform = event.transform;
-      commit(event.target);
-    })
-    .on('resize', event => {
-      event.target.style.width = `${event.width}px`;
-      event.target.style.height = `${event.height}px`;
-      event.target.style.transform = event.drag.transform;
-      commit(event.target);
-    })
-    .on('rotate', event => {
-      event.target.style.transform = event.drag.transform;
-      commit(event.target);
-    })
-    .on('dragEnd', event => { if (event.target) commit(event.target, true); })
-    .on('resizeEnd', event => { if (event.target) commit(event.target, true); })
-    .on('rotateEnd', event => { if (event.target) commit(event.target, true); });
-
-  document.addEventListener('pointerdown', event => {
-    if (!editing || event.target.closest('.local-editor-toolbar') || event.target.closest('.moveable-control-box')) return;
-    const target = event.target.closest('[data-local-editor-id]');
-    if (!target) { clearSelection(); return; }
-    if (event.target.closest('a')) event.preventDefault();
-    setSelected(target);
-  }, true);
-  document.addEventListener('dblclick', event => {
-    if (!editing) return;
-    const target = event.target.closest('[data-local-editor-id]');
-    if (!target || !isText(target)) return;
-    event.preventDefault();
-    target.contentEditable = 'true';
-    target.focus();
-    document.execCommand?.('selectAll', false, null);
-  }, true);
-  document.addEventListener('input', event => {
-    if (editing && event.target.matches?.(textSelector)) commit(event.target);
-  });
-  document.addEventListener('focusout', event => {
-    const target = event.target;
-    if (target.matches?.(textSelector) && target.isContentEditable) {
-      target.contentEditable = 'false';
-      commit(target, true);
-    }
-  });
-  document.addEventListener('keydown', event => {
-    if (!editing) return;
-    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'z') {
-      event.preventDefault();
-      undoLastChange();
-      return;
-    }
-    if (event.key === 'Escape') clearSelection();
-    if ((event.key === 'Backspace' || event.key === 'Delete') && selected && !selected.isContentEditable) {
-      event.preventDefault();
-      deleteSelected();
-    }
-  });
-  function deleteSelected(){
-    if (!selected) return;
-    if (selected.classList.contains('local-editor-node')) selected.remove();
-    else {
-      selected.style.display = 'none';
-      record(selected);
-    }
-    persist(true);
-    clearSelection();
-  }
-  function undoLastChange(){
-    if (history.length < 2) return;
-    history.pop();
-    localStorage.setItem(STORAGE_KEY, history.at(-1));
-    window.location.reload();
-  }
-  function setEditing(enabled){
-    editing = enabled;
-    document.body.classList.toggle('is-local-editing', enabled);
-    toggle.textContent = enabled ? '完成編輯' : '編輯版面';
-    toggle.setAttribute('aria-pressed', String(enabled));
-    [addTextButton, addImageButton, layerPicker, undoButton, deleteButton, resetButton, hint].forEach(element => { element.hidden = !enabled; });
-    if (enabled) scanLayers();
-    deleteButton.disabled = !selected;
-    if (!enabled) clearSelection();
-  }
-  toggle.addEventListener('click', () => setEditing(!editing));
-  addTextButton.addEventListener('click', () => {
-    const target = createAddedNode({ type:'text', id:`added-${nextAddedId++}`, text:'輸入文字', style:`left:10vw;top:${window.scrollY + 120}px;width:260px;height:auto;` });
-    persist(true); setSelected(target);
-    target.contentEditable = 'true'; target.focus();
-  });
-  addImageButton.addEventListener('click', () => imageInput.click());
-  imageInput.addEventListener('change', () => {
-    const file = imageInput.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.addEventListener('load', () => {
-      const target = createAddedNode({ type:'image', id:`added-${nextAddedId++}`, src:reader.result, style:`left:10vw;top:${window.scrollY + 120}px;width:360px;height:auto;` });
-      persist(true); setSelected(target);
-    });
-    reader.readAsDataURL(file);
-    imageInput.value = '';
-  });
-  undoButton.addEventListener('click', undoLastChange);
-  deleteButton.addEventListener('click', deleteSelected);
-  resetButton.addEventListener('click', () => {
-    if (!confirm('要清除這台電腦中儲存的所有版面修改嗎？')) return;
-    localStorage.removeItem(STORAGE_KEY);
-    window.location.reload();
-  });
-  window.addEventListener('resize', refresh);
-})();
+/* Local editing tools omitted from the public portfolio. */
 
 </script>
 <script src="duo-motion-assets/scenes.js"></script>
+<script src="duo-motion-assets/navigation.js"></script>
 </body>
 </html>

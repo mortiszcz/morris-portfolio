@@ -6,14 +6,13 @@
   <meta name="description" content="CV of Morris Chuang, Industrial Designer.">
   <title>About / CV | Morris Chuang</title>
   <link rel="stylesheet" href="detail.css">
-  <link rel="stylesheet" href="webflow-editor.css">
 </head>
-<body>
+<body class="dark">
   <div class="wrap">
     <nav>
-      <a class="brand" href="./index-structure-study.html">Morris Chuang</a>
-      <div class="nav-links"><a href="./index-structure-study.html#top">Home</a><a href="./cv.html" aria-current="page">About</a><a href="./index-structure-study.html#work">Work</a><a href="./index-structure-study.html#focus">Focus</a></div>
-      <div class="nav-actions"><button class="cv-theme-toggle" type="button" aria-label="Switch to dark theme">◐</button><a class="contact" href="mailto:morriszzczz@hotmail.com">Contact&nbsp; •</a></div>
+      <a class="brand" href="./index.html">Morris Chuang</a>
+      <div class="nav-links"><a href="./index.html#top">Home</a><a href="./cv.html" aria-current="page">About</a><a href="./index.html#work">Work</a><a href="./index.html#focus">Focus</a></div>
+      <div class="nav-actions"><a class="contact" href="mailto:morriszzczz@hotmail.com">Contact&nbsp; •</a></div>
     </nav>
 
     <header class="cv-hero">
@@ -58,7 +57,7 @@
       </div>
     </section>
   </div>
-  <footer><div class="wrap"><span>© 2026 Morris Chuang</span><a href="./index-structure-study.html#work">View selected work ↗</a></div></footer>
+  <footer><div class="wrap"><span>© 2026 Morris Chuang</span><a href="./index.html#work">View selected work ↗</a></div></footer>
   <script>
     document.querySelectorAll('[data-logo]').forEach((canvas) => {
       const image = new Image();
@@ -97,18 +96,5 @@
       };
     });
   </script>
-  <script>
-    const themeButton = document.querySelector('.cv-theme-toggle');
-    const applyTheme = (theme) => {
-      const isDark = theme === 'dark';
-      document.body.classList.toggle('dark', isDark);
-      themeButton.textContent = isDark ? '☼' : '◐';
-      themeButton.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
-      localStorage.setItem('morris-theme', isDark ? 'dark' : 'light');
-    };
-    applyTheme(localStorage.getItem('morris-theme') || 'light');
-    themeButton.addEventListener('click', () => applyTheme(document.body.classList.contains('dark') ? 'light' : 'dark'));
-  </script>
-<script src="webflow-editor.js"></script>
 </body>
 </html>

@@ -28,78 +28,246 @@
     return stage;
   }
 
-  const concept = mount('concept', 'archetype', chrome() + title('archetype', 'CONCEPT DEVELOPMENT', 'ARCHETYPE DEFINITION') +
-    layer('archetype-diagram', '010_Im0.png', '功能區域：輸入／互動／輸出', [94.8,212.6,622,327.4], 'settle', .22) +
-    layer('archetype-positioning', '013_Im2.png', '產品定位圖', [96,553.4,620.6,410.4], 'rise', .52) +
-    // Comparison/radar artwork is intentionally unchanged until high-resolution sources arrive.
-    layer('archetype-options', '011_Im0.png', '原稿方案與雷達圖（待高清素材）', [780,212.6,1067.1,623.5], 'wipe', .34) +
-    layer('archetype-dimensions', '012_Im1.png', '原稿方案尺寸', [778.9,835,1069.3,130], 'rise', .62) +
-    `<div class="zone-controls" aria-label="探索功能區域">
-      <button type="button" data-zone="input" style="--zone-color:#4886ff" aria-pressed="false" aria-controls="zoneDescription">INPUT</button>
-      <button type="button" data-zone="interaction" style="--zone-color:#b673f4" aria-pressed="false" aria-controls="zoneDescription">INTERACTION</button>
-      <button type="button" data-zone="output" style="--zone-color:#ef8a4f" aria-pressed="false" aria-controls="zoneDescription">OUTPUT</button>
-      <div class="zone-detail" id="zoneDescription" role="status" hidden></div>
+  const storyPanel = (id, file, alt, caption, extra = '') => `<section class="story-panel" data-story-panel="${id}" ${id === 'strategy' ? '' : 'hidden'}>
+    <figure class="story-figure" data-local-editor-id="archetype-${id}" data-editor-label="${escape(alt)}">
+      <img src="${asset(file)}" alt="${escape(alt)}" loading="lazy" decoding="async">
+      <figcaption>${caption}</figcaption>
+      ${extra}
+    </figure>
+  </section>`;
+
+  const concept = mount('concept', 'archetype', chrome() +
+    `<div class="archetype-shell">
+      <header class="archetype-narrative" data-motion="side">
+        <div class="motion-entry">
+          <p class="scene-kicker">CONCEPT DEVELOPMENT · 01</p>
+          <h2 data-local-editor-id="archetype-heading">ARCHETYPE<br>STRATEGY</h2>
+          <p class="archetype-lede">Reframe the Duo from a specialized dual-screen laptop into one high-performance system for creation, play, and continuous interaction.</p>
+          <nav class="story-tabs" aria-label="Archetype development sections" role="tablist">
+            <button type="button" role="tab" aria-selected="true" data-story-tab="strategy"><span>01</span> POSITION</button>
+            <button type="button" role="tab" aria-selected="false" data-story-tab="architecture"><span>02</span> ARCHITECTURE</button>
+            <button type="button" role="tab" aria-selected="false" data-story-tab="concepts"><span>03</span> PROPOSALS</button>
+          </nav>
+          <div class="story-copy" aria-live="polite">
+            <section data-story-copy="strategy">
+              <strong>Move upward without losing mobility.</strong>
+              <p>The opportunity sits between premium mobile computing and uncompromised creator performance.</p>
+            </section>
+            <section data-story-copy="architecture" hidden>
+              <strong>One system, not two stacked screens.</strong>
+              <p>Input, interaction, and output are sequenced as a single workspace that changes with the task.</p>
+            </section>
+            <section data-story-copy="concepts" hidden>
+              <strong>Compare architecture before styling.</strong>
+              <p>Five proposals were measured against thermal flow, screen border, hinge behavior, and package dimensions.</p>
+            </section>
+          </div>
+        </div>
+      </header>
+      <div class="archetype-canvas" data-motion="settle">
+        <div class="motion-entry">
+          ${storyPanel('strategy', '013_Im2.png', 'Zephyrus Duo market and performance positioning map', '<span>STRATEGIC TERRITORY</span><strong>Premium mobility × high-performance creation</strong>')}
+          ${storyPanel('architecture', '010_Im0.png', 'Dual-screen interaction architecture', '<span>INTERACTION ARCHITECTURE</span><strong>Three functional zones become one continuous unit</strong>', `<div class="zone-controls" aria-label="Explore functional zones">
+            <button type="button" data-zone="input" style="--zone-color:#4886ff" aria-pressed="true">INPUT</button>
+            <button type="button" data-zone="interaction" style="--zone-color:#b673f4" aria-pressed="false">INTERACTION</button>
+            <button type="button" data-zone="output" style="--zone-color:#ef8a4f" aria-pressed="false">OUTPUT</button>
+            <p class="zone-detail" role="status"><strong>INPUT</strong> Keyboard and touch establish the primary control layer.</p>
+          </div>`)}
+          ${storyPanel('concepts', '011_Im0.png', 'Five concept proposals compared across architecture criteria', '<span>FIVE ROUTES · ONE SCORECARD</span><strong>Select a proposal to trace the comparison</strong>', `<div class="concept-focus" aria-hidden="true" style="--concept-index:0"></div>
+            <div class="concept-switcher" role="tablist" aria-label="Concept proposal focus">
+              ${['A','B','C','D','E'].map((letter, index) => `<button type="button" role="tab" aria-selected="${index === 0}" data-concept="${index}">CONCEPT ${letter}</button>`).join('')}
+            </div>
+            <figure class="dimension-strip"><img src="${asset('012_Im1.png')}" alt="Concept package dimensions" loading="lazy" decoding="async"></figure>`)}
+        </div>
+      </div>
+      <div class="archetype-signals" aria-label="Archetype strategy signals">
+        <span><b>175W</b> performance target</span><span><b>3</b> functional zones</span><span><b>5</b> proposals compared</span>
+      </div>
     </div>`);
 
-  if (concept) {
-    const diagram = concept.querySelector('[data-local-editor-id="archetype-diagram"] .motion-entry');
-    diagram.insertAdjacentHTML('beforeend', `<svg class="zone-overlay" viewBox="0 0 1993 1049" preserveAspectRatio="none" aria-label="雙螢幕功能分區">
-      <polygon data-zone="input" role="button" tabindex="0" aria-label="藍色：Input 輸入區" style="--zone-color:#4886ff;--delay:.5s" points="970,623 1544,841 1351,943 772,706"/>
-      <polygon data-zone="interaction" role="button" tabindex="0" aria-label="紫色：Interaction 互動區" style="--zone-color:#b673f4;--delay:.75s" points="1166,478 1738,676 1565,828 989,613"/>
-      <polygon data-zone="output" role="button" tabindex="0" aria-label="橘色：Output 輸出區" style="--zone-color:#ef8a4f;--delay:1s" points="1360,43 1945,191 1757,680 1186,483"/>
-    </svg>`);
-    const descriptions = {
-      input:['INPUT / 輸入區', '藍色區域：鍵盤與觸控操作，承接使用者的主要輸入。'],
-      interaction:['INTERACTION / 互動區', '紫色區域：第二螢幕，連接操作與內容，提供延伸資訊與互動空間。'],
-      output:['OUTPUT / 輸出區', '橘色區域：主螢幕，負責主要畫面與內容呈現。']
-    };
-    const detail = concept.querySelector('.zone-detail');
-    let active = null;
-    function activate(zone) {
+  function setupTabs(root, buttonSelector, panelSelector, buttonKey, panelKey = buttonKey) {
+    if (!root) return;
+    const buttons = [...root.querySelectorAll(buttonSelector)];
+    const panels = [...root.querySelectorAll(panelSelector)];
+    const select = (key, focus = false) => {
       if (editing()) return;
-      active = active === zone ? null : zone;
-      concept.querySelectorAll('[data-zone]').forEach(node => {
-        node.classList.remove('zone-pulse');
-        node.classList.toggle('is-active', node.dataset.zone === active);
-        node.setAttribute('aria-pressed', String(node.dataset.zone === active));
+      buttons.forEach(button => {
+        const selected = button.dataset[buttonKey] === key;
+        button.setAttribute('aria-selected', String(selected));
+        button.tabIndex = selected ? 0 : -1;
+        if (selected && focus) button.focus({preventScroll:true});
       });
-      detail.hidden = !active;
-      if (active) detail.innerHTML = `<strong>${descriptions[active][0]}</strong>${descriptions[active][1]}`;
-    }
-    concept.querySelectorAll('[data-zone]').forEach(node => {
-      node.addEventListener('click', () => activate(node.dataset.zone));
-      if (node.tagName.toLowerCase() === 'polygon') node.addEventListener('keydown', event => {
-        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); activate(node.dataset.zone); }
+      panels.forEach(panel => {
+        const selected = panel.dataset[panelKey] === key;
+        panel.hidden = !selected;
+        if (selected) {
+          panel.classList.remove('panel-enter');
+          requestAnimationFrame(() => panel.classList.add('panel-enter'));
+        }
+      });
+    };
+    buttons.forEach((button, index) => {
+      button.addEventListener('click', () => select(button.dataset[buttonKey]));
+      button.addEventListener('keydown', event => {
+        if (!['ArrowRight','ArrowDown','ArrowLeft','ArrowUp','Home','End'].includes(event.key)) return;
+        event.preventDefault();
+        let next = index;
+        if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = buttons.length - 1;
+        else next = (index + (event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : -1) + buttons.length) % buttons.length;
+        select(buttons[next].dataset[buttonKey], true);
       });
     });
-    concept.addEventListener('keydown', event => { if (event.key === 'Escape' && active) activate(active); });
   }
 
-  const ideation = mount('ideation', 'ideation', chrome() + title('ideation', 'CONCEPT DEVELOPMENT', 'IDEATION') +
-    `<div class="ideation-backplate" style="left:3.03%;top:14.44%;width:47.55%;height:81.7%"></div>
-     <div class="ideation-backplate" style="left:52.29%;top:15.74%;width:43.07%;height:32.5%"></div>
-     <div class="ideation-backplate" style="left:52.29%;top:53.8%;width:43.07%;height:35.2%"></div>` +
-    layer('ideation-hinge-study','020_Im6.png','開合架構與側面草圖',[68.3,187.8,894.3,583.4],'wipe',.22) +
-    layer('ideation-design-principles','019_Im5.png','三種轉軸設計方向',[68.3,783.9,894.3,250.7],'rise',.62) +
-    layer('ideation-cover-study','018_Im4.png','上蓋語彙與厚度探索',[1007.8,184.3,815.6,331.5],'side',.42) +
-    layer('ideation-profile','017_Im3.png','機身側面比例',[1057.8,641.3,412.1,256.9],'settle',.62) +
-    layer('ideation-vent-a','014_Im0.png','散熱輪廓探索 A',[1508.8,625.1,297.8,111.6],'side',.74) +
-    layer('ideation-vent-b','015_Im1.png','散熱輪廓探索 B',[1508.8,736.3,313.3,105.1],'side',.88) +
-    layer('ideation-vent-c','016_Im2.png','散熱輪廓探索 C',[1508.8,841.6,297.8,73.2],'side',1.02));
+  setupTabs(concept, '[data-story-tab]', '[data-story-panel]', 'storyTab', 'storyPanel');
+  setupTabs(concept, '[data-story-tab]', '[data-story-copy]', 'storyTab', 'storyCopy');
+
+  if (concept) {
+    const descriptions = {
+      input:['INPUT', 'Keyboard and touch establish the primary control layer.'],
+      interaction:['INTERACTION', 'The second display bridges command, context, and live feedback.'],
+      output:['OUTPUT', 'The main display protects focus for the highest-value visual work.']
+    };
+    const detail = concept.querySelector('.zone-detail');
+    concept.querySelectorAll('[data-zone]').forEach(button => button.addEventListener('click', () => {
+      if (editing()) return;
+      concept.querySelectorAll('[data-zone]').forEach(node => node.setAttribute('aria-pressed', String(node === button)));
+      detail.innerHTML = `<strong>${descriptions[button.dataset.zone][0]}</strong>${descriptions[button.dataset.zone][1]}`;
+    }));
+    const focus = concept.querySelector('.concept-focus');
+    concept.querySelectorAll('[data-concept]').forEach(button => button.addEventListener('click', () => {
+      if (editing()) return;
+      concept.querySelectorAll('[data-concept]').forEach(node => node.setAttribute('aria-selected', String(node === button)));
+      focus.style.setProperty('--concept-index', button.dataset.concept);
+    }));
+  }
+
+  const proposalSteps = [
+    {id:'language', number:'01', label:'DESIGN LANGUAGE', title:'Carry the Zephyrus language forward', body:'Two architecture directions tested how the second display could open while the closed silhouette stayed unmistakably Zephyrus.'},
+    {id:'principles', number:'02', label:'SELECTION PRINCIPLES', title:'Turn form into evaluation criteria', body:'Opening clarity, a hidden mechanism, and visual stability became the three principles used to judge every proposal.'},
+    {id:'mechanism', number:'03', label:'MECHANISM MATRIX', title:'Compare the package before styling', body:'Thickness, hinge travel, border treatment, and cooling space were explored as a system—not as isolated details.'},
+    {id:'convergence', number:'04', label:'CONVERGENCE', title:'Shortlist the most stable silhouette', body:'Profile studies reduced the field to a direction that feels integrated when closed and deliberate when deployed.'}
+  ];
+  const ideation = mount('ideation', 'ideation', chrome() +
+    `<div class="ideation-shell">
+      <header class="ideation-narrative" data-motion="side"><div class="motion-entry">
+        <p class="scene-kicker">CONCEPT DEVELOPMENT · 02</p>
+        <h2 data-local-editor-id="ideation-heading">PROPOSAL<br>PROCESS</h2>
+        <p class="ideation-lede">A proposal was not selected from appearance alone. Each round translated a design intention into something the team could compare, prototype, and defend.</p>
+        <div class="process-steps" role="tablist" aria-label="Proposal development stages">
+          ${proposalSteps.map((step, index) => `<button type="button" role="tab" aria-selected="${index === 0}" data-process-tab="${step.id}"><span>${step.number}</span><b>${step.label}</b></button>`).join('')}
+        </div>
+      </div></header>
+      <div class="proposal-copy" aria-live="polite">
+        ${proposalSteps.map((step, index) => `<section data-process-copy="${step.id}" ${index ? 'hidden' : ''}><span>${step.number} / 04</span><h3>${step.title}</h3><p>${step.body}</p></section>`).join('')}
+      </div>
+      <div class="proposal-canvas" data-motion="settle"><div class="motion-entry">
+        <section class="proposal-panel proposal-language" data-process-panel="language">
+          <img src="${asset('020_Im6.png')}" alt="Two Zephyrus architecture directions and hinge mockups" loading="lazy" decoding="async">
+          <div class="proposal-tags"><span>A · CONTINUITY</span><span>B · REVERSED HINGE</span></div>
+        </section>
+        <section class="proposal-panel proposal-principles" data-process-panel="principles" hidden>
+          <img src="${asset('019_Im5.png')}" alt="Three design principles used to evaluate the hinge architecture" loading="lazy" decoding="async">
+          <ol>
+            <li><b>A</b><span><strong>Opening clarity</strong>Make the transformation readable</span></li>
+            <li><b>B</b><span><strong>Hidden structure</strong>Keep mechanics out of the silhouette</span></li>
+            <li><b>C</b><span><strong>Visual stability</strong>Resolve an integrated resting form</span></li>
+          </ol>
+        </section>
+        <section class="proposal-panel proposal-mechanism" data-process-panel="mechanism" hidden>
+          <img src="${asset('018_Im4.png')}" alt="Hinge mechanism and package thickness proposal matrix" loading="lazy" decoding="async">
+          <div class="mechanism-scale"><span>5.0 mm</span><span>5.8 mm</span><span>6.8 mm</span><span>8.0 mm</span></div>
+        </section>
+        <section class="proposal-panel proposal-convergence" data-process-panel="convergence" hidden>
+          <figure class="profile-main"><img src="${asset('017_Im3.png')}" alt="Shortlisted side profile studies" loading="lazy" decoding="async"></figure>
+          <div class="profile-variants">
+            <img src="${asset('014_Im0.png')}" alt="Side profile proposal A" loading="lazy" decoding="async">
+            <img src="${asset('015_Im1.png')}" alt="Side profile proposal B" loading="lazy" decoding="async">
+            <img src="${asset('016_Im2.png')}" alt="Side profile proposal C" loading="lazy" decoding="async">
+          </div>
+        </section>
+      </div></div>
+      <p class="proposal-note">INTENT → ARCHITECTURE → MECHANISM → PROPOSAL</p>
+    </div>`);
+
+  setupTabs(ideation, '[data-process-tab]', '[data-process-panel]', 'processTab', 'processPanel');
+  setupTabs(ideation, '[data-process-tab]', '[data-process-copy]', 'processTab', 'processCopy');
+
+  const refinementSteps = [
+    {id:'precision', number:'01', label:'PRECISION', title:'Machine the gesture into the shell', body:'CNC finishing sharpens the side wall and removes visual noise, so the silhouette reads as one controlled volume.', file:'021_Im0.png', alt:'CNC machining the Zephyrus Duo side wall', meta:'CNC / POLISHED EDGE'},
+    {id:'signature', number:'02', label:'SIGNATURE', title:'Reduce lighting to one deliberate line', body:'The slash becomes a restrained light signature—visible in motion, quiet when the system is at rest.', file:'023_Im1.png', alt:'Zephyrus Duo side profile and light signature', meta:'SLASH LIGHT / SIDE PROFILE'},
+    {id:'integration', number:'03', label:'INTEGRATION', title:'Make performance hardware disappear', body:'Ports, cooling volume, and structural breaks are absorbed into the lower edge without interrupting the profile.', file:'024_Im2.png', alt:'Zephyrus Duo integrated ports and lower edge', meta:'I/O / COOLING / STRUCTURE'}
+  ];
+
+  const refinement = mount('refinement', 'refinement', chrome() +
+    `<div class="refinement-shell">
+      <header class="refinement-narrative" data-motion="side"><div class="motion-entry">
+        <p class="scene-kicker">REFINEMENT · FINAL DESIGN</p>
+        <h2 data-local-editor-id="refinement-heading">CONTROL<br>THE EDGE</h2>
+        <p class="refinement-lede">The final form was resolved through three production decisions—precision, signature, and integration.</p>
+      </div></header>
+      <figure class="refinement-product" data-motion="settle" data-local-editor-id="refinement-product" data-editor-label="Zephyrus Duo refined final design">
+        <div class="motion-entry"><img src="${asset('022_Im0.png')}" alt="Zephyrus Duo refined final design" loading="lazy" decoding="async"></div>
+        <figcaption><span>FINAL FORM</span><strong>One silhouette. Three resolved details.</strong></figcaption>
+      </figure>
+      <aside class="refinement-focus" data-motion="wipe"><div class="motion-entry">
+        <nav class="refinement-tabs" role="tablist" aria-label="Refinement detail focus">
+          ${refinementSteps.map((step, index) => `<button type="button" role="tab" aria-selected="${index === 0}" data-refinement-tab="${step.id}"><span>${step.number}</span>${step.label}</button>`).join('')}
+        </nav>
+        <div class="refinement-visual">
+          ${refinementSteps.map((step, index) => `<figure data-refinement-panel="${step.id}" ${index ? 'hidden' : ''}><img src="${asset(step.file)}" alt="${step.alt}" loading="lazy" decoding="async"><figcaption>${step.meta}</figcaption></figure>`).join('')}
+        </div>
+        <div class="refinement-copy" aria-live="polite">
+          ${refinementSteps.map((step, index) => `<section data-refinement-copy="${step.id}" ${index ? 'hidden' : ''}><span>${step.number} / 03</span><h3>${step.title}</h3><p>${step.body}</p></section>`).join('')}
+        </div>
+      </div></aside>
+      <footer class="refinement-signals" aria-label="Refinement outcomes"><span>01 <b>FORM</b></span><span>02 <b>CRAFT</b></span><span>03 <b>PERFORMANCE</b></span></footer>
+    </div>`);
+
+  setupTabs(refinement, '[data-refinement-tab]', '[data-refinement-panel]', 'refinementTab', 'refinementPanel');
+  setupTabs(refinement, '[data-refinement-tab]', '[data-refinement-copy]', 'refinementTab', 'refinementCopy');
+
+  if (refinement) {
+    const product = refinement.querySelector('.refinement-product');
+    refinement.addEventListener('pointermove', event => {
+      if (editing() || reducedMotion.matches) return;
+      const bounds = refinement.getBoundingClientRect();
+      product.style.setProperty('--refine-x', `${((event.clientX - bounds.left) / bounds.width - .5) * 12}px`);
+      product.style.setProperty('--refine-y', `${((event.clientY - bounds.top) / bounds.height - .5) * 8}px`);
+    });
+    refinement.addEventListener('pointerleave', () => {
+      product.style.setProperty('--refine-x', '0px');
+      product.style.setProperty('--refine-y', '0px');
+    });
+  }
 
   const photos = [
-    {id:'prototype-front',file:'031_Im4.png',label:'實體模型 · 正面與雙螢幕',box:[83.8,148.2,494.1,511.4],ratio:342/354},
-    {id:'prototype-closed',file:'032_Im5.png',label:'實體模型 · 閉合外觀',box:[84.1,672.5,493.4,278.6],ratio:457/258},
-    {id:'prototype-angle',file:'027_Im0.png',label:'實體模型 · 開合角度',box:[588.3,149.5,630.2,510.4],ratio:363/294,rotate:true},
-    {id:'prototype-bottom',file:'029_Im2.png',label:'實體模型 · 底部結構',box:[588.3,671.2,631.3,279.4],ratio:479/212},
-    {id:'prototype-back',file:'028_Im1.png',label:'實體模型 · 背面結構',box:[1230.8,148.4,651.9,303],ratio:484/225},
-    {id:'prototype-hinge',file:'030_Im3.png',label:'實體模型 · 轉軸細節',box:[1230,461.1,654.9,488.3],ratio:484/363}
+    {id:'prototype-front',file:'031_Im4.png',label:'OPEN WORKSPACE',focus:'Screen relationship',phase:'open',box:[83.8,148.2,494.1,511.4],ratio:342/354},
+    {id:'prototype-closed',file:'032_Im5.png',label:'CLOSED PACKAGE',focus:'Travel silhouette',phase:'package',box:[84.1,672.5,493.4,278.6],ratio:457/258},
+    {id:'prototype-angle',file:'027_Im0.png',label:'OPEN ANGLE',focus:'Reach and sightline',phase:'open',box:[588.3,149.5,630.2,510.4],ratio:363/294,rotate:true},
+    {id:'prototype-bottom',file:'029_Im2.png',label:'BASE PACKAGE',focus:'Cooling volume',phase:'package',box:[588.3,671.2,631.3,279.4],ratio:479/212},
+    {id:'prototype-back',file:'028_Im1.png',label:'REAR SUPPORT',focus:'Load path',phase:'hinge',box:[1230.8,148.4,651.9,303],ratio:484/225},
+    {id:'prototype-hinge',file:'030_Im3.png',label:'HINGE DETAIL',focus:'Tolerance check',phase:'hinge',box:[1230,461.1,654.9,488.3],ratio:484/363}
   ];
-  const prototype = mount('prototype', 'prototype', title('prototype', 'PROTOTYPING') +
-    `<div class="prototype-gallery">${photos.map((photo, i) => `<figure class="prototype-photo" data-local-editor-id="${photo.id}" data-editor-label="${photo.label}" data-motion="${i % 2 ? 'settle' : 'wipe'}" style="${position(...photo.box)};--photo-ratio:${photo.ratio};--delay:${.18 + i * .12}s">
-      <div class="motion-entry"><button type="button" data-prototype="${photo.id}" aria-label="放大檢視：${photo.label}" aria-haspopup="dialog"><img src="${asset(photo.file)}" alt="${photo.label}" loading="lazy" decoding="async" ${photo.rotate ? 'class="photo-turn90"' : ''}><span class="photo-caption">${photo.label} ↗</span></button></div>
-    </figure>`).join('')}</div>
-    <p class="prototype-note" data-local-editor-id="prototype-note">PHYSICAL PROTOTYPE — 懸停探索細節・點擊放大檢視</p>`);
+  const prototype = mount('prototype', 'prototype', chrome() +
+    `<div class="prototype-shell">
+      <header class="prototype-heading" data-motion="side"><div class="motion-entry">
+        <p class="scene-kicker">PHYSICAL VALIDATION · 01:01</p>
+        <h2 data-local-editor-id="prototype-heading">BUILT TO<br>BE JUDGED</h2>
+        <p>Full-scale models turned proportion, reach, and hinge behavior into decisions the team could feel—not just see.</p>
+      </div></header>
+      <nav class="prototype-filters" aria-label="Filter prototype evidence">
+        <button type="button" data-prototype-filter="all" aria-pressed="true">ALL</button>
+        <button type="button" data-prototype-filter="open" aria-pressed="false">OPEN WORKSPACE</button>
+        <button type="button" data-prototype-filter="package" aria-pressed="false">PACKAGE</button>
+        <button type="button" data-prototype-filter="hinge" aria-pressed="false">HINGE</button>
+      </nav>
+      <div class="prototype-gallery" data-filter="all">${photos.map((photo, i) => `<figure class="prototype-photo" data-phase="${photo.phase}" data-local-editor-id="${photo.id}" data-editor-label="${photo.label}" data-motion="${i % 2 ? 'settle' : 'wipe'}" style="${position(...photo.box)};--photo-ratio:${photo.ratio};--delay:${.16 + i * .11}s">
+        <div class="motion-entry"><button type="button" data-prototype="${photo.id}" aria-label="Open ${photo.label}" aria-haspopup="dialog"><img src="${asset(photo.file)}" alt="${photo.label}" loading="lazy" decoding="async" ${photo.rotate ? 'class="photo-turn90"' : ''}><span class="photo-index">${String(i + 1).padStart(2,'0')}</span><span class="photo-caption"><b>${photo.label}</b><small>${photo.focus}</small></span></button></div>
+      </figure>`).join('')}</div>
+      <p class="prototype-note" data-local-editor-id="prototype-note">SELECT A LENS · HOVER TO ISOLATE · OPEN FOR FULL-SCALE EVIDENCE</p>
+    </div>`);
 
   const rotationObserver = new ResizeObserver(entries => entries.forEach(({target}) => {
     target.style.setProperty('--turn-width', `${target.clientHeight}px`);
@@ -108,18 +276,44 @@
   document.querySelectorAll('.photo-turn90').forEach(img => rotationObserver.observe(img.parentElement));
 
   if (prototype) {
+    const gallery = prototype.querySelector('.prototype-gallery');
+    prototype.querySelectorAll('[data-prototype-filter]').forEach(button => button.addEventListener('click', () => {
+      if (editing()) return;
+      gallery.dataset.filter = button.dataset.prototypeFilter;
+      prototype.querySelectorAll('[data-prototype-filter]').forEach(node => node.setAttribute('aria-pressed', String(node === button)));
+    }));
     const viewer = document.createElement('dialog');
     viewer.className = 'prototype-viewer';
     viewer.setAttribute('aria-label', '實體模型照片檢視');
-    viewer.innerHTML = `<button type="button" class="prototype-viewer-close" aria-label="關閉照片檢視">關閉 ×</button><div class="prototype-viewer-content"><div class="prototype-viewer-image"><img alt=""></div><p class="prototype-viewer-caption"></p></div>`;
+    viewer.innerHTML = `<button type="button" class="prototype-viewer-close" aria-label="關閉照片檢視">CLOSE</button><div class="prototype-viewer-content"><div class="prototype-viewer-topline"><span>FULL-SCALE VALIDATION</span><b class="prototype-viewer-count">01 / 06</b></div><div class="prototype-viewer-image"><img alt=""></div><div class="prototype-viewer-footer"><p class="prototype-viewer-caption"><strong></strong><span></span></p><div class="prototype-viewer-nav"><button type="button" data-viewer-step="-1">PREVIOUS</button><button type="button" data-viewer-step="1">NEXT</button></div></div></div>`;
     document.body.append(viewer);
     const frame = viewer.querySelector('.prototype-viewer-image');
     const largeImage = frame.querySelector('img');
     const closeButton = viewer.querySelector('.prototype-viewer-close');
+    const count = viewer.querySelector('.prototype-viewer-count');
+    const captionTitle = viewer.querySelector('.prototype-viewer-caption strong');
+    const captionFocus = viewer.querySelector('.prototype-viewer-caption span');
     let opener;
+    let currentIndex = 0;
     const close = () => viewer.close();
+    const showPhoto = index => {
+      currentIndex = (index + photos.length) % photos.length;
+      const photo = photos[currentIndex];
+      largeImage.src = asset(photo.file);
+      largeImage.alt = photo.label;
+      largeImage.classList.toggle('photo-turn90', !!photo.rotate);
+      frame.style.setProperty('--photo-ratio', photo.ratio);
+      count.textContent = `${String(currentIndex + 1).padStart(2,'0')} / ${String(photos.length).padStart(2,'0')}`;
+      captionTitle.textContent = photo.label;
+      captionFocus.textContent = photo.focus;
+    };
     closeButton.addEventListener('click', close);
     viewer.addEventListener('click', event => { if (event.target === viewer) close(); });
+    viewer.querySelectorAll('[data-viewer-step]').forEach(button => button.addEventListener('click', () => showPhoto(currentIndex + Number(button.dataset.viewerStep))));
+    viewer.addEventListener('keydown', event => {
+      if (event.key === 'ArrowLeft') showPhoto(currentIndex - 1);
+      if (event.key === 'ArrowRight') showPhoto(currentIndex + 1);
+    });
     viewer.addEventListener('close', () => {
       document.body.classList.remove('prototype-viewing');
       opener?.focus({preventScroll:true});
@@ -127,13 +321,8 @@
     rotationObserver.observe(frame);
     prototype.querySelectorAll('[data-prototype]').forEach(button => button.addEventListener('click', () => {
       if (editing()) return;
-      const photo = photos.find(item => item.id === button.dataset.prototype);
       opener = button;
-      largeImage.src = asset(photo.file);
-      largeImage.alt = photo.label;
-      largeImage.classList.toggle('photo-turn90', !!photo.rotate);
-      frame.style.setProperty('--photo-ratio', photo.ratio);
-      viewer.querySelector('.prototype-viewer-caption').textContent = photo.label;
+      showPhoto(photos.findIndex(item => item.id === button.dataset.prototype));
       viewer.showModal();
       document.body.classList.add('prototype-viewing');
       closeButton.focus();
@@ -142,7 +331,7 @@
 
   // Keep unchanged art in place, but give its arrival an appropriate, different cadence.
   const otherScenes = [];
-  [['refinement','wipe'],['second-panel','settle'],['hinge','side'],['features','rise'],['final','settle']].forEach(([id, motion]) => {
+  [['second-panel','settle'],['hinge','side'],['features','rise'],['final','settle']].forEach(([id, motion]) => {
     const stage = document.querySelector(`#${id} .pdf-scene-stage`);
     const image = stage?.querySelector(':scope > img');
     if (!image) return;
@@ -156,7 +345,7 @@
     otherScenes.push(stage);
   });
 
-  const stages = [concept, ideation, prototype, ...otherScenes].filter(Boolean);
+  const stages = [concept, ideation, refinement, prototype, ...otherScenes].filter(Boolean);
   function startMotion(stage) {
     stage.classList.remove('motion-pending');
     stage.classList.add('motion-ready');

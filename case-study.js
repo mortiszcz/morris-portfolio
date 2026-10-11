@@ -1,14 +1,5 @@
 (() => {
-  const themeKey = 'morris-theme';
-  const button = document.querySelector('[data-theme-toggle]');
-  const applyTheme = (theme) => {
-    document.body.dataset.theme = theme;
-    button.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
-    localStorage.setItem(themeKey, theme);
-  };
-
-  applyTheme(localStorage.getItem(themeKey) || 'dark');
-  button.addEventListener('click', () => applyTheme(document.body.dataset.theme === 'dark' ? 'light' : 'dark'));
+  document.body.dataset.theme = 'dark';
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const items = document.querySelectorAll('[data-reveal]');

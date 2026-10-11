@@ -6,7 +6,6 @@
   <meta name="description" content="ProArt P16 case study by Morris Chuang.">
   <title>ProArt P16 | Morris Chuang</title>
   <link rel="stylesheet" href="case-study.css">
-  <link rel="stylesheet" href="webflow-editor.css">
   <link rel="stylesheet" href="work/shared/css/project-shell.css">
   <script src="work/shared/js/project-shell.js" defer></script>
 </head>
@@ -16,7 +15,7 @@
   <header class="site-header" data-reveal>
     <a class="site-brand" href="index.html">MORRIS CHUANG</a>
     <nav class="site-nav" aria-label="Primary navigation"><a href="index.html#top">Home</a><a href="cv.html">About</a><a href="index.html#work">Work</a><a href="index.html#focus">Focus</a></nav>
-    <div class="site-actions"><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to light theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9c0-4.97-4.03-9-9-9Z" fill="currentColor"/><path d="M12 3v18a9 9 0 0 1 0-18Z" fill="var(--canvas)"/></svg></button><a class="contact-link" href="mailto:morriszzczz@hotmail.com">Contact</a></div>
+    <div class="site-actions"><a class="contact-link" href="mailto:morriszzczz@hotmail.com">Contact</a></div>
   </header>
   <main id="case-study" class="case-main">
     <section class="case-hero">
@@ -58,7 +57,6 @@
   </main>
   <footer class="site-footer"><span>© 2026 Morris Chuang</span><a href="mailto:morriszzczz@hotmail.com">morriszzczz@hotmail.com</a></footer>
   <script src="case-study.js"></script>
-<script src="webflow-editor.js"></script>
 <style id="proart-refresh">
   body > :not(#proart-rebuild) { display:none !important; }
   #proart-rebuild{--p:#f3f3ef;--i:#11110f;--n:#090909;--m:rgba(17,17,15,.63);font-family:Arial,sans-serif;color:var(--i);background:var(--p);min-height:100vh;overflow:hidden}#proart-rebuild *{box-sizing:border-box}#proart-rebuild a{color:inherit;text-decoration:none}#proart-rebuild button{font:inherit;color:inherit}
@@ -136,9 +134,6 @@
   #proart-rebuild .pa-scene--research-notes:has(.pa-scene__piece--card:hover) .pa-scene__piece--card{opacity:.6;filter:brightness(.75)}#proart-rebuild .pa-scene--research-notes .pa-scene__piece--card{transition:opacity .45s var(--d),transform .68s var(--d) cubic-bezier(.16,1,.3,1),filter .35s ease;cursor:zoom-in}#proart-rebuild .pa-scene--research-notes .pa-scene__piece--card:hover{z-index:6;opacity:1;transform:scale(1.075);filter:brightness(1)}#proart-rebuild .pa-scene--research-notes .pa-scene__piece--card img{object-fit:contain;background:#0b0c0e}#proart-rebuild .pa-scene--research-notes .pa-scene__piece--card figcaption{position:absolute;right:8%;bottom:7%;left:8%;display:grid;gap:5px;color:#fff;text-shadow:0 1px 10px #000;font:500 clamp(7px,.76vw,13px)/1.35 Arial,sans-serif;text-align:left}#proart-rebuild .pa-scene--research-notes .pa-scene__piece--card figcaption b{color:#dec08a;font-size:clamp(10px,1.15vw,19px);line-height:1;text-transform:uppercase}#proart-rebuild .pa-scene--research-notes .pa-scene__piece--card figcaption span{max-width:28ch}
   #proart-rebuild .pa-mockup-grid{grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,minmax(0,1fr));gap:16px}#proart-rebuild .pa-mockup-grid .pa-scene__piece:nth-child(n){height:auto;align-self:stretch}#proart-rebuild .pa-mockup-grid .pa-scene__piece:nth-child(1){grid-column:span 2}#proart-rebuild .pa-mockup-grid .pa-scene__piece:nth-child(2),#proart-rebuild .pa-mockup-grid .pa-scene__piece:nth-child(3){grid-column:span 1}#proart-rebuild .pa-mockup-grid .pa-scene__piece:nth-child(4),#proart-rebuild .pa-mockup-grid .pa-scene__piece:nth-child(5){grid-column:span 2}#proart-rebuild .pa-mockup-grid .pa-scene__piece img{object-position:center center}
   @media(max-width:700px){#proart-rebuild .pa-scene--audience .pa-scene__piece--audience{border-radius:18px;--x:4%!important;--y:19%!important;--w:92%!important;--h:50%!important}#proart-rebuild .pa-scene--research-notes .pa-scene__piece--card figcaption{font-size:9px}#proart-rebuild .pa-scene--research-notes .pa-scene__piece--card figcaption span{display:none}#proart-rebuild .pa-mockup-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(3,1fr);gap:10px}#proart-rebuild .pa-mockup-grid .pa-scene__piece:nth-child(n){grid-column:span 1}#proart-rebuild .pa-mockup-grid .pa-scene__piece:nth-child(1),#proart-rebuild .pa-mockup-grid .pa-scene__piece:nth-child(4),#proart-rebuild .pa-mockup-grid .pa-scene__piece:nth-child(5){grid-column:span 2}}
-</style>
-<style id="proart-local-editor">
-  .proart-editor-toolbar{position:fixed;right:18px;bottom:18px;z-index:12000;display:flex;align-items:center;gap:8px;padding:10px;border:1px solid rgba(255,255,255,.18);border-radius:14px;background:rgba(12,13,15,.93);backdrop-filter:blur(16px);box-shadow:0 14px 38px rgba(0,0,0,.3);color:#fff;font:13px/1 Arial,sans-serif}.proart-editor-toolbar button{padding:9px 11px;border:0;border-radius:9px;background:rgba(255,255,255,.11);color:#fff;cursor:pointer;transition:background .18s ease}.proart-editor-toolbar button:hover{background:rgba(255,255,255,.22)}.proart-editor-toolbar button:disabled{cursor:not-allowed;opacity:.42}.proart-editor-toolbar .proart-editor-primary{background:#b9905d}.proart-editor-toolbar .proart-editor-primary:hover{background:#c9a676}.proart-editor-toolbar [hidden]{display:none}.proart-editor-hint{position:fixed;bottom:24px;left:50%;z-index:11999;max-width:calc(100vw - 40px);padding:8px 13px;transform:translateX(-50%);border-radius:100px;background:rgba(12,13,15,.9);color:#fff;font:12px/1.35 Arial,sans-serif;pointer-events:none}body.is-proart-editing{overflow-x:hidden}body.is-proart-editing [data-proart-editor-id]{cursor:move}body.is-proart-editing [data-proart-editor-id]:hover{outline:1px dashed rgba(201,166,118,.98);outline-offset:4px}body.is-proart-editing a[data-proart-editor-id]{pointer-events:none}.proart-editor-node{position:absolute;z-index:11000;box-sizing:border-box;min-width:80px;min-height:32px}.proart-editor-text{padding:10px 12px;border:1px dashed rgba(255,255,255,.42);background:rgba(12,13,15,.48);color:#fff;font:600 20px/1.25 Arial,sans-serif}.moveable-control-box{z-index:13000!important}.moveable-line,.moveable-control{background:#b9905d!important;border-color:#fff!important}.moveable-control{width:12px!important;height:12px!important;margin-top:-6px!important;margin-left:-6px!important}@media(max-width:700px){.proart-editor-toolbar{right:10px;bottom:10px;gap:5px;padding:7px}.proart-editor-toolbar button{padding:8px;font-size:12px}.proart-editor-hint{bottom:68px;text-align:center}}
 </style>
 <style id="proart-cmf-compare-centering">
   #proart-rebuild .pa-finish-interaction .pa-panel img{position:absolute;inset:4%;width:92%;height:92%;transform:none;object-fit:contain;object-position:center center}
@@ -224,25 +219,12 @@
     <span class="project-footer__credit">Portfolio 2026 · Morris Chuang</span>
   </footer>
 </div>
-<div class="proart-editor-toolbar" aria-label="ProArt 本機設計工具">
-  <button type="button" class="proart-editor-primary" id="proartEditorToggle" aria-pressed="false">編輯版面</button>
-  <button type="button" id="proartEditorAddText" hidden>＋文字</button>
-  <button type="button" id="proartEditorAddImage" hidden>＋圖片</button>
-  <button type="button" id="proartEditorUndo" hidden disabled>↶ 撤回</button>
-  <button type="button" id="proartEditorDelete" hidden disabled>刪除</button>
-  <button type="button" id="proartEditorReset" hidden>重設</button>
-</div>
-<div class="proart-editor-hint" id="proartEditorHint" hidden>點選物件後可拖曳、縮放或旋轉；雙擊文字即可修改。</div>
-<input id="proartEditorImageInput" type="file" accept="image/*" hidden>
 <script>
 (() => {
-  const themeKey='morris-theme',root=document.querySelector('#proart-rebuild'),themeButton=root.querySelector('[data-theme-toggle]');
+  const root=document.querySelector('#proart-rebuild');
   const pdfAssetRoot='assets/proart-pdf/';
   root.querySelectorAll('[data-pa-pdf-asset]').forEach(image=>{image.src=pdfAssetRoot+image.dataset.paPdfAsset;});
   const finishInteraction=root.querySelector('#pa-cmf-finish'),finalScene=root.querySelector('#pa-scene-final');if(finishInteraction&&finalScene)finalScene.before(finishInteraction);
-  function applyTheme(theme){root.dataset.theme=theme;if(themeButton)themeButton.setAttribute('aria-label',theme==='dark'?'Switch to light theme':'Switch to dark theme');localStorage.setItem(themeKey,theme);}
-  applyTheme(localStorage.getItem(themeKey)||'light');
-  if(themeButton)themeButton.addEventListener('click',()=>applyTheme(root.dataset.theme==='dark'?'light':'dark'));
   const audienceTiles=[...root.querySelectorAll('[data-audience-tile]')];
   function selectAudienceTile(tile){audienceTiles.forEach(item=>{const active=item===tile;item.classList.toggle('is-active',active);item.setAttribute('aria-pressed',String(active));});}
   audienceTiles.forEach((tile,index)=>{tile.addEventListener('click',()=>selectAudienceTile(tile));tile.addEventListener('keydown',event=>{if(event.key!=='ArrowLeft'&&event.key!=='ArrowRight')return;event.preventDefault();const next=(index+(event.key==='ArrowRight'?1:-1)+audienceTiles.length)%audienceTiles.length;audienceTiles[next].focus();selectAudienceTile(audienceTiles[next]);});});
@@ -279,77 +261,6 @@
       });
     });
   });
-})();
-</script>
-<script src="duo-local-editor/moveable.min.js"></script>
-<script>
-(() => {
-  const STORAGE_KEY='proart-p16-local-design-mode-v1';
-  const root=document.querySelector('#proart-rebuild');
-  const toggle=document.querySelector('#proartEditorToggle');
-  const addText=document.querySelector('#proartEditorAddText');
-  const addImage=document.querySelector('#proartEditorAddImage');
-  const undo=document.querySelector('#proartEditorUndo');
-  const remove=document.querySelector('#proartEditorDelete');
-  const reset=document.querySelector('#proartEditorReset');
-  const hint=document.querySelector('#proartEditorHint');
-  const imageInput=document.querySelector('#proartEditorImageInput');
-  const editableSelector=[
-    '#proart-rebuild .pa-landing__product','#proart-rebuild .pa-landing__content',
-    '#proart-rebuild .pa-scene__piece','#proart-rebuild .pa-accordion-gallery','#proart-rebuild .pa-scene__heading',
-    '#proart-rebuild .pa-island__label','#proart-rebuild .pa-scene__copy',
-    '#proart-rebuild .pa-finish-interaction__head','#proart-rebuild .pa-compare',
-    '#proart-rebuild .pa-finish-interaction__caption','#proart-rebuild h1,#proart-rebuild h2,#proart-rebuild h3,#proart-rebuild p,#proart-rebuild a'
-  ].join(',');
-  const textSelector='#proart-rebuild h1,#proart-rebuild h2,#proart-rebuild h3,#proart-rebuild p,#proart-rebuild a,.proart-editor-text';
-  let editing=false,selected=null,nextAddedId=1;
-  let state={items:{},added:[]};
-  const history=[];
-  try { const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); state.items=saved.items||{}; state.added=saved.added||[]; } catch(_) {}
-  const isText=target=>target.matches(textSelector);
-  const idOf=target=>target.dataset.proartEditorId;
-  function record(target){const id=idOf(target);if(!id||target.classList.contains('proart-editor-node'))return;const item=state.items[id]||={};item.style=target.getAttribute('style')||'';item.hidden=target.style.display==='none';if(isText(target))item.text=target.textContent;}
-  function serializeAdded(){state.added=[...document.querySelectorAll('.proart-editor-node')].map(target=>({id:idOf(target),type:target.dataset.nodeType,style:target.getAttribute('style')||'',text:target.dataset.nodeType==='text'?target.textContent:'',src:target.dataset.nodeType==='image'?target.getAttribute('src'):''}));}
-  function snapshot(){serializeAdded();return JSON.stringify(state);}
-  function updateUndo(){undo.disabled=history.length<2;}
-  function persist(checkpoint=false){serializeAdded();try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(_){alert('圖片或修改內容太大，無法儲存在本機瀏覽器。請使用較小的圖片。');}if(checkpoint){const latest=snapshot();if(history.at(-1)!==latest){history.push(latest);if(history.length>50)history.shift();}updateUndo();}}
-  function assignIds(){
-    const contentTargets=[...document.querySelectorAll(editableSelector)].filter(target=>!target.closest('.project-nav,.project-footer'));
-    contentTargets.forEach((target,index)=>{
-      if(target.closest('.proart-editor-toolbar')||target.classList.contains('proart-editor-node'))return;
-      // Reserve the six legacy navigation IDs to keep saved content edits aligned.
-      const id=`item-${index+6}`;
-      target.dataset.proartEditorId=id;
-      const saved=state.items[id];
-      if(!saved)return;
-      if(saved.style)target.setAttribute('style',saved.style);
-      if(saved.hidden)target.style.display='none';
-      if(saved.text!==undefined&&isText(target))target.textContent=saved.text;
-    });
-  }
-  function createNode(data){const target=data.type==='image'?document.createElement('img'):document.createElement('div');target.className=`proart-editor-node ${data.type==='text'?'proart-editor-text':''}`;target.dataset.proartEditorId=data.id||`added-${nextAddedId++}`;target.dataset.nodeType=data.type;if(data.type==='image'){target.src=data.src;target.alt='新增圖片';}else target.textContent=data.text||'輸入文字';target.setAttribute('style',data.style||`left:10vw;top:${window.scrollY+110}px;width:260px;height:auto;`);document.body.append(target);return target;}
-  state.added.forEach(data=>{const target=createNode(data);const number=Number(String(idOf(target)).replace('added-',''));if(Number.isFinite(number))nextAddedId=Math.max(nextAddedId,number+1);});
-  assignIds();history.push(snapshot());updateUndo();
-  if(!window.Moveable){toggle.disabled=true;toggle.textContent='設計工具未載入';return;}
-  const moveable=new Moveable(document.body,{target:null,draggable:true,resizable:true,rotatable:true,keepRatio:false,throttleDrag:0,throttleResize:1,throttleRotate:1,renderDirections:['nw','n','ne','w','e','sw','s','se'],origin:false,edge:false});
-  const refresh=()=>moveable.updateRect();
-  function select(target){if(selected?.isContentEditable)selected.blur();selected=target;moveable.target=target;remove.disabled=!target;requestAnimationFrame(refresh);}
-  function clear(){if(selected?.isContentEditable)selected.blur();selected=null;moveable.target=null;remove.disabled=true;}
-  function commit(target,checkpoint=false){record(target);persist(checkpoint);refresh();}
-  moveable.on('drag',event=>{event.target.style.transform=event.transform;commit(event.target);}).on('resize',event=>{event.target.style.width=`${event.width}px`;event.target.style.height=`${event.height}px`;event.target.style.transform=event.drag.transform;commit(event.target);}).on('rotate',event=>{event.target.style.transform=event.drag.transform;commit(event.target);}).on('dragEnd',event=>{if(event.target)commit(event.target,true);}).on('resizeEnd',event=>{if(event.target)commit(event.target,true);}).on('rotateEnd',event=>{if(event.target)commit(event.target,true);});
-  document.addEventListener('pointerdown',event=>{if(!editing||event.target.closest('.proart-editor-toolbar')||event.target.closest('.moveable-control-box'))return;const target=event.target.closest('[data-proart-editor-id]');if(!target){clear();return;}if(event.target.closest('a'))event.preventDefault();select(target);},true);
-  document.addEventListener('dblclick',event=>{if(!editing)return;const target=event.target.closest('[data-proart-editor-id]');if(!target||!isText(target))return;event.preventDefault();target.contentEditable='true';target.focus();document.execCommand?.('selectAll',false,null);},true);
-  document.addEventListener('input',event=>{if(editing&&event.target.matches?.(textSelector))commit(event.target);});
-  document.addEventListener('focusout',event=>{const target=event.target;if(target.matches?.(textSelector)&&target.isContentEditable){target.contentEditable='false';commit(target,true);}});
-  function deleteSelected(){if(!selected)return;if(selected.classList.contains('proart-editor-node'))selected.remove();else{selected.style.display='none';record(selected);}persist(true);clear();}
-  function undoLast(){if(history.length<2)return;history.pop();localStorage.setItem(STORAGE_KEY,history.at(-1));window.location.reload();}
-  document.addEventListener('keydown',event=>{if(!editing)return;if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='z'){event.preventDefault();undoLast();return;}if(event.key==='Escape')clear();if((event.key==='Backspace'||event.key==='Delete')&&selected&&!selected.isContentEditable){event.preventDefault();deleteSelected();}});
-  function setEditing(enabled){editing=enabled;document.body.classList.toggle('is-proart-editing',enabled);toggle.textContent=enabled?'完成編輯':'編輯版面';toggle.setAttribute('aria-pressed',String(enabled));[addText,addImage,undo,remove,reset,hint].forEach(element=>{element.hidden=!enabled;});remove.disabled=!selected;if(!enabled)clear();}
-  toggle.addEventListener('click',()=>setEditing(!editing));
-  addText.addEventListener('click',()=>{const target=createNode({type:'text',id:`added-${nextAddedId++}`,text:'輸入文字',style:`left:10vw;top:${window.scrollY+120}px;width:260px;height:auto;`});persist(true);select(target);target.contentEditable='true';target.focus();});
-  addImage.addEventListener('click',()=>imageInput.click());
-  imageInput.addEventListener('change',()=>{const file=imageInput.files?.[0];if(!file)return;const reader=new FileReader();reader.addEventListener('load',()=>{const target=createNode({type:'image',id:`added-${nextAddedId++}`,src:reader.result,style:`left:10vw;top:${window.scrollY+120}px;width:360px;height:auto;`});persist(true);select(target);});reader.readAsDataURL(file);imageInput.value='';});
-  undo.addEventListener('click',undoLast);remove.addEventListener('click',deleteSelected);reset.addEventListener('click',()=>{if(!confirm('要清除這台電腦中儲存的所有 ProArt 版面修改嗎？'))return;localStorage.removeItem(STORAGE_KEY);window.location.reload();});window.addEventListener('resize',refresh);
 })();
 </script>
 </body>
