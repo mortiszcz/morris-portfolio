@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Morris Chuang - Industrial Designer.">
   <title>Morris Chuang — Industrial Designer</title>
+  <link rel="icon" href="data:,">
   <style>
     :root { --bg:#080808; --page-bg:radial-gradient(82% 68% at 93% 100%,rgba(76,174,181,.3),transparent 68%),radial-gradient(88% 78% at 35% 104%,rgba(25,75,164,.43),transparent 72%),radial-gradient(76% 70% at 100% 0%,rgba(41,80,106,.22),transparent 72%),linear-gradient(160deg,#151c25 0%,#090b11 46%,#08090e 68%,#0c192c 100%); --surface:#111111; --surface-2:#151515; --ink:#eeeeea; --muted:#8b8b87; --line:#272727; --soft:#c5c5bf; --accent:#d9ff00; --edge-base:rgba(255,255,255,.26); --edge-shine:rgba(255,255,255,.98); --page-gutter:clamp(22px,2.5vw,36px); --section-space:clamp(76px,8vw,118px); }
     body.light { --bg:#ecece7; --page-bg:radial-gradient(82% 68% at 93% 100%,rgba(124,204,205,.24),transparent 68%),radial-gradient(88% 78% at 35% 104%,rgba(138,169,234,.2),transparent 72%),radial-gradient(76% 70% at 100% 0%,rgba(255,226,214,.32),transparent 72%),linear-gradient(160deg,#f4f4ef 0%,#ecece7 48%,#e6e7e3 100%); --surface:#e2e2dc; --surface-2:#d7d7d0; --ink:#0b0b0a; --muted:#676762; --line:#bdbdb6; --soft:#20201e; --accent:#506700; --edge-base:rgba(10,10,9,.26); --edge-shine:rgba(255,255,255,.98); }
@@ -196,9 +197,28 @@
     @media (max-width:720px) { .portrait { padding:8px 6px 0; } }
   </style>
   <link rel="stylesheet" href="index-structure-study.css">
+  <link rel="stylesheet" href="home-navigation.css?v=20261012-1">
+  <script src="home-navigation.js?v=20261012-1" defer></script>
 </head>
 <body>
   <a class="study-skip" href="#focus">Skip to content</a>
+  <aside class="portfolio-side-nav" aria-label="Portfolio navigation">
+    <a class="portfolio-side-nav__brand" href="#top"><span>Morris</span><span>Chuang.</span></a>
+    <p class="portfolio-side-nav__role">Industrial Designer<br>Product architecture · Form · CMF</p>
+    <nav class="portfolio-side-nav__sections" aria-label="Portfolio sections">
+      <a class="portfolio-side-nav__link" href="#top" aria-current="location"><span>01</span>Intro</a>
+      <a class="portfolio-side-nav__link" href="#focus"><span>02</span>Focus</a>
+      <a class="portfolio-side-nav__link" href="#work"><span>03</span>Selected Work</a>
+      <a class="portfolio-side-nav__link" href="#experience"><span>04</span>Experience</a>
+      <a class="portfolio-side-nav__link" href="#education"><span>05</span>Education</a>
+      <a class="portfolio-side-nav__link" href="#contact"><span>06</span>Contact</a>
+    </nav>
+    <div class="portfolio-side-nav__footer">
+      <a class="portfolio-side-nav__cv" href="cv.html">About / CV <span aria-hidden="true">↗</span></a>
+      <p>SHANGHAI / TAIPEI<br>INDUSTRIAL DESIGN PORTFOLIO</p>
+      <a class="portfolio-side-nav__email" href="mailto:morriszzczz@hotmail.com">morriszzczz@hotmail.com</a>
+    </div>
+  </aside>
   <main id="top">
   <div class="page">
     <nav aria-label="Primary navigation">
