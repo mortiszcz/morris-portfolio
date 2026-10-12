@@ -36,6 +36,26 @@
     </figure>
   </section>`;
 
+  const territories = [
+    {id:'duo', label:'ZEPHYRUS DUO', x:26, y:35, title:'The opportunity: a performance interaction unit', body:'The original study groups Duo concepts in a high-performance territory. The second screen should extend control and context, while the main display remains the focused output surface.', tag:'DUAL-SCREEN / PERFORMANCE', image:true},
+    {id:'creator', label:'MODERN CREATOR', x:63, y:32, title:'Modern creation needs continuous feedback', body:'3D creation and touch-enabled workflows sit toward the high-performance end of the study. A second surface can keep tools and live feedback available without crowding the main canvas.', tag:'3D CREATION / TOUCH'},
+    {id:'game', label:'GAME DEVELOPER', x:85, y:18, title:'Build and inspect at the same time', body:'Game development represents a high-performance workflow with multiple working views. The strategic question is how to keep the primary output and supporting controls connected.', tag:'DEVELOPMENT / HIGH PERFORMANCE'},
+    {id:'web', label:'WEB / SOFTWARE', x:85, y:48, title:'Keep code, context, and output connected', body:'Web and software workflows illustrate another use for continuous human–computer interaction: supporting information stays visible while the primary task keeps its own space.', tag:'DEVELOPMENT / CONTEXT'},
+    {id:'zenbook', label:'ZENBOOK DUO', x:65, y:81, title:'A mobility-led dual-screen reference', body:'The original map places Zenbook Duo 8406 toward lower performance and higher mobility. It provides a reference for screen continuity, not a claim of measured benchmark superiority.', tag:'DUAL-SCREEN / MOBILITY'},
+    {id:'pen', label:'PEN + TOUCH', x:17, y:79, title:'Direct input as a different starting point', body:'The ProArt Slate reference anchors pen and touch input in the source study. Duo explores how physical input, an interaction surface, and visual output can work as one system.', tag:'DIRECT INPUT / CREATIVE CONTROL'}
+  ];
+  const positioningPanel = `<section class="story-panel positioning-panel" data-story-panel="strategy">
+    <div class="positioning-map" aria-label="Qualitative performance and interaction positioning map">
+      <div class="positioning-axis positioning-axis--vertical" aria-hidden="true"></div><div class="positioning-axis positioning-axis--horizontal" aria-hidden="true"></div>
+      <span class="map-axis-label map-axis-label--high">HIGH PERFORMANCE</span><span class="map-axis-label map-axis-label--low">MOBILITY-LED / LOWER PERFORMANCE</span>
+      <span class="map-axis-label map-axis-label--input">PEN + TOUCH INPUT</span><span class="map-axis-label map-axis-label--workflow">CREATION + DEVELOPMENT</span>
+      <div class="duo-territory" aria-hidden="true"><span>STRATEGIC TERRITORY</span></div>
+      ${territories.map(item => `<button type="button" class="positioning-node ${item.image ? 'positioning-node--duo' : ''}" data-territory="${item.id}" aria-pressed="${item.id === 'duo'}" aria-controls="positioning-detail" style="--node-x:${item.x}%;--node-y:${item.y}%">${item.image ? `<img src="${asset('final-open-hq-mobile.webp')}" alt="" loading="lazy" decoding="async">` : '<i aria-hidden="true"></i>'}<span>${item.label}</span></button>`).join('')}
+    </div>
+    <div class="positioning-detail" id="positioning-detail" role="status"><span>${territories[0].tag}</span><h3>${territories[0].title}</h3><p>${territories[0].body}</p></div>
+    <div class="positioning-note"><span>Qualitative strategy map · not benchmark data</span><button type="button" data-map-source>ORIGINAL STUDY ↗</button></div>
+  </section>`;
+
   const concept = mount('concept', 'archetype', chrome() +
     `<div class="archetype-shell">
       <header class="archetype-narrative" data-motion="side">
@@ -66,7 +86,7 @@
       </header>
       <div class="archetype-canvas" data-motion="settle">
         <div class="motion-entry">
-          ${storyPanel('strategy', '013_Im2.png', 'Zephyrus Duo market and performance positioning map', '<span>STRATEGIC TERRITORY</span><strong>Premium mobility × high-performance creation</strong>')}
+          ${positioningPanel}
           ${storyPanel('architecture', '010_Im0.png', 'Dual-screen interaction architecture', '<span>INTERACTION ARCHITECTURE</span><strong>Three functional zones become one continuous unit</strong>', `<div class="zone-controls" aria-label="Explore functional zones">
             <button type="button" data-zone="input" style="--zone-color:#4886ff" aria-pressed="true">INPUT</button>
             <button type="button" data-zone="interaction" style="--zone-color:#b673f4" aria-pressed="false">INTERACTION</button>
@@ -124,6 +144,24 @@
   setupTabs(concept, '[data-story-tab]', '[data-story-copy]', 'storyTab', 'storyCopy');
 
   if (concept) {
+    concept.querySelectorAll('[data-territory]').forEach(button => button.addEventListener('click', () => {
+      const territory = territories.find(item => item.id === button.dataset.territory);
+      concept.querySelectorAll('[data-territory]').forEach(node => node.setAttribute('aria-pressed', String(node === button)));
+      const detail = concept.querySelector('.positioning-detail');
+      detail.innerHTML = `<span>${territory.tag}</span><h3>${territory.title}</h3><p>${territory.body}</p>`;
+      detail.classList.remove('panel-enter');
+      requestAnimationFrame(() => detail.classList.add('panel-enter'));
+    }));
+    const sourceViewer = document.createElement('dialog');
+    sourceViewer.className = 'positioning-source-viewer';
+    sourceViewer.setAttribute('aria-label', 'Original positioning study');
+    sourceViewer.innerHTML = `<header><h2>ORIGINAL POSITIONING STUDY</h2><button type="button">CLOSE ×</button></header><img src="${asset('013_Im2.png')}" alt="Original study: performance versus interaction, with Duo, Zenbook, pen and touch, and developer workflows" loading="lazy"><p>This source preserves the original product references and strategy. The interactive map is a qualitative interpretation, not a performance benchmark.</p>`;
+    document.body.append(sourceViewer);
+    const sourceOpener = concept.querySelector('[data-map-source]');
+    sourceOpener.addEventListener('click', () => { sourceViewer.querySelector('img').loading = 'eager'; sourceViewer.showModal(); sourceViewer.querySelector('button').focus(); });
+    sourceViewer.querySelector('button').addEventListener('click', () => sourceViewer.close());
+    sourceViewer.addEventListener('click', event => { if (event.target === sourceViewer) sourceViewer.close(); });
+    sourceViewer.addEventListener('close', () => sourceOpener.focus({preventScroll:true}));
     const descriptions = {
       input:['INPUT', 'Keyboard and touch establish the primary control layer.'],
       interaction:['INTERACTION', 'The second display bridges command, context, and live feedback.'],
@@ -196,8 +234,7 @@
 
   const refinementSteps = [
     {id:'precision', number:'01', label:'PRECISION', title:'Machine the gesture into the shell', body:'CNC finishing sharpens the side wall and removes visual noise, so the silhouette reads as one controlled volume.', file:'021_Im0.png', alt:'CNC machining the Zephyrus Duo side wall', meta:'CNC / POLISHED EDGE'},
-    {id:'signature', number:'02', label:'SIGNATURE', title:'Reduce lighting to one deliberate line', body:'The slash becomes a restrained light signature—visible in motion, quiet when the system is at rest.', file:'023_Im1.png', alt:'Zephyrus Duo side profile and light signature', meta:'SLASH LIGHT / SIDE PROFILE'},
-    {id:'integration', number:'03', label:'INTEGRATION', title:'Make performance hardware disappear', body:'Ports, cooling volume, and structural breaks are absorbed into the lower edge without interrupting the profile.', file:'024_Im2.png', alt:'Zephyrus Duo integrated ports and lower edge', meta:'I/O / COOLING / STRUCTURE'}
+    {id:'profile', number:'02', label:'SIDE PROFILE', title:'One edge. Signature above, integration below.', body:'Read the two staggered side views together: the upper edge carries the restrained light signature; the lower edge integrates ports, cooling, and structure into the same silhouette.', file:'023_Im1.png', alt:'Upper side view with light signature', meta:'PAIRED SIDE VIEWS / ONE CONTINUOUS EDGE', paired:true}
   ];
 
   const refinement = mount('refinement', 'refinement', chrome() +
@@ -205,7 +242,7 @@
       <header class="refinement-narrative" data-motion="side"><div class="motion-entry">
         <p class="scene-kicker">REFINEMENT · FINAL DESIGN</p>
         <h2 data-local-editor-id="refinement-heading">CONTROL<br>THE EDGE</h2>
-        <p class="refinement-lede">The final form was resolved through three production decisions—precision, signature, and integration.</p>
+        <p class="refinement-lede">Precision shapes the shell. Two staggered side views reveal how the light signature and performance hardware resolve into one continuous edge.</p>
       </div></header>
       <figure class="refinement-product" data-motion="settle" data-local-editor-id="refinement-product" data-editor-label="Zephyrus Duo refined final design">
         <div class="motion-entry"><img src="${asset('022_Im0.png')}" alt="Zephyrus Duo refined final design" loading="lazy" decoding="async"></div>
@@ -216,10 +253,10 @@
           ${refinementSteps.map((step, index) => `<button type="button" role="tab" aria-selected="${index === 0}" data-refinement-tab="${step.id}"><span>${step.number}</span>${step.label}</button>`).join('')}
         </nav>
         <div class="refinement-visual">
-          ${refinementSteps.map((step, index) => `<figure data-refinement-panel="${step.id}" ${index ? 'hidden' : ''}><img src="${asset(step.file)}" alt="${step.alt}" loading="lazy" decoding="async"><figcaption>${step.meta}</figcaption></figure>`).join('')}
+          ${refinementSteps.map((step, index) => `<figure data-refinement-panel="${step.id}" ${index ? 'hidden' : ''}>${step.paired ? `<div class="paired-side-views"><img class="side-view side-view--upper" src="${asset(step.file)}" alt="${step.alt}" loading="lazy" decoding="async"><img class="side-view side-view--lower" src="${asset('024_Im2.png')}" alt="Lower side view with integrated ports, cooling and structure" loading="lazy" decoding="async"><span class="side-view-label side-view-label--upper">LIGHT SIGNATURE</span><span class="side-view-label side-view-label--lower">I/O + STRUCTURE</span></div>` : `<img src="${asset(step.file)}" alt="${step.alt}" loading="lazy" decoding="async">`}<figcaption>${step.meta}</figcaption></figure>`).join('')}
         </div>
         <div class="refinement-copy" aria-live="polite">
-          ${refinementSteps.map((step, index) => `<section data-refinement-copy="${step.id}" ${index ? 'hidden' : ''}><span>${step.number} / 03</span><h3>${step.title}</h3><p>${step.body}</p></section>`).join('')}
+          ${refinementSteps.map((step, index) => `<section data-refinement-copy="${step.id}" ${index ? 'hidden' : ''}><span>${step.number} / 02</span><h3>${step.title}</h3><p>${step.body}</p></section>`).join('')}
         </div>
       </div></aside>
       <footer class="refinement-signals" aria-label="Refinement outcomes"><span>01 <b>FORM</b></span><span>02 <b>CRAFT</b></span><span>03 <b>PERFORMANCE</b></span></footer>
@@ -329,9 +366,27 @@
     }));
   }
 
+  const final = mount('final', 'final', chrome() + `<h2 class="final-heading">FINAL DESIGN</h2>
+    <figure class="final-closed" data-motion="side"><div class="motion-entry"><img src="duo-pdf-assets/10-final-design.png" alt="Zephyrus Duo closed top, side, and rear views" loading="lazy" decoding="async"></div></figure>
+    <figure class="final-open" data-motion="settle"><div class="motion-entry"><picture><source media="(max-width:760px)" srcset="${asset('final-open-hq-mobile.webp')}"><img src="${asset('final-open-hq.webp')}" width="2560" height="1920" alt="High-resolution frontal render of the open ROG Zephyrus Duo G16" loading="lazy" decoding="async"></picture></div></figure>`);
+
+  const audienceDetails = {
+    cool:['Quiet confidence, not visual noise.', 'A controlled dark palette and precise surfaces let capability—not decoration—define the product.'],
+    brave:['A signature that earns its place.', 'Use one recognizable lighting gesture to express identity while keeping the rest of the silhouette disciplined.'],
+    energetic:['A creative workstation without stereotypes.', 'Make the dual-screen experience approachable through clarity, useful interaction, and a contemporary visual language.']
+  };
+  document.querySelectorAll('[data-audience]').forEach(button => button.addEventListener('click', () => {
+    document.querySelectorAll('[data-audience]').forEach(node => node.setAttribute('aria-pressed', String(node === button)));
+    const [heading, body] = audienceDetails[button.dataset.audience];
+    const detail = document.getElementById('audience-insight');
+    detail.innerHTML = `<span>DESIGN TRANSLATION</span><h3>${heading}</h3><p>${body}</p>`;
+    detail.classList.remove('panel-enter');
+    requestAnimationFrame(() => detail.classList.add('panel-enter'));
+  }));
+
   // Keep unchanged art in place, but give its arrival an appropriate, different cadence.
   const otherScenes = [];
-  [['second-panel','settle'],['hinge','side'],['features','rise'],['final','settle']].forEach(([id, motion]) => {
+  [['second-panel','settle'],['hinge','side'],['features','rise']].forEach(([id, motion]) => {
     const stage = document.querySelector(`#${id} .pdf-scene-stage`);
     const image = stage?.querySelector(':scope > img');
     if (!image) return;
@@ -345,7 +400,7 @@
     otherScenes.push(stage);
   });
 
-  const stages = [concept, ideation, refinement, prototype, ...otherScenes].filter(Boolean);
+  const stages = [concept, ideation, refinement, prototype, final, ...otherScenes].filter(Boolean);
   function startMotion(stage) {
     stage.classList.remove('motion-pending');
     stage.classList.add('motion-ready');

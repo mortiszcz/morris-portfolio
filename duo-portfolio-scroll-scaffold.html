@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>ROG Zephyrus Duo G16 | Morris Chuang</title>
 <link rel="icon" href="data:," />
-<script src="duo-motion-assets/entry.js?v=20261012-1"></script>
+<script src="duo-motion-assets/entry.js?v=20261012-2"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -463,7 +463,7 @@
   /* 02 / Objectives — 依 PDF 的 2023 → 2025 對照排版重建；物件以 PPT 式分層跳出。 */
   .objective-scroll{height:220vh;position:relative;background:#07090d;}
   .objective-sticky{position:sticky;top:0;height:100svh;display:grid;place-items:center;overflow:hidden;isolation:isolate;--objective-bg-scale:1;}
-  .objective-ambient{position:absolute;inset:-6%;z-index:-2;background:url('duo-pdf-assets/objectives-ambient.png') center/cover no-repeat;filter:blur(3px) brightness(.24) saturate(.55);transform:scale(var(--objective-bg-scale));will-change:transform;}
+  .objective-ambient{position:absolute;inset:-6%;z-index:-2;background:url('duo-motion-assets/objectives-ambient-v2.webp') center/cover no-repeat;filter:blur(3px) brightness(.24) saturate(.55);transform:scale(var(--objective-bg-scale));will-change:transform;}
   .objective-sticky::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(2,4,7,.55);}
   .objective-board{position:relative;width:min(89vw,1480px);aspect-ratio:16/9;overflow:hidden;border:1px solid rgba(255,255,255,.16);background:rgba(5,7,10,.5);box-shadow:0 28px 90px rgba(0,0,0,.48);}
   .objective-board::after{content:"";position:absolute;inset:0;border:1px solid rgba(255,255,255,.04);pointer-events:none;}
@@ -479,7 +479,8 @@
   .objective-scroll.is-active .objective-laptop--old{transition-delay:.10s;}.objective-scroll.is-active .objective-laptop--new{transition-delay:.22s;}.objective-scroll.is-active .objective-car--old{transition-delay:.38s;}.objective-scroll.is-active .objective-car--new{transition-delay:.50s;}.objective-scroll.is-active .objective-arrow{transition-delay:.6s;}
   @media (max-width:760px){.bento-stage,.objective-board{width:100%;border-inline:0;}.objective-board{font-size:80%;}.objective-scroll{height:180vh;}.objective-sticky{height:74vw;min-height:420px;top:64px;}.objective-laptop--old{left:16%;top:29%;}.objective-laptop--new{left:60%;top:29%;}.objective-car--old{left:16%;top:67%;}.objective-car--new{left:60%;top:67%;}}
 </style>
-<link rel="stylesheet" href="duo-motion-assets/scenes.css" />
+<link rel="stylesheet" href="duo-motion-assets/scenes.css?v=20261012-2" />
+<link rel="stylesheet" href="duo-motion-assets/revisions.css?v=20261012-2" />
 <link rel="stylesheet" href="duo-motion-assets/navigation.css" />
 <link rel="stylesheet" href="work/shared/css/project-shell.css" />
 </head>
@@ -615,14 +616,33 @@
 
   <section class="duo-final reveal-on-scroll" id="final-legacy"><span class="case-index">10 / FINAL DESIGN</span><h2>ROG ZEPHYRUS<br>DUO G16</h2><p>GX651 — the final expression of a dual-screen, high-performance Zephyrus.</p><div class="component-grid"><figure class="case-component case-component--light span-12"><div class="component-media"><img src="duo-component-assets/duo-final-closed.png" alt="ROG Zephyrus Duo G16 final design" loading="lazy"></div><figcaption class="component-label">FINAL EXPRESSION</figcaption><p class="component-note">GX651</p></figure></div></section>
 
-  <!-- 每個 stage 都是一張原始 1920×1080 PDF 頁面，確保文字、留白、圖像重疊關係完全一致。 -->
+  <!-- Keep the original scene order; selected research and development scenes use native layers. -->
   <div class="pdf-pages" aria-label="Duo PDF layout scenes">
     <section class="pdf-scene bento-scene" id="background">
-      <div class="bento-stage reveal-on-scroll">
-        <img src="duo-pdf-assets/target-users-bento.png" alt="Neutral, Fashion and Female target user bento" loading="eager" />
-        <h2 class="bento-float bento-float--project">PROJECT<br>BACKGROUND</h2>
-        <p class="bento-float bento-float--theory">THEORY / USER</p>
-        <p class="bento-float bento-float--research">TA RESEARCH</p>
+      <div class="bento-stage audience-stage">
+        <header class="audience-header">
+          <div><p class="audience-kicker">PROJECT BACKGROUND / TARGET USER</p><h2>THREE ATTITUDES.<br>ONE ZEPHYRUS.</h2></div>
+          <p>Expand the gaming archetype through a quieter visual language, expressive individuality, and a broader creative audience.</p>
+        </header>
+        <div class="audience-grid" aria-label="Three target audience directions">
+          <article class="audience-card" style="--audience-accent:#65b9ff">
+            <figure><img src="duo-motion-assets/audience-cool.webp" width="900" height="1125" alt="Conceptual portrait of two creators in understated technical streetwear" loading="lazy" decoding="async"></figure>
+            <button type="button" data-audience="cool" aria-pressed="true" aria-controls="audience-insight"><span>01 / NEUTRAL</span><strong>ZEPHYRUS COOL</strong><span class="audience-action">EXPLORE DIRECTION ↗</span></button>
+            <p>Understated, technical, and confident. Performance without a loud gaming costume.</p>
+          </article>
+          <article class="audience-card" style="--audience-accent:#b586ff">
+            <figure><img src="duo-motion-assets/audience-brave.webp" width="900" height="1125" alt="Conceptual portrait of a creator in contemporary streetwear at dusk" loading="lazy" decoding="async"></figure>
+            <button type="button" data-audience="brave" aria-pressed="false" aria-controls="audience-insight"><span>02 / FASHION</span><strong>ZEPHYRUS BRAVE</strong><span class="audience-action">EXPLORE DIRECTION ↗</span></button>
+            <p>A distinctive creative identity. A recognizable gesture instead of excessive ornament.</p>
+          </article>
+          <article class="audience-card" style="--audience-accent:#ffad87">
+            <figure><img src="duo-motion-assets/audience-energetic.webp" width="900" height="1125" alt="Conceptual portrait of a woman creator in a contemporary design studio" loading="lazy" decoding="async"></figure>
+            <button type="button" data-audience="energetic" aria-pressed="false" aria-controls="audience-insight"><span>03 / FEMALE CREATORS</span><strong>ZEPHYRUS ENERGETIC</strong><span class="audience-action">EXPLORE DIRECTION ↗</span></button>
+            <p>Move beyond gendered gaming cues. Make the workstation feel relevant to contemporary creators.</p>
+          </article>
+        </div>
+        <div class="audience-insight" id="audience-insight" role="status"><span>DESIGN TRANSLATION</span><h3>Quiet confidence, not visual noise.</h3><p>A controlled dark palette and precise surfaces let capability—not decoration—define the product.</p></div>
+        <p class="audience-source">Visual personas interpreted from the original target-user study. AI-generated editorial imagery; not research participants.</p>
       </div>
     </section>
     <section class="objective-scroll" id="objectives">
@@ -754,13 +774,18 @@
   const section = document.getElementById('objectives');
   const sticky = section?.querySelector('.objective-sticky');
   if (!section || !sticky) return;
+  section.classList.add('is-awaiting');
   let ticking = false;
   const update = () => {
     const rect = section.getBoundingClientRect();
-    const distance = Math.max(1, section.offsetHeight - window.innerHeight);
+    const distance = Math.max(1, section.offsetHeight - sticky.offsetHeight);
     const progress = Math.min(1, Math.max(0, -rect.top / distance));
     sticky.style.setProperty('--objective-bg-scale', (1 + progress * .25).toFixed(4));
-    section.classList.toggle('is-active', progress > .025 && rect.bottom > 0);
+    // Reveal on approach, not after passing the sticky scene. Never hide on back-scroll.
+    if (rect.top < window.innerHeight * .95 && rect.bottom > 0) {
+      section.classList.add('is-active');
+      section.querySelectorAll('img').forEach(img => { img.loading = 'eager'; });
+    }
     ticking = false;
   };
   const requestUpdate = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
@@ -1035,7 +1060,7 @@
 /* Local editing tools omitted from the public portfolio. */
 
 </script>
-<script src="duo-motion-assets/scenes.js"></script>
+<script src="duo-motion-assets/scenes.js?v=20261012-2"></script>
 <script src="duo-motion-assets/navigation.js"></script>
 </body>
 </html>
