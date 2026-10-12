@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="case-study.css">
   <link rel="stylesheet" href="work/shared/css/project-shell.css">
   <script src="work/shared/js/project-shell.js" defer></script>
+  <link rel="stylesheet" href="proart-reading.css?v=20261012">
+  <script src="proart-reading.js?v=20261012" defer></script>
 </head>
 <body data-theme="dark" data-project="proart">
   <!-- THESIS: A creator laptop case study framed as a progression from creative need to a refined physical tool, not a retail product page. OWN-WORLD: A dark studio field, warm copper accent, square media planes and restrained technical lines. STORY: The visitor sees how form, interfaces and CMF align for creators. FIRST VIEWPORT: Title and role align left over a wide product image; project facts anchor the lower rail. FORM: Bespoke editorial case-study system extending Duo G16. FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md. -->
@@ -193,7 +195,13 @@
       </figure>
     </section>
     <div class="pa-pdf-scenes" aria-label="ProArt P16 PDF case study scenes">
-      <section class="pa-scene pa-scene--research" id="pa-scene-research" aria-label="TA Research"><h2 class="pa-scene__heading">TA Research</h2><figure class="pa-scene__piece pa-scene__piece--research" style="--x:2%;--y:13%;--w:96%;--h:78%;--z:1"><img data-pa-pdf-asset="004_Im1.png" alt="Experience curator target-audience profile"></figure></section>
+      <section class="pa-scene pa-scene--research" id="pa-scene-research" aria-label="TA Research">
+        <h2 class="pa-scene__heading">TA Research</h2>
+        <figure class="pa-scene__piece pa-scene__piece--research" style="--x:2%;--y:13%;--w:96%;--h:78%;--z:1">
+          <button class="pa-research-image" type="button" data-pa-reading-open aria-label="Open the full Experience Curator research image" aria-haspopup="dialog" aria-controls="pa-reading-dialog"><img data-pa-pdf-asset="004_Im1.png" alt="Experience curator target-audience profile"></button>
+        </figure>
+        <div class="pa-research-tools"><button class="pa-research-open" type="button" data-pa-reading-open aria-haspopup="dialog" aria-controls="pa-reading-dialog">View full research</button></div>
+      </section>
 
       <section class="pa-scene pa-scene--research-notes" aria-label="Research direction and references"><h2 class="pa-scene__heading">Research directions</h2><img class="pa-scene__piece pa-scene__piece--contain" style="--x:7%;--y:14%;--w:86%;--h:13%;--z:3" data-pa-pdf-asset="008_Im5.png" alt="ProArt core value"><figure class="pa-scene__piece pa-scene__piece--card" style="--x:7%;--y:35%;--w:26%;--h:51%;--z:2;--d:70ms"><img data-pa-pdf-asset="005_Im2.png" alt="Creation reference network"><figcaption><b>Create smarter</b><span>Connected tools and AI capability reduce friction in demanding workflows.</span></figcaption></figure><figure class="pa-scene__piece pa-scene__piece--card" style="--x:37%;--y:35%;--w:26%;--h:51%;--z:2;--d:140ms"><img data-pa-pdf-asset="007_Im4.png" alt="Create anywhere reference"><figcaption><b>Create anywhere</b><span>A portable studio that keeps creative work close to the moment.</span></figcaption></figure><figure class="pa-scene__piece pa-scene__piece--card" style="--x:67%;--y:35%;--w:26%;--h:51%;--z:2;--d:210ms"><img data-pa-pdf-asset="006_Im3.png" alt="Create faster reference"><figcaption><b>Create faster</b><span>Purposeful performance makes iteration feel immediate and fluid.</span></figcaption></figure></section>
 
@@ -218,6 +226,20 @@
     <nav class="project-footer__links" aria-label="Other projects"><a href="duo-portfolio-scroll-scaffold.html">ROG DUO G16</a><a href="work/jelly75-kd201/index.html">JELLY75 KD201</a><a href="work/ultra-scan/index.html">ULTRA SCAN 03</a><a href="work/manta/index.html">MANTA 01</a><a href="work/flex-03/index.html">FLEX 03</a><a href="index.html#work">All projects</a></nav>
     <span class="project-footer__credit">Portfolio 2026 · Morris Chuang</span>
   </footer>
+<dialog class="pa-reading-dialog" id="pa-reading-dialog" aria-labelledby="pa-reading-title" aria-describedby="pa-reading-hint">
+  <header class="pa-reading-dialog__header">
+    <div><h2 id="pa-reading-title">TA Research</h2><p>Experience Curator</p></div>
+    <div class="pa-reading-dialog__controls" role="group" aria-label="Research image controls">
+      <button type="button" data-pa-reading-fit aria-pressed="true">Fit</button>
+      <button type="button" data-pa-reading-original aria-pressed="false">100%</button>
+      <button type="button" data-pa-reading-close aria-label="Close research image" autofocus>Close</button>
+    </div>
+  </header>
+  <div class="pa-reading-dialog__viewport" tabindex="0" role="region" aria-label="Scrollable research image">
+    <img class="pa-reading-dialog__image" alt="Complete Experience Curator research: all five audience profiles" decoding="async">
+  </div>
+  <p class="pa-reading-dialog__hint" id="pa-reading-hint">Use 100% to read the details. Swipe or scroll to explore; Fit shows the complete layout.</p>
+</dialog>
 </div>
 <script>
 (() => {
