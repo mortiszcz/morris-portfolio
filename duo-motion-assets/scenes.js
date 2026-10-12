@@ -87,17 +87,17 @@
       <div class="archetype-canvas" data-motion="settle">
         <div class="motion-entry">
           ${positioningPanel}
-          ${storyPanel('architecture', '010_Im0.png', 'Dual-screen interaction architecture', '<span>INTERACTION ARCHITECTURE</span><strong>Three functional zones become one continuous unit</strong>', `<div class="zone-controls" aria-label="Explore functional zones">
+          ${storyPanel('architecture', '010_Im0.webp', 'Dual-screen interaction architecture', '<span>INTERACTION ARCHITECTURE</span><strong>Three functional zones become one continuous unit</strong>', `<div class="zone-controls" aria-label="Explore functional zones">
             <button type="button" data-zone="input" style="--zone-color:#4886ff" aria-pressed="true">INPUT</button>
             <button type="button" data-zone="interaction" style="--zone-color:#b673f4" aria-pressed="false">INTERACTION</button>
             <button type="button" data-zone="output" style="--zone-color:#ef8a4f" aria-pressed="false">OUTPUT</button>
             <p class="zone-detail" role="status"><strong>INPUT</strong> Keyboard and touch establish the primary control layer.</p>
           </div>`)}
-          ${storyPanel('concepts', '011_Im0.png', 'Five concept proposals compared across architecture criteria', '<span>FIVE ROUTES · ONE SCORECARD</span><strong>Select a proposal to trace the comparison</strong>', `<div class="concept-focus" aria-hidden="true" style="--concept-index:0"></div>
+          ${storyPanel('concepts', '011_Im0.webp', 'Five concept proposals compared across architecture criteria', '<span>FIVE ROUTES · ONE SCORECARD</span><strong>Select a proposal to trace the comparison</strong>', `<div class="concept-focus" aria-hidden="true" style="--concept-index:0"></div>
             <div class="concept-switcher" role="tablist" aria-label="Concept proposal focus">
               ${['A','B','C','D','E'].map((letter, index) => `<button type="button" role="tab" aria-selected="${index === 0}" data-concept="${index}">CONCEPT ${letter}</button>`).join('')}
             </div>
-            <figure class="dimension-strip"><img src="${asset('012_Im1.png')}" alt="Concept package dimensions" loading="lazy" decoding="async"></figure>`)}
+            <figure class="dimension-strip"><img src="${asset('012_Im1.webp')}" alt="Concept package dimensions" loading="lazy" decoding="async"></figure>`)}
         </div>
       </div>
       <div class="archetype-signals" aria-label="Archetype strategy signals">
@@ -155,7 +155,7 @@
     const sourceViewer = document.createElement('dialog');
     sourceViewer.className = 'positioning-source-viewer';
     sourceViewer.setAttribute('aria-label', 'Original positioning study');
-    sourceViewer.innerHTML = `<header><h2>ORIGINAL POSITIONING STUDY</h2><button type="button">CLOSE ×</button></header><img src="${asset('013_Im2.png')}" alt="Original study: performance versus interaction, with Duo, Zenbook, pen and touch, and developer workflows" loading="lazy"><p>This source preserves the original product references and strategy. The interactive map is a qualitative interpretation, not a performance benchmark.</p>`;
+    sourceViewer.innerHTML = `<header><h2>ORIGINAL POSITIONING STUDY</h2><button type="button">CLOSE ×</button></header><img src="${asset('013_Im2.webp')}" alt="Original study: performance versus interaction, with Duo, Zenbook, pen and touch, and developer workflows" loading="lazy"><p>This source preserves the original product references and strategy. The interactive map is a qualitative interpretation, not a performance benchmark.</p>`;
     document.body.append(sourceViewer);
     const sourceOpener = concept.querySelector('[data-map-source]');
     sourceOpener.addEventListener('click', () => { sourceViewer.querySelector('img').loading = 'eager'; sourceViewer.showModal(); sourceViewer.querySelector('button').focus(); });
@@ -202,11 +202,11 @@
       </div>
       <div class="proposal-canvas" data-motion="settle"><div class="motion-entry">
         <section class="proposal-panel proposal-language" data-process-panel="language">
-          <img src="${asset('020_Im6.png')}" alt="Two Zephyrus architecture directions and hinge mockups" loading="lazy" decoding="async">
+          <img src="${asset('020_Im6.webp')}" alt="Two Zephyrus architecture directions and hinge mockups" loading="lazy" decoding="async">
           <div class="proposal-tags"><span>A · CONTINUITY</span><span>B · REVERSED HINGE</span></div>
         </section>
         <section class="proposal-panel proposal-principles" data-process-panel="principles" hidden>
-          <img src="${asset('019_Im5.png')}" alt="Three design principles used to evaluate the hinge architecture" loading="lazy" decoding="async">
+          <img src="${asset('019_Im5.webp')}" alt="Three design principles used to evaluate the hinge architecture" loading="lazy" decoding="async">
           <ol>
             <li><b>A</b><span><strong>Opening clarity</strong>Make the transformation readable</span></li>
             <li><b>B</b><span><strong>Hidden structure</strong>Keep mechanics out of the silhouette</span></li>
@@ -214,15 +214,15 @@
           </ol>
         </section>
         <section class="proposal-panel proposal-mechanism" data-process-panel="mechanism" hidden>
-          <img src="${asset('018_Im4.png')}" alt="Hinge mechanism and package thickness proposal matrix" loading="lazy" decoding="async">
+          <img src="${asset('018_Im4.webp')}" alt="Hinge mechanism and package thickness proposal matrix" loading="lazy" decoding="async">
           <div class="mechanism-scale"><span>5.0 mm</span><span>5.8 mm</span><span>6.8 mm</span><span>8.0 mm</span></div>
         </section>
         <section class="proposal-panel proposal-convergence" data-process-panel="convergence" hidden>
-          <figure class="profile-main"><img src="${asset('017_Im3.png')}" alt="Shortlisted side profile studies" loading="lazy" decoding="async"></figure>
+          <figure class="profile-main"><img src="${asset('017_Im3.webp')}" alt="Shortlisted side profile studies" loading="lazy" decoding="async"></figure>
           <div class="profile-variants">
-            <img src="${asset('014_Im0.png')}" alt="Side profile proposal A" loading="lazy" decoding="async">
-            <img src="${asset('015_Im1.png')}" alt="Side profile proposal B" loading="lazy" decoding="async">
-            <img src="${asset('016_Im2.png')}" alt="Side profile proposal C" loading="lazy" decoding="async">
+            <img src="${asset('014_Im0.webp')}" alt="Side profile proposal A" loading="lazy" decoding="async">
+            <img src="${asset('015_Im1.webp')}" alt="Side profile proposal B" loading="lazy" decoding="async">
+            <img src="${asset('016_Im2.webp')}" alt="Side profile proposal C" loading="lazy" decoding="async">
           </div>
         </section>
       </div></div>
@@ -233,8 +233,8 @@
   setupTabs(ideation, '[data-process-tab]', '[data-process-copy]', 'processTab', 'processCopy');
 
   const refinementSteps = [
-    {id:'precision', number:'01', label:'PRECISION', title:'Machine the gesture into the shell', body:'CNC finishing sharpens the side wall and removes visual noise, so the silhouette reads as one controlled volume.', file:'021_Im0.png', alt:'CNC machining the Zephyrus Duo side wall', meta:'CNC / POLISHED EDGE'},
-    {id:'profile', number:'02', label:'SIDE PROFILE', title:'One edge. Signature above, integration below.', body:'Read the two staggered side views together: the upper edge carries the restrained light signature; the lower edge integrates ports, cooling, and structure into the same silhouette.', file:'023_Im1.png', alt:'Upper side view with light signature', meta:'PAIRED SIDE VIEWS / ONE CONTINUOUS EDGE', paired:true}
+    {id:'precision', number:'01', label:'PRECISION', title:'Machine the gesture into the shell', body:'CNC finishing sharpens the side wall and removes visual noise, so the silhouette reads as one controlled volume.', file:'021_Im0.webp', alt:'CNC machining the Zephyrus Duo side wall', meta:'CNC / POLISHED EDGE'},
+    {id:'profile', number:'02', label:'SIDE PROFILE', title:'One edge. Signature above, integration below.', body:'Read the two staggered side views together: the upper edge carries the restrained light signature; the lower edge integrates ports, cooling, and structure into the same silhouette.', file:'023_Im1.webp', alt:'Upper side view with light signature', meta:'PAIRED SIDE VIEWS / ONE CONTINUOUS EDGE', paired:true}
   ];
 
   const refinement = mount('refinement', 'refinement', chrome() +
@@ -245,7 +245,7 @@
         <p class="refinement-lede">Precision shapes the shell. Two staggered side views reveal how the light signature and performance hardware resolve into one continuous edge.</p>
       </div></header>
       <figure class="refinement-product" data-motion="settle" data-local-editor-id="refinement-product" data-editor-label="Zephyrus Duo refined final design">
-        <div class="motion-entry"><img src="${asset('022_Im0.png')}" alt="Zephyrus Duo refined final design" loading="lazy" decoding="async"></div>
+        <div class="motion-entry"><img src="${asset('022_Im0.webp')}" alt="Zephyrus Duo refined final design" loading="lazy" decoding="async"></div>
         <figcaption><span>FINAL FORM</span><strong>One silhouette. Three resolved details.</strong></figcaption>
       </figure>
       <aside class="refinement-focus" data-motion="wipe"><div class="motion-entry">
@@ -253,7 +253,7 @@
           ${refinementSteps.map((step, index) => `<button type="button" role="tab" aria-selected="${index === 0}" data-refinement-tab="${step.id}"><span>${step.number}</span>${step.label}</button>`).join('')}
         </nav>
         <div class="refinement-visual">
-          ${refinementSteps.map((step, index) => `<figure data-refinement-panel="${step.id}" ${index ? 'hidden' : ''}>${step.paired ? `<div class="paired-side-views"><img class="side-view side-view--upper" src="${asset(step.file)}" alt="${step.alt}" loading="lazy" decoding="async"><img class="side-view side-view--lower" src="${asset('024_Im2.png')}" alt="Lower side view with integrated ports, cooling and structure" loading="lazy" decoding="async"><span class="side-view-label side-view-label--upper">LIGHT SIGNATURE</span><span class="side-view-label side-view-label--lower">I/O + STRUCTURE</span></div>` : `<img src="${asset(step.file)}" alt="${step.alt}" loading="lazy" decoding="async">`}<figcaption>${step.meta}</figcaption></figure>`).join('')}
+          ${refinementSteps.map((step, index) => `<figure data-refinement-panel="${step.id}" ${index ? 'hidden' : ''}>${step.paired ? `<div class="paired-side-views"><img class="side-view side-view--upper" src="${asset(step.file)}" alt="${step.alt}" loading="lazy" decoding="async"><img class="side-view side-view--lower" src="${asset('024_Im2.webp')}" alt="Lower side view with integrated ports, cooling and structure" loading="lazy" decoding="async"><span class="side-view-label side-view-label--upper">LIGHT SIGNATURE</span><span class="side-view-label side-view-label--lower">I/O + STRUCTURE</span></div>` : `<img src="${asset(step.file)}" alt="${step.alt}" loading="lazy" decoding="async">`}<figcaption>${step.meta}</figcaption></figure>`).join('')}
         </div>
         <div class="refinement-copy" aria-live="polite">
           ${refinementSteps.map((step, index) => `<section data-refinement-copy="${step.id}" ${index ? 'hidden' : ''}><span>${step.number} / 02</span><h3>${step.title}</h3><p>${step.body}</p></section>`).join('')}
@@ -280,12 +280,12 @@
   }
 
   const photos = [
-    {id:'prototype-front',file:'031_Im4.png',label:'OPEN WORKSPACE',focus:'Screen relationship',phase:'open',box:[83.8,148.2,494.1,511.4],ratio:342/354},
-    {id:'prototype-closed',file:'032_Im5.png',label:'CLOSED PACKAGE',focus:'Travel silhouette',phase:'package',box:[84.1,672.5,493.4,278.6],ratio:457/258},
-    {id:'prototype-angle',file:'027_Im0.png',label:'OPEN ANGLE',focus:'Reach and sightline',phase:'open',box:[588.3,149.5,630.2,510.4],ratio:363/294,rotate:true},
-    {id:'prototype-bottom',file:'029_Im2.png',label:'BASE PACKAGE',focus:'Cooling volume',phase:'package',box:[588.3,671.2,631.3,279.4],ratio:479/212},
-    {id:'prototype-back',file:'028_Im1.png',label:'REAR SUPPORT',focus:'Load path',phase:'hinge',box:[1230.8,148.4,651.9,303],ratio:484/225},
-    {id:'prototype-hinge',file:'030_Im3.png',label:'HINGE DETAIL',focus:'Tolerance check',phase:'hinge',box:[1230,461.1,654.9,488.3],ratio:484/363}
+    {id:'prototype-front',file:'031_Im4.webp',label:'OPEN WORKSPACE',focus:'Screen relationship',phase:'open',box:[83.8,148.2,494.1,511.4],ratio:342/354},
+    {id:'prototype-closed',file:'032_Im5.webp',label:'CLOSED PACKAGE',focus:'Travel silhouette',phase:'package',box:[84.1,672.5,493.4,278.6],ratio:457/258},
+    {id:'prototype-angle',file:'027_Im0.webp',label:'OPEN ANGLE',focus:'Reach and sightline',phase:'open',box:[588.3,149.5,630.2,510.4],ratio:363/294,rotate:true},
+    {id:'prototype-bottom',file:'029_Im2.webp',label:'BASE PACKAGE',focus:'Cooling volume',phase:'package',box:[588.3,671.2,631.3,279.4],ratio:479/212},
+    {id:'prototype-back',file:'028_Im1.webp',label:'REAR SUPPORT',focus:'Load path',phase:'hinge',box:[1230.8,148.4,651.9,303],ratio:484/225},
+    {id:'prototype-hinge',file:'030_Im3.webp',label:'HINGE DETAIL',focus:'Tolerance check',phase:'hinge',box:[1230,461.1,654.9,488.3],ratio:484/363}
   ];
   const prototype = mount('prototype', 'prototype', chrome() +
     `<div class="prototype-shell">
@@ -367,7 +367,7 @@
   }
 
   const final = mount('final', 'final', chrome() + `<h2 class="final-heading">FINAL DESIGN</h2>
-    <figure class="final-closed" data-motion="side"><div class="motion-entry"><img src="duo-pdf-assets/10-final-design.png" alt="Zephyrus Duo closed top, side, and rear views" loading="lazy" decoding="async"></div></figure>
+    <figure class="final-closed" data-motion="side"><div class="motion-entry"><img src="duo-pdf-assets/10-final-design.webp" alt="Zephyrus Duo closed top, side, and rear views" loading="lazy" decoding="async"></div></figure>
     <figure class="final-open" data-motion="settle"><div class="motion-entry"><picture><source media="(max-width:760px)" srcset="${asset('final-open-hq-mobile.webp')}"><img src="${asset('final-open-hq.webp')}" width="2560" height="1920" alt="High-resolution frontal render of the open ROG Zephyrus Duo G16" loading="lazy" decoding="async"></picture></div></figure>`);
 
   const audienceDetails = {

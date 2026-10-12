@@ -1,6 +1,29 @@
 /* Static HTML works without JS; this adds mobile disclosure and chapter state. */
 (function () {
   'use strict';
+  var deferredImages = Array.from(document.querySelectorAll('img[data-lazy-src]'));
+  function loadDeferredImage(image) {
+    if (!image.dataset.lazySrc) return;
+    image.src = image.dataset.lazySrc;
+    image.removeAttribute('data-lazy-src');
+  }
+  if ('IntersectionObserver' in window) {
+    var imageObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var scope = entry.target.matches('.pg') ? entry.target : entry.target.closest('.pg') || entry.target;
+        if (scope.matches('img[data-lazy-src]')) loadDeferredImage(scope);
+        else scope.querySelectorAll('img[data-lazy-src]').forEach(loadDeferredImage);
+        imageObserver.unobserve(entry.target);
+      });
+    }, { rootMargin: matchMedia('(max-width: 700px)').matches ? '320px 0px' : '900px 0px' });
+    var imageScopes = new Set();
+    deferredImages.forEach(function (image) { imageScopes.add(image.closest('.pg') || image); });
+    imageScopes.forEach(function (scope) { imageObserver.observe(scope); });
+  } else {
+    deferredImages.forEach(loadDeferredImage);
+  }
+
   var nav = document.querySelector('.project-nav');
   if (!nav) return;
   var toggle = nav.querySelector('.project-nav__toggle');

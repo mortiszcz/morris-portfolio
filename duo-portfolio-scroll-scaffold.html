@@ -87,7 +87,7 @@
     color:var(--accent);font-weight:600;margin-bottom:.75em;display:block;
   }
 
-  /* 佔位素材色塊:實際上線時把這個 div 換成 <img> 或 <video> */
+  /* 佔位素材色塊:實際上線時把這個 div 換成 <img decoding="async"> 或 <video> */
   .media-placeholder{
     position:absolute;inset:0;
     display:flex;align-items:flex-end;padding:18px;
@@ -213,7 +213,7 @@
     content:"";position:absolute;inset:0;z-index:0;
     background-image:
       linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
-      url('duo-scroll-background/19f7fbfc-8013-485d-b06c-925876610e95.jpg');
+      url('duo-scroll-background/19f7fbfc-8013-485d-b06c-925876610e95.webp');
     background-position:center,center;
     background-size:cover,cover;
     background-repeat:no-repeat,no-repeat;
@@ -505,7 +505,7 @@
 <!-- ============================== HERO ============================== -->
 <header class="hero" id="top">
   <div class="hero-media-wrap">
-    <img class="hero-background" src="duo-hero-assets/future-lab.jpg" alt="" />
+    <img decoding="async" class="hero-background" src="duo-hero-assets/future-lab.webp" alt="" />
   </div>
   <div class="hero-scrim"></div>
   <div class="hero-velocity" aria-hidden="true">
@@ -516,7 +516,7 @@
     </div>
   </div>
   <div class="hero-product-overlay" aria-hidden="true">
-    <img src="duo-hero-assets/duo-render.png" alt="" />
+    <img decoding="async" src="duo-hero-assets/duo-render.webp" alt="" />
   </div>
   <div class="hero-content reveal-on-scroll is-visible">
     <div class="hero-title-motion"><h1>ROG ZEPHYRUS DUO G16</h1></div>
@@ -558,63 +558,63 @@
   <section class="duo-section" aria-labelledby="duo-research-title">
     <header class="duo-section-head reveal-on-scroll"><span class="case-index">01 / TA RESEARCH</span><div><h3 id="duo-research-title">PROJECT BACKGROUND.</h3><p>從目標使用者研究出發，讓雙螢幕的性能、比例與工作流成為 Zephyrus Duo 的核心架構。</p></div></header>
     <div class="component-grid">
-      <figure class="case-component case-component--dark case-component--tall span-7 reveal-on-scroll"><div class="component-media"><img src="duo-component-assets/duo-form-study.png" alt="Zephyrus Duo form study" loading="lazy"></div><figcaption class="component-label">TARGET ARCHITECTURE</figcaption><p class="component-note">01</p></figure>
-      <figure class="case-component case-component--light case-component--tall span-5 reveal-on-scroll"><div class="component-media"><img src="duo-component-assets/duo-shell-front.png" alt="Zephyrus Duo front shell study" loading="lazy"></div><figcaption class="component-label">PERFORMANCE / PROPORTION</figcaption><p class="component-note">GX651</p></figure>
+      <figure class="case-component case-component--dark case-component--tall span-7 reveal-on-scroll"><div class="component-media"><img decoding="async" src="duo-component-assets/duo-form-study.webp" alt="Zephyrus Duo form study" loading="lazy"></div><figcaption class="component-label">TARGET ARCHITECTURE</figcaption><p class="component-note">01</p></figure>
+      <figure class="case-component case-component--light case-component--tall span-5 reveal-on-scroll"><div class="component-media"><img decoding="async" src="duo-component-assets/duo-shell-front.webp" alt="Zephyrus Duo front shell study" loading="lazy"></div><figcaption class="component-label">PERFORMANCE / PROPORTION</figcaption><p class="component-note">GX651</p></figure>
     </div>
   </section>
 
   <section class="duo-section" id="objectives-legacy" aria-labelledby="duo-objectives-title">
     <header class="duo-section-head reveal-on-scroll"><span class="case-index">02 / PROJECT OBJECTIVES</span><div><h3 id="duo-objectives-title">THE NEXT ZEPHYRUS.</h3><p>延續 Zephyrus 的高性能精神，將產品推向更具互動感的未來樣貌；靈感取自高性能車款的精準比例與機械張力。</p></div></header>
     <div class="component-grid">
-      <figure class="case-component case-component--dark span-7 reveal-on-scroll"><div class="component-media"><img src="duo-component-assets/inspiration-vehicle.png" alt="High-performance vehicle inspiration" loading="lazy"></div><figcaption class="component-label">INSPIRATION / PROPORTION</figcaption><p class="component-note">02</p></figure>
-      <figure class="case-component case-component--dark span-5 reveal-on-scroll"><div class="component-media"><img src="duo-component-assets/inspiration-grille.png" alt="Mechanical grille inspiration" loading="lazy"></div><figcaption class="component-label">INSPIRATION / DETAIL</figcaption><p class="component-note">TENSION</p></figure>
+      <figure class="case-component case-component--dark span-7 reveal-on-scroll"><div class="component-media"><img decoding="async" src="duo-component-assets/inspiration-vehicle.webp" alt="High-performance vehicle inspiration" loading="lazy"></div><figcaption class="component-label">INSPIRATION / PROPORTION</figcaption><p class="component-note">02</p></figure>
+      <figure class="case-component case-component--dark span-5 reveal-on-scroll"><div class="component-media"><img decoding="async" src="duo-component-assets/inspiration-grille.webp" alt="Mechanical grille inspiration" loading="lazy"></div><figcaption class="component-label">INSPIRATION / DETAIL</figcaption><p class="component-note">TENSION</p></figure>
     </div>
   </section>
 
   <section class="duo-section" id="concept-legacy" aria-labelledby="duo-concept-title">
     <header class="duo-section-head reveal-on-scroll"><span class="case-index">03 / CONCEPT DEVELOPMENT</span><div><h3 id="duo-concept-title">ARCHETYPE DEFINITION.</h3><p>把娛樂與互動單元置入性能產品的架構，將雙螢幕從附加功能轉化為產品的核心識別。</p></div></header>
     <div class="component-grid">
-      <figure class="case-component case-component--light span-12 reveal-on-scroll"><div class="component-media"><img src="duo-component-assets/duo-concept-lineup.png" alt="Zephyrus Duo concept archetype lineup" loading="lazy"></div><figcaption class="component-label">ARCHETYPE / DUAL DISPLAY</figcaption><p class="component-note">03</p></figure>
-      <figure class="case-component case-component--light span-8 reveal-on-scroll"><div class="component-media"><img src="duo-component-assets/duo-form-exploration.png" alt="Zephyrus Duo form exploration sketches" loading="lazy"></div><figcaption class="component-label">FORM EXPLORATION</figcaption><p class="component-note">SKETCH</p></figure>
-      <figure class="case-component case-component--dark span-4 reveal-on-scroll"><div class="component-media"><img src="duo-component-assets/duo-shell-stripe.png" alt="Zephyrus Duo shell detail study" loading="lazy"></div><figcaption class="component-label">LANGUAGE</figcaption><p class="component-note">EDGE</p></figure>
+      <figure class="case-component case-component--light span-12 reveal-on-scroll"><div class="component-media"><img decoding="async" src="duo-component-assets/duo-concept-lineup.webp" alt="Zephyrus Duo concept archetype lineup" loading="lazy"></div><figcaption class="component-label">ARCHETYPE / DUAL DISPLAY</figcaption><p class="component-note">03</p></figure>
+      <figure class="case-component case-component--light span-8 reveal-on-scroll"><div class="component-media"><img decoding="async" src="duo-component-assets/duo-form-exploration.webp" alt="Zephyrus Duo form exploration sketches" loading="lazy"></div><figcaption class="component-label">FORM EXPLORATION</figcaption><p class="component-note">SKETCH</p></figure>
+      <figure class="case-component case-component--dark span-4 reveal-on-scroll"><div class="component-media"><img decoding="async" src="duo-component-assets/duo-shell-stripe.webp" alt="Zephyrus Duo shell detail study" loading="lazy"></div><figcaption class="component-label">LANGUAGE</figcaption><p class="component-note">EDGE</p></figure>
     </div>
   </section>
 
   <section class="duo-section" aria-labelledby="duo-ideation-title">
     <header class="duo-section-head reveal-on-scroll"><span class="case-index">04 / CONCEPT DEVELOPMENT</span><div><h3 id="duo-ideation-title">IDEATION.</h3><p>從 Zephyrus 的既有設計語言出發，探索能抬升第二螢幕，同時保持穩定與完整視覺節奏的方案。</p></div></header>
-    <div class="component-grid"><figure class="case-component case-component--dark span-12 reveal-on-scroll"><div class="component-media"><img src="duo-component-assets/duo-cmf-lineup.png" alt="Zephyrus Duo ideation and CMF lineup" loading="lazy"></div><figcaption class="component-label">IDEATION / CMF / PROPORTION</figcaption><p class="component-note">04</p></figure></div>
+    <div class="component-grid"><figure class="case-component case-component--dark span-12 reveal-on-scroll"><div class="component-media"><img decoding="async" src="duo-component-assets/duo-cmf-lineup.webp" alt="Zephyrus Duo ideation and CMF lineup" loading="lazy"></div><figcaption class="component-label">IDEATION / CMF / PROPORTION</figcaption><p class="component-note">04</p></figure></div>
   </section>
 
   <section class="duo-section" aria-labelledby="duo-refinement-title">
     <header class="duo-section-head reveal-on-scroll"><span class="case-index">05 / REFINEMENT</span><div><h3 id="duo-refinement-title">FINAL DESIGN.</h3><p>透過側邊倒角、輪廓與細部打磨，讓高性能結構與視覺張力收斂成可落地的產品語言。</p></div></header>
     <div class="component-grid">
-      <figure class="case-component case-component--light case-component--tall span-8 reveal-on-scroll"><div class="component-media"><img src="duo-component-assets/duo-final-closed.png" alt="Zephyrus Duo refined final design" loading="lazy"></div><figcaption class="component-label">REFINED EXTERIOR</figcaption><p class="component-note">05</p></figure>
-      <figure class="case-component case-component--light case-component--tall span-4 reveal-on-scroll"><div class="component-media"><img src="duo-component-assets/duo-shell-rear.png" alt="Zephyrus Duo rear shell study" loading="lazy"></div><figcaption class="component-label">SIDE PROFILE</figcaption><p class="component-note">FINISH</p></figure>
+      <figure class="case-component case-component--light case-component--tall span-8 reveal-on-scroll"><div class="component-media"><img decoding="async" src="duo-component-assets/duo-final-closed.webp" alt="Zephyrus Duo refined final design" loading="lazy"></div><figcaption class="component-label">REFINED EXTERIOR</figcaption><p class="component-note">05</p></figure>
+      <figure class="case-component case-component--light case-component--tall span-4 reveal-on-scroll"><div class="component-media"><img decoding="async" src="duo-component-assets/duo-shell-rear.webp" alt="Zephyrus Duo rear shell study" loading="lazy"></div><figcaption class="component-label">SIDE PROFILE</figcaption><p class="component-note">FINISH</p></figure>
     </div>
   </section>
 
   <section class="duo-section" aria-labelledby="duo-panel-title">
     <header class="duo-section-head reveal-on-scroll"><span class="case-index">06 / 2ND PANEL</span><div><h3 id="duo-panel-title">DUO STEALTH HINGE.</h3><p>第二螢幕成為隨時可喚起的協作與多工介面；Stealth Hinge 將支撐、轉動與視覺完整性整合在同一個機構裡。</p></div></header>
-    <div class="component-grid"><figure class="case-component case-component--dark case-component--short span-12 reveal-on-scroll"><div class="component-media"><img src="duo-component-assets/duo-vent-strip.png" alt="Zephyrus Duo stealth hinge and vent detail" loading="lazy"></div><figcaption class="component-label">2ND PANEL / STEALTH HINGE</figcaption><p class="component-note">06 / 07</p></figure></div>
+    <div class="component-grid"><figure class="case-component case-component--dark case-component--short span-12 reveal-on-scroll"><div class="component-media"><img decoding="async" src="duo-component-assets/duo-vent-strip.webp" alt="Zephyrus Duo stealth hinge and vent detail" loading="lazy"></div><figcaption class="component-label">2ND PANEL / STEALTH HINGE</figcaption><p class="component-note">06 / 07</p></figure></div>
   </section>
 
   <section class="duo-section" id="prototype-legacy" aria-labelledby="duo-prototype-title">
     <header class="duo-section-head reveal-on-scroll"><span class="case-index">08 / PROTOTYPING</span><div><h3 id="duo-prototype-title">TEST IT IN FULL SCALE.</h3><p>以實體模型驗證比例、螢幕關係與轉軸運作，讓畫面上的選擇回到手感、重量與實際使用情境接受檢驗。</p></div></header>
     <div class="component-grid">
-      <figure class="case-component case-component--light span-7 reveal-on-scroll"><div class="component-media"><img src="duo-component-assets/duo-form-exploration.png" alt="Zephyrus Duo prototyping sketches" loading="lazy"></div><figcaption class="component-label">PROTOTYPING / VOLUME</figcaption><p class="component-note">08</p></figure>
-      <figure class="case-component case-component--light span-5 reveal-on-scroll"><div class="component-media"><img src="duo-component-assets/inspiration-surface.png" alt="Material surface study" loading="lazy"></div><figcaption class="component-label">MATERIAL / TOUCH</figcaption><p class="component-note">TEST</p></figure>
+      <figure class="case-component case-component--light span-7 reveal-on-scroll"><div class="component-media"><img decoding="async" src="duo-component-assets/duo-form-exploration.webp" alt="Zephyrus Duo prototyping sketches" loading="lazy"></div><figcaption class="component-label">PROTOTYPING / VOLUME</figcaption><p class="component-note">08</p></figure>
+      <figure class="case-component case-component--light span-5 reveal-on-scroll"><div class="component-media"><img decoding="async" src="duo-component-assets/inspiration-surface.webp" alt="Material surface study" loading="lazy"></div><figcaption class="component-label">MATERIAL / TOUCH</figcaption><p class="component-note">TEST</p></figure>
     </div>
   </section>
 
   <section class="duo-section" id="features-legacy" aria-labelledby="duo-features-title">
     <header class="duo-section-head reveal-on-scroll"><span class="case-index">09 / DESIGN FEATURES</span><div><h3 id="duo-features-title">RGB / 65% KB + TP.</h3><p>RGB keyboard、側邊散熱結構與 65% keyboard + touchpad 配置，讓性能需求、操作速度與視覺識別共同成立。</p></div></header>
     <div class="component-grid">
-      <figure class="case-component case-component--dark span-7 reveal-on-scroll"><div class="component-media"><img src="duo-component-assets/duo-cmf-lineup.png" alt="Zephyrus Duo RGB and CMF design feature" loading="lazy"></div><figcaption class="component-label">RGB / 65% KB + TP</figcaption><p class="component-note">09</p></figure>
-      <figure class="case-component case-component--dark span-5 reveal-on-scroll"><div class="component-media"><img src="duo-component-assets/duo-shell-stripe.png" alt="Zephyrus Duo ventilation and edge feature" loading="lazy"></div><figcaption class="component-label">VENT / EDGE STRUCTURE</figcaption><p class="component-note">AIRFLOW</p></figure>
+      <figure class="case-component case-component--dark span-7 reveal-on-scroll"><div class="component-media"><img decoding="async" src="duo-component-assets/duo-cmf-lineup.webp" alt="Zephyrus Duo RGB and CMF design feature" loading="lazy"></div><figcaption class="component-label">RGB / 65% KB + TP</figcaption><p class="component-note">09</p></figure>
+      <figure class="case-component case-component--dark span-5 reveal-on-scroll"><div class="component-media"><img decoding="async" src="duo-component-assets/duo-shell-stripe.webp" alt="Zephyrus Duo ventilation and edge feature" loading="lazy"></div><figcaption class="component-label">VENT / EDGE STRUCTURE</figcaption><p class="component-note">AIRFLOW</p></figure>
     </div>
   </section>
 
-  <section class="duo-final reveal-on-scroll" id="final-legacy"><span class="case-index">10 / FINAL DESIGN</span><h2>ROG ZEPHYRUS<br>DUO G16</h2><p>GX651 — the final expression of a dual-screen, high-performance Zephyrus.</p><div class="component-grid"><figure class="case-component case-component--light span-12"><div class="component-media"><img src="duo-component-assets/duo-final-closed.png" alt="ROG Zephyrus Duo G16 final design" loading="lazy"></div><figcaption class="component-label">FINAL EXPRESSION</figcaption><p class="component-note">GX651</p></figure></div></section>
+  <section class="duo-final reveal-on-scroll" id="final-legacy"><span class="case-index">10 / FINAL DESIGN</span><h2>ROG ZEPHYRUS<br>DUO G16</h2><p>GX651 — the final expression of a dual-screen, high-performance Zephyrus.</p><div class="component-grid"><figure class="case-component case-component--light span-12"><div class="component-media"><img decoding="async" src="duo-component-assets/duo-final-closed.webp" alt="ROG Zephyrus Duo G16 final design" loading="lazy"></div><figcaption class="component-label">FINAL EXPRESSION</figcaption><p class="component-note">GX651</p></figure></div></section>
 
   <!-- Keep the original scene order; selected research and development scenes use native layers. -->
   <div class="pdf-pages" aria-label="Duo PDF layout scenes">
@@ -652,23 +652,23 @@
           <div class="objective-copy"><h2>PROJECT OBJECTIVES</h2><p>THE NEXT ZEPHYRUS</p></div>
           <div class="objective-year objective-year--old"><strong>ZEPHYRUS<br>2023</strong></div>
           <div class="objective-year objective-year--new"><strong>ZEPHYRUS<br>2025</strong></div>
-          <figure class="objective-piece objective-laptop--old"><img src="duo-pdf-assets/zephyrus-2023.png" alt="2023 Zephyrus predecessor" loading="lazy" /></figure>
-          <figure class="objective-piece objective-laptop--new"><img src="duo-pdf-assets/zephyrus-2025.png" alt="2025 Zephyrus design" loading="lazy" /></figure>
+          <figure class="objective-piece objective-laptop--old"><img decoding="async" src="duo-pdf-assets/zephyrus-2023.webp" alt="2023 Zephyrus predecessor" loading="lazy" /></figure>
+          <figure class="objective-piece objective-laptop--new"><img decoding="async" src="duo-pdf-assets/zephyrus-2025.webp" alt="2025 Zephyrus design" loading="lazy" /></figure>
           <div class="objective-inspiration">INSPIRATION</div>
-          <figure class="objective-piece objective-car--old"><img src="duo-pdf-assets/inspiration-2023.png" alt="Traditional Porsche 911 inspiration" loading="lazy" /></figure>
+          <figure class="objective-piece objective-car--old"><img decoding="async" src="duo-pdf-assets/inspiration-2023.webp" alt="Traditional Porsche 911 inspiration" loading="lazy" /></figure>
           <div class="objective-arrow" aria-hidden="true"></div>
-          <figure class="objective-piece objective-car--new"><img src="duo-pdf-assets/inspiration-2025.png" alt="Electric Porsche inspiration" loading="lazy" /></figure>
+          <figure class="objective-piece objective-car--new"><img decoding="async" src="duo-pdf-assets/inspiration-2025.webp" alt="Electric Porsche inspiration" loading="lazy" /></figure>
         </div>
       </div>
     </section>
-    <section class="pdf-scene" id="concept"><div class="pdf-scene-stage reveal-on-scroll"><img src="duo-pdf-assets/03-archetype.png" alt="Archetype definition" loading="lazy" /></div></section>
-    <section class="pdf-scene" id="ideation"><div class="pdf-scene-stage reveal-on-scroll"><img src="duo-pdf-assets/04-ideation.png" alt="Concept development ideation" loading="lazy" /></div></section>
-    <section class="pdf-scene" id="refinement"><div class="pdf-scene-stage reveal-on-scroll"><img src="duo-pdf-assets/05-refinement.png" alt="Refinement and final design" loading="lazy" /></div></section>
-    <section class="pdf-scene" id="second-panel"><div class="pdf-scene-stage reveal-on-scroll"><img src="duo-pdf-assets/06-second-panel.png" alt="Second panel interaction" loading="lazy" /></div></section>
-    <section class="pdf-scene" id="hinge"><div class="pdf-scene-stage reveal-on-scroll"><img src="duo-pdf-assets/07-hinge.png" alt="Duo stealth hinge" loading="lazy" /></div></section>
-    <section class="pdf-scene" id="prototype"><div class="pdf-scene-stage reveal-on-scroll"><img src="duo-pdf-assets/08-prototyping.png" alt="Prototyping" loading="lazy" /></div></section>
-    <section class="pdf-scene" id="features"><div class="pdf-scene-stage reveal-on-scroll"><img src="duo-pdf-assets/09-features.png" alt="Design features" loading="lazy" /></div></section>
-    <section class="pdf-scene" id="final"><div class="pdf-scene-stage reveal-on-scroll"><img src="duo-pdf-assets/10-final-design.png" alt="ROG Zephyrus Duo G16 final design" loading="lazy" /></div></section>
+    <section class="pdf-scene" id="concept"><div class="pdf-scene-stage reveal-on-scroll"><img decoding="async" src="duo-pdf-assets/03-archetype.webp" alt="Archetype definition" loading="lazy" /></div></section>
+    <section class="pdf-scene" id="ideation"><div class="pdf-scene-stage reveal-on-scroll"><img decoding="async" src="duo-pdf-assets/04-ideation.webp" alt="Concept development ideation" loading="lazy" /></div></section>
+    <section class="pdf-scene" id="refinement"><div class="pdf-scene-stage reveal-on-scroll"><img decoding="async" src="duo-pdf-assets/05-refinement.webp" alt="Refinement and final design" loading="lazy" /></div></section>
+    <section class="pdf-scene" id="second-panel"><div class="pdf-scene-stage reveal-on-scroll"><img decoding="async" src="duo-pdf-assets/06-second-panel.webp" alt="Second panel interaction" loading="lazy" /></div></section>
+    <section class="pdf-scene" id="hinge"><div class="pdf-scene-stage reveal-on-scroll"><img decoding="async" src="duo-pdf-assets/07-hinge.webp" alt="Duo stealth hinge" loading="lazy" /></div></section>
+    <section class="pdf-scene" id="prototype"><div class="pdf-scene-stage reveal-on-scroll"><img decoding="async" src="duo-pdf-assets/08-prototyping.webp" alt="Prototyping" loading="lazy" /></div></section>
+    <section class="pdf-scene" id="features"><div class="pdf-scene-stage reveal-on-scroll"><img decoding="async" src="duo-pdf-assets/09-features.webp" alt="Design features" loading="lazy" /></div></section>
+    <section class="pdf-scene" id="final"><div class="pdf-scene-stage reveal-on-scroll"><img decoding="async" src="duo-pdf-assets/10-final-design.webp" alt="ROG Zephyrus Duo G16 final design" loading="lazy" /></div></section>
   </div>
 </main>
 
@@ -831,22 +831,48 @@
   const frameLabel = document.getElementById('revealFrameLabel');
   const progressBar = document.getElementById('revealProgressBar');
   const TOTAL_FRAMES = 120;
-  const FIRST_SOURCE_FRAME = 1;
-  const LAST_SOURCE_FRAME = 488;
-  const FRAME_PATH = 'duo-scroll-frames-120/';
-  const FRAME_PREFIX = '0904 Duo rendering package.70.';
+  const mobileFrames = matchMedia('(max-width: 720px)').matches;
+  const FRAME_PATH = `duo-scroll-frames/${mobileFrames ? 'mobile' : 'desktop'}/`;
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  const frames = Array.from({ length: TOTAL_FRAMES }, (_, index) => {
-    const sourceFrame = Math.round(
-      FIRST_SOURCE_FRAME + index * (LAST_SOURCE_FRAME - FIRST_SOURCE_FRAME) / (TOTAL_FRAMES - 1)
-    );
+  const frames = Array(TOTAL_FRAMES).fill(null);
+  const loadedFrames = new Set();
+  const loadingFrames = new Set();
+
+  function loadFrame(index, priority = 'low') {
+    if (index < 0 || index >= TOTAL_FRAMES || frames[index] || loadingFrames.has(index)) return;
+    loadingFrames.add(index);
     const image = new Image();
-    image.src = `${FRAME_PATH}${FRAME_PREFIX}${sourceFrame}.png`;
+    image.decoding = 'async';
+    image.fetchPriority = priority;
     image.addEventListener('load', () => {
+      frames[index] = image;
+      loadingFrames.delete(index);
+      loadedFrames.add(index);
       if (sectionNearViewport) scheduleRender();
     });
-    return image;
-  });
+    image.addEventListener('error', () => loadingFrames.delete(index));
+    image.src = `${FRAME_PATH}frame-${String(index).padStart(3, '0')}.webp`;
+  }
+
+  function loadAround(index) {
+    const radius = mobileFrames || navigator.connection?.saveData ? 3 : 7;
+    loadFrame(index, 'high');
+    for (let offset = 1; offset <= radius; offset += 1) {
+      loadFrame(index + offset * scrollDirection);
+      loadFrame(index - offset * scrollDirection);
+    }
+  }
+
+  function nearestLoadedFrame(index) {
+    if (loadedFrames.has(index)) return frames[index];
+    for (let offset = 1; offset < TOTAL_FRAMES; offset += 1) {
+      const before = index - offset;
+      const after = index + offset;
+      if (before >= 0 && loadedFrames.has(before)) return frames[before];
+      if (after < TOTAL_FRAMES && loadedFrames.has(after)) return frames[after];
+    }
+    return null;
+  }
 
   const FRAME_CATCHUP = 0.12;
   const MOMENTUM_DECAY = 0.975;
@@ -885,8 +911,8 @@
   }
 
   function drawFrame(image, w, h){
+    if (!image?.complete || !image.naturalWidth) return;
     ctx.clearRect(0, 0, w, h);
-    if (!image.complete || !image.naturalWidth) return;
 
     const scale = Math.min(w / image.naturalWidth, h / image.naturalHeight);
     const drawWidth = image.naturalWidth * scale;
@@ -897,7 +923,7 @@
   function draw(){
     const w = canvas.clientWidth, h = canvas.clientHeight;
     const frameIndex = Math.round(displayedProgress * (TOTAL_FRAMES - 1));
-    drawFrame(frames[frameIndex], w, h);
+    drawFrame(nearestLoadedFrame(frameIndex), w, h);
 
     sticky.style.setProperty('--reveal-bg-scale', (1 + displayedProgress * 0.25).toFixed(4));
     sticky.style.setProperty('--reveal-stage-scale', (0.9 + displayedProgress * 0.12).toFixed(4));
@@ -947,6 +973,7 @@
     const progressChange = physicalProgress - lastPhysicalProgress;
     if (progressChange !== 0) {
       scrollDirection = Math.sign(progressChange);
+      loadAround(Math.round(physicalProgress * (TOTAL_FRAMES - 1)));
       const speedBoost = 1 + Math.min(Math.abs(instantVelocity) * 0.08, 0.8);
       momentumProgress = Math.max(
         -MAX_MOMENTUM,
@@ -970,14 +997,16 @@
         momentumProgress = 0;
         lastScrollY = window.scrollY;
         lastScrollTime = performance.now();
+        loadAround(Math.round(targetProgress * (TOTAL_FRAMES - 1)));
         draw();
       }
     });
-  }, { rootMargin: '200px 0px 200px 0px' });
+  }, { rootMargin: '800px 0px 800px 0px' });
   visIo.observe(section);
 
   window.addEventListener('scroll', onScroll, { passive:true });
   window.addEventListener('resize', resize);
+  loadFrame(0, 'high');
   resize();
 })();
 
