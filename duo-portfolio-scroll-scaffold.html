@@ -239,6 +239,16 @@
   }
   .reveal-progress-bar{height:100%;width:0%;background:var(--accent);}
 
+  @media (max-width:760px){
+    .reveal{height:420svh;}
+    .reveal-sticky{height:100svh;}
+    .reveal-canvas{width:100vw;height:min(66svh,560px);}
+    .reveal-progress{left:18px;right:18px;top:calc(76px + env(safe-area-inset-top,0px));}
+    .reveal-copy{left:18px;right:18px;bottom:calc(24px + env(safe-area-inset-bottom,0px));max-width:340px;}
+    .reveal-copy h2{font-size:clamp(1.35rem,7vw,2rem);line-height:1.02;}
+    .reveal-copy p{max-width:32ch;font-size:.82rem;line-height:1.5;}
+  }
+
   /* ---------------- Story / Craft (sticky 文字驅動切換) ---------------- */
   .story{padding:120px 0 40px;}
   .story-head{max-width:640px;margin:0 auto 60px;text-align:left;padding:0 6vw;}
@@ -827,57 +837,161 @@
   const section = document.getElementById('reveal');
   const sticky = section.querySelector('.reveal-sticky');
   const canvas = document.getElementById('revealCanvas');
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d', { alpha:true, desynchronized:true });
+  const bufferCanvas = document.createElement('canvas');
+  const bufferCtx = bufferCanvas.getContext('2d', { alpha:true, desynchronized:true });
   const frameLabel = document.getElementById('revealFrameLabel');
   const progressBar = document.getElementById('revealProgressBar');
   const TOTAL_FRAMES = 120;
   const mobileFrames = matchMedia('(max-width: 720px)').matches;
   const FRAME_PATH = `duo-scroll-frames/${mobileFrames ? 'mobile' : 'desktop'}/`;
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const dpr = mobileFrames
+    ? Math.min(window.devicePixelRatio || 1, 1.25)
+    : Math.min(window.devicePixelRatio || 1, 2);
+  const MAX_CACHE = mobileFrames ? 18 : 42;
+  const MAX_CONCURRENT = mobileFrames ? 3 : 6;
   const frames = Array(TOTAL_FRAMES).fill(null);
   const loadedFrames = new Set();
   const loadingFrames = new Set();
+  const frameLastUsed = new Map();
+  const loadQueue = [];
+  let activeLoads = 0;
+  let lastRenderedIndex = -1;
+  let lastRenderedImage = null;
+
+  function touchFrame(index) {
+    frameLastUsed.set(index, performance.now());
+  }
+
+  function trimFrameCache(centerIndex) {
+    if (loadedFrames.size <= MAX_CACHE) return;
+    const keepRadius = mobileFrames ? 5 : 9;
+    const candidates = [...loadedFrames]
+      .filter(index => index !== lastRenderedIndex && index !== 0 && index !== TOTAL_FRAMES - 1 && Math.abs(index - centerIndex) > keepRadius)
+      .sort((a, b) => {
+        const distance = Math.abs(b - centerIndex) - Math.abs(a - centerIndex);
+        return distance || (frameLastUsed.get(a) || 0) - (frameLastUsed.get(b) || 0);
+      });
+
+    while (loadedFrames.size > MAX_CACHE && candidates.length) {
+      const index = candidates.shift();
+      const image = frames[index];
+      frames[index] = null;
+      loadedFrames.delete(index);
+      frameLastUsed.delete(index);
+      if (image && image !== lastRenderedImage) image.src = '';
+    }
+  }
+
+  function pumpFrameQueue() {
+    while (activeLoads < MAX_CONCURRENT && loadQueue.length) {
+      const job = loadQueue.shift();
+      const { index, priority } = job;
+      if (frames[index]) {
+        loadingFrames.delete(index);
+        touchFrame(index);
+        continue;
+      }
+
+      activeLoads += 1;
+      const image = new Image();
+      image.decoding = 'async';
+      image.fetchPriority = priority;
+
+      let settled = false;
+      const onError = () => finish();
+      const finish = () => {
+        if (settled) return;
+        settled = true;
+        image.removeEventListener('load', onLoad);
+        image.removeEventListener('error', onError);
+        loadingFrames.delete(index);
+        activeLoads -= 1;
+        pumpFrameQueue();
+      };
+      const onLoad = () => {
+        const commit = () => {
+          if (image.naturalWidth) {
+            frames[index] = image;
+            loadedFrames.add(index);
+            touchFrame(index);
+            trimFrameCache(Math.round(displayedProgress * (TOTAL_FRAMES - 1)));
+            if (sectionNearViewport) scheduleRender();
+          }
+          finish();
+        };
+        if (typeof image.decode === 'function') {
+          Promise.race([
+            image.decode().catch(() => {}),
+            new Promise(resolve => setTimeout(resolve, 250))
+          ]).then(commit);
+        } else commit();
+      };
+      image.addEventListener('load', onLoad, { once:true });
+      image.addEventListener('error', onError, { once:true });
+      image.src = `${FRAME_PATH}frame-${String(index).padStart(3, '0')}.webp`;
+    }
+  }
+
+  function pruneLoadQueue(centerIndex) {
+    const maxDistance = mobileFrames ? 14 : 24;
+    for (let index = loadQueue.length - 1; index >= 0; index -= 1) {
+      const job = loadQueue[index];
+      const isEndpoint = job.index === 0 || job.index === TOTAL_FRAMES - 1;
+      if (!isEndpoint && Math.abs(job.index - centerIndex) > maxDistance) {
+        loadingFrames.delete(job.index);
+        loadQueue.splice(index, 1);
+      }
+    }
+  }
 
   function loadFrame(index, priority = 'low') {
-    if (index < 0 || index >= TOTAL_FRAMES || frames[index] || loadingFrames.has(index)) return;
+    if (index < 0 || index >= TOTAL_FRAMES) return;
+    if (frames[index]) {
+      touchFrame(index);
+      return;
+    }
+    if (loadingFrames.has(index)) return;
     loadingFrames.add(index);
-    const image = new Image();
-    image.decoding = 'async';
-    image.fetchPriority = priority;
-    image.addEventListener('load', () => {
-      frames[index] = image;
-      loadingFrames.delete(index);
-      loadedFrames.add(index);
-      if (sectionNearViewport) scheduleRender();
-    });
-    image.addEventListener('error', () => loadingFrames.delete(index));
-    image.src = `${FRAME_PATH}frame-${String(index).padStart(3, '0')}.webp`;
+    const job = { index, priority };
+    if (priority === 'high') loadQueue.unshift(job);
+    else loadQueue.push(job);
+    pumpFrameQueue();
   }
 
   function loadAround(index) {
-    const radius = mobileFrames || navigator.connection?.saveData ? 3 : 7;
+    const radius = mobileFrames || navigator.connection?.saveData ? 5 : 8;
     loadFrame(index, 'high');
     for (let offset = 1; offset <= radius; offset += 1) {
-      loadFrame(index + offset * scrollDirection);
+      loadFrame(index + offset * scrollDirection, offset <= 2 ? 'high' : 'low');
       loadFrame(index - offset * scrollDirection);
     }
   }
 
   function nearestLoadedFrame(index) {
-    if (loadedFrames.has(index)) return frames[index];
+    if (loadedFrames.has(index)) {
+      touchFrame(index);
+      return { image:frames[index], index };
+    }
     for (let offset = 1; offset < TOTAL_FRAMES; offset += 1) {
       const before = index - offset;
       const after = index + offset;
-      if (before >= 0 && loadedFrames.has(before)) return frames[before];
-      if (after < TOTAL_FRAMES && loadedFrames.has(after)) return frames[after];
+      if (before >= 0 && loadedFrames.has(before)) {
+        touchFrame(before);
+        return { image:frames[before], index:before };
+      }
+      if (after < TOTAL_FRAMES && loadedFrames.has(after)) {
+        touchFrame(after);
+        return { image:frames[after], index:after };
+      }
     }
-    return null;
+    return lastRenderedImage ? { image:lastRenderedImage, index:lastRenderedIndex } : null;
   }
 
-  const FRAME_CATCHUP = 0.12;
+  const FRAME_CATCHUP = mobileFrames ? 0.22 : 0.12;
   const MOMENTUM_DECAY = 0.975;
   const MOMENTUM_INPUT = 0.045;
-  const MAX_MOMENTUM = 0.0015;
+  const MAX_MOMENTUM = mobileFrames ? 0.0008 : 0.0015;
   let ticking = false;
   let sectionNearViewport = false;
   let displayedProgress = 0;
@@ -887,18 +1001,27 @@
   let scrollDirection = 1;
   let lastScrollY = window.scrollY;
   let lastScrollTime = performance.now();
+  let initialized = false;
 
   function resize(){
     const rect = canvas.getBoundingClientRect();
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const nextWidth = Math.max(1, Math.round(rect.width * dpr));
+    const nextHeight = Math.max(1, Math.round(rect.height * dpr));
+    const sizeChanged = canvas.width !== nextWidth || canvas.height !== nextHeight;
+    if (sizeChanged) {
+      canvas.width = bufferCanvas.width = nextWidth;
+      canvas.height = bufferCanvas.height = nextHeight;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      bufferCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
     targetProgress = getProgress();
-    displayedProgress = targetProgress;
+    if (!initialized) displayedProgress = targetProgress;
     lastPhysicalProgress = targetProgress;
     momentumProgress = 0;
     lastScrollY = window.scrollY;
     lastScrollTime = performance.now();
+    initialized = true;
+    loadAround(Math.round(targetProgress * (TOTAL_FRAMES - 1)));
     draw();
   }
 
@@ -910,20 +1033,36 @@
     return Math.min(1, Math.max(0, scrolled / scrollableDistance));
   }
 
-  function drawFrame(image, w, h){
+  function drawFrame(image, w, h, index){
     if (!image?.complete || !image.naturalWidth) return;
-    ctx.clearRect(0, 0, w, h);
-
-    const scale = Math.min(w / image.naturalWidth, h / image.naturalHeight);
-    const drawWidth = image.naturalWidth * scale;
-    const drawHeight = image.naturalHeight * scale;
-    ctx.drawImage(image, (w - drawWidth) / 2, (h - drawHeight) / 2, drawWidth, drawHeight);
+    try {
+      bufferCtx.clearRect(0, 0, w, h);
+      const scale = Math.min(w / image.naturalWidth, h / image.naturalHeight);
+      const drawWidth = image.naturalWidth * scale;
+      const drawHeight = image.naturalHeight * scale;
+      bufferCtx.drawImage(image, (w - drawWidth) / 2, (h - drawHeight) / 2, drawWidth, drawHeight);
+      ctx.save();
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(bufferCanvas, 0, 0);
+      ctx.restore();
+      lastRenderedImage = image;
+      lastRenderedIndex = index;
+      canvas.dataset.renderedFrame = String(index);
+    } catch (_) {
+      // Keep the previous visible canvas if Safari releases a decoded frame under memory pressure.
+    }
   }
 
   function draw(){
     const w = canvas.clientWidth, h = canvas.clientHeight;
     const frameIndex = Math.round(displayedProgress * (TOTAL_FRAMES - 1));
-    drawFrame(nearestLoadedFrame(frameIndex), w, h);
+    const targetIndex = Math.round(targetProgress * (TOTAL_FRAMES - 1));
+    loadAround(frameIndex);
+    loadFrame(targetIndex, 'high');
+    const candidate = nearestLoadedFrame(frameIndex);
+    if (candidate) drawFrame(candidate.image, w, h, candidate.index);
+    trimFrameCache(frameIndex);
 
     sticky.style.setProperty('--reveal-bg-scale', (1 + displayedProgress * 0.25).toFixed(4));
     sticky.style.setProperty('--reveal-stage-scale', (0.9 + displayedProgress * 0.12).toFixed(4));
@@ -973,7 +1112,10 @@
     const progressChange = physicalProgress - lastPhysicalProgress;
     if (progressChange !== 0) {
       scrollDirection = Math.sign(progressChange);
-      loadAround(Math.round(physicalProgress * (TOTAL_FRAMES - 1)));
+      const physicalIndex = Math.round(physicalProgress * (TOTAL_FRAMES - 1));
+      pruneLoadQueue(physicalIndex);
+      loadAround(physicalIndex);
+      loadAround(Math.round(displayedProgress * (TOTAL_FRAMES - 1)));
       const speedBoost = 1 + Math.min(Math.abs(instantVelocity) * 0.08, 0.8);
       momentumProgress = Math.max(
         -MAX_MOMENTUM,
@@ -1005,7 +1147,11 @@
   visIo.observe(section);
 
   window.addEventListener('scroll', onScroll, { passive:true });
-  window.addEventListener('resize', resize);
+  let resizeFrame = 0;
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(resize);
+  }, { passive:true });
   loadFrame(0, 'high');
   resize();
 })();
