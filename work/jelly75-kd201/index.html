@@ -4,6 +4,18 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Jelly75 KD201 · Step Wipe — Gasket-Mounted 75% Mechanical Keyboard</title>
+<base id="project-base" href="/work/jelly75-kd201/" />
+<script>
+  // Static previews may serve a directory index without redirecting to its
+  // trailing slash. The explicit base also gives the preload scanner the right
+  // asset paths; retain the directory prefix when hosted below another site.
+  const projectDirectory = location.pathname.match(/^(.*\/jelly75-kd201)(?:\/(?:index\.html)?)?$/);
+  if (projectDirectory) {
+    document.getElementById('project-base').href = location.pathname.endsWith('/jelly75-kd201')
+      ? projectDirectory[1] + '/'
+      : location.href;
+  }
+</script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,400;1,500;1,600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
