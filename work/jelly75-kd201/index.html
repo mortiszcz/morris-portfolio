@@ -4,6 +4,18 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Jelly75 KD201 · Step Wipe — Gasket-Mounted 75% Mechanical Keyboard</title>
+<base id="project-base" href="/work/jelly75-kd201/" />
+<script>
+  // Static previews may serve a directory index without redirecting to its
+  // trailing slash. The explicit base also gives the preload scanner the right
+  // asset paths; retain the directory prefix when hosted below another site.
+  const projectDirectory = location.pathname.match(/^(.*\/jelly75-kd201)(?:\/(?:index\.html)?)?$/);
+  if (projectDirectory) {
+    document.getElementById('project-base').href = location.pathname.endsWith('/jelly75-kd201')
+      ? projectDirectory[1] + '/'
+      : location.href;
+  }
+</script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,400;1,500;1,600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
@@ -1699,6 +1711,13 @@ let currentColorway = 'volt';
     if (!baseLoaded) return;
     ctxBase.clearRect(0, 0, rectW, rectH);
     ctxBase.drawImage(baseImg, fit.x, fit.y, fit.w, fit.h);
+    // Replace the frosted layer inside the reveal instead of stacking two
+    // translucent product renders (which leaves a second keyboard underneath).
+    if (!IS_TOUCH && colorways[currentColorway].img) {
+      ctxBase.globalCompositeOperation = 'destination-out';
+      ctxBase.drawImage(trailCanvas, 0, 0, rectW, rectH);
+      ctxBase.globalCompositeOperation = 'source-over';
+    }
     if (IS_TOUCH) {   // phones: mute the base into a frosted, colourless layer so a scratched patch clearly pops
       ctxBase.globalCompositeOperation = 'source-atop';
       ctxBase.fillStyle = 'rgba(196,202,194,0.6)';
@@ -1711,8 +1730,14 @@ let currentColorway = 'volt';
     const rect = hero.getBoundingClientRect();
     if (rect.width < 2 || rect.height < 2) return; // ignore transient zero-size reflows
     rectW = rect.width; rectH = rect.height;
-    [canvasBase, canvasReveal, trailCanvas].forEach(c => { c.width = rectW; c.height = rectH; });
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    [canvasBase, canvasReveal, trailCanvas].forEach(c => {
+      c.width = Math.round(rectW * dpr);
+      c.height = Math.round(rectH * dpr);
+      c.getContext('2d').setTransform(dpr, 0, 0, dpr, 0, 0);
+    });
     fit = computeFit(rectW, rectH);
+    previousBrush = null;
     drawBase();
     positionCallouts();
     positionPad();
@@ -1757,17 +1782,28 @@ let currentColorway = 'volt';
 
   // ---------- pointer + trail ----------
   function brushRadius(){ return rectW < 640 ? 115 : rectW < 1024 ? 150 : 185; }
-  const FADE = 0.035;
+  const TRAIL_LIFETIME_MS = 90;
 
   const mouse = { x: -999, y: -999 };
   const smooth = { x: -999, y: -999 };
   let userTookOver = false;
   let introStart = null;
+  let lastFrame = null;
+  let lastBrushAt = 0;
+  let pointerActive = false;
+  let previousBrush = null;
   const INTRO_MS = 1600;
 
   // ---------- touch devices: scratch the frost off with a finger ----------
-  const IS_TOUCH = window.matchMedia('(hover: none) and (pointer: coarse)').matches ||
-                   (navigator.maxTouchPoints > 0 && window.innerWidth < 640);
+  // A touch-capable desktop can report a coarse primary pointer even when a
+  // mouse is in use. Reserve press-and-drag scratching for phone layouts.
+  const IS_TOUCH = window.innerWidth < 640 && (
+    window.matchMedia('(hover: none) and (pointer: coarse)').matches ||
+    navigator.maxTouchPoints > 0
+  );
+  // Desktop layers are composited together in canvasReveal, so their alpha
+  // weights add up to one even around the soft edge of the reveal.
+  if (!IS_TOUCH) canvasBase.style.visibility = 'hidden';
   const T_R = 56;            // finger brush radius (px)
   const T_FADE = 0.0022;     // how slowly the frost comes back
   let tPad = null, tGhost = null, tLast = null, tDown = false;
@@ -1844,40 +1880,54 @@ let currentColorway = 'volt';
   }
   if (IS_TOUCH) initTouchScratch();
 
-  function paintTrail(x, y){
+  function paintTrail(x, y, elapsed){
     trailCtx.globalCompositeOperation = 'destination-out';
-    trailCtx.fillStyle = `rgba(0,0,0,${FADE})`;
+    // Time-based decay keeps the same tail on 60 Hz and high-refresh screens.
+    trailCtx.fillStyle = `rgba(0,0,0,${1 - Math.exp(-elapsed / TRAIL_LIFETIME_MS)})`;
     trailCtx.fillRect(0, 0, rectW, rectH);
 
+    if (x === null) { previousBrush = null; return; }
     trailCtx.globalCompositeOperation = 'source-over';
     const r = brushRadius();
-    const grad = trailCtx.createRadialGradient(x, y, 0, x, y, r);
-    grad.addColorStop(0,    'rgba(255,255,255,1)');
-    grad.addColorStop(0.22, 'rgba(255,255,255,0.97)');
-    grad.addColorStop(0.45, 'rgba(255,255,255,0.8)');
-    grad.addColorStop(0.65, 'rgba(255,255,255,0.55)');
-    grad.addColorStop(0.8,  'rgba(255,255,255,0.28)');
-    grad.addColorStop(0.92, 'rgba(255,255,255,0.1)');
-    grad.addColorStop(1,    'rgba(255,255,255,0)');
-    trailCtx.fillStyle = grad;
-    trailCtx.beginPath();
-    trailCtx.arc(x, y, r, 0, Math.PI * 2);
-    trailCtx.fill();
+    const from = previousBrush || { x, y };
+    const steps = Math.max(1, Math.ceil(Math.hypot(x - from.x, y - from.y) / (r * 0.2)));
+    for (let i = 1; i <= steps; i++) {
+      const bx = from.x + (x - from.x) * i / steps;
+      const by = from.y + (y - from.y) * i / steps;
+      const grad = trailCtx.createRadialGradient(bx, by, r * 0.65, bx, by, r);
+      grad.addColorStop(0, 'rgba(255,255,255,1)');
+      grad.addColorStop(1, 'rgba(255,255,255,0)');
+      trailCtx.fillStyle = grad;
+      trailCtx.beginPath();
+      trailCtx.arc(bx, by, r, 0, Math.PI * 2);
+      trailCtx.fill();
+    }
+    previousBrush = { x, y };
   }
 
   function drawReveal(){
     const c = colorways[currentColorway];
-    if (!c.img) return;
     ctxReveal.clearRect(0, 0, rectW, rectH);
+    if (!c.img) {
+      if (!IS_TOUCH) ctxReveal.drawImage(canvasBase, 0, 0, rectW, rectH);
+      return;
+    }
     ctxReveal.drawImage(c.img, fit.x, fit.y, fit.w, fit.h);
     ctxReveal.globalCompositeOperation = 'destination-in';
     ctxReveal.drawImage(trailCanvas, 0, 0, rectW, rectH);
+    if (!IS_TOUCH) {
+      ctxReveal.globalCompositeOperation = 'lighter';
+      ctxReveal.drawImage(canvasBase, 0, 0, rectW, rectH);
+    }
     ctxReveal.globalCompositeOperation = 'source-over';
   }
 
   function loop(ts){
     if (IS_TOUCH) { touchStep(ts); drawReveal(); requestAnimationFrame(loop); return; }
-    if (!userTookOver) {
+    const elapsed = lastFrame === null ? 1000 / 60 : Math.min(ts - lastFrame, 100);
+    lastFrame = ts;
+    let showBrush = pointerActive;
+    if (!userTookOver && !REDUCE_MOTION) {
       if (introStart === null) introStart = ts;
       const t = Math.min((ts - introStart) / INTRO_MS, 1);
       const cx = rectW * 0.5, cy = rectH * 0.5;
@@ -1885,31 +1935,46 @@ let currentColorway = 'volt';
       const r = Math.min(rectW, rectH) * 0.09 * (1 - t * 0.25);
       smooth.x = cx + Math.cos(angle) * r;
       smooth.y = cy + Math.sin(angle) * r * 0.6;
-      if (t >= 1) { userTookOver = true; mouse.x = smooth.x; mouse.y = smooth.y; }
-    } else {
-      smooth.x += (mouse.x - smooth.x) * 0.45;
-      smooth.y += (mouse.y - smooth.y) * 0.45;
+      showBrush = t < 1;
+      if (t >= 1) userTookOver = true;
+    } else if (pointerActive) {
+      const follow = REDUCE_MOTION ? 1 : 1 - Math.pow(0.55, elapsed / (1000 / 60));
+      smooth.x += (mouse.x - smooth.x) * follow;
+      smooth.y += (mouse.y - smooth.y) * follow;
     }
-    paintTrail(smooth.x, smooth.y);
+    if (showBrush) lastBrushAt = ts;
+    if (REDUCE_MOTION || ts - lastBrushAt > TRAIL_LIFETIME_MS * 4) {
+      trailCtx.clearRect(0, 0, rectW, rectH);
+      previousBrush = null;
+    }
+    paintTrail(showBrush ? smooth.x : null, showBrush ? smooth.y : null, elapsed);
+    drawBase();
     drawReveal();
     requestAnimationFrame(loop);
   }
 
   function setPointer(clientX, clientY){
     if (IS_TOUCH) return;
-    const rect = hero.getBoundingClientRect();
-    mouse.x = clientX - rect.left;
-    mouse.y = clientY - rect.top;
-    if (!userTookOver) { userTookOver = true; smooth.x = mouse.x; smooth.y = mouse.y; }
+    const rect = canvasBase.getBoundingClientRect();
+    mouse.x = (clientX - rect.left) * rectW / rect.width;
+    mouse.y = (clientY - rect.top) * rectH / rect.height;
+    if (!pointerActive) { smooth.x = mouse.x; smooth.y = mouse.y; previousBrush = null; }
+    pointerActive = true;
+    userTookOver = true;
     document.getElementById('hintEl').style.opacity = '0';
   }
-  window.addEventListener('mousemove', (e) => setPointer(e.clientX, e.clientY));
-  window.addEventListener('touchmove', (e) => {
-    if (e.touches && e.touches[0]) setPointer(e.touches[0].clientX, e.touches[0].clientY);
+  hero.addEventListener('pointermove', e => {
+    if (e.pointerType !== 'touch') setPointer(e.clientX, e.clientY);
   }, { passive: true });
-  window.addEventListener('touchstart', (e) => {
-    if (e.touches && e.touches[0]) setPointer(e.touches[0].clientX, e.touches[0].clientY);
-  }, { passive: true });
+  function releasePointer(){
+    pointerActive = false;
+    userTookOver = true;
+    previousBrush = null;
+  }
+  hero.addEventListener('pointerleave', releasePointer);
+  hero.addEventListener('pointercancel', releasePointer);
+  window.addEventListener('blur', releasePointer);
+  window.addEventListener('scroll', releasePointer, { passive: true });
 
   // ---------- boot ----------
   function boot(){
