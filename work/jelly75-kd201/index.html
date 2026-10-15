@@ -1782,7 +1782,7 @@ let currentColorway = 'volt';
 
   // ---------- pointer + trail ----------
   function brushRadius(){ return rectW < 640 ? 115 : rectW < 1024 ? 150 : 185; }
-  const TRAIL_LIFETIME_MS = 240;
+  const TRAIL_LIFETIME_MS = 90;
 
   const mouse = { x: -999, y: -999 };
   const smooth = { x: -999, y: -999 };
@@ -1795,8 +1795,12 @@ let currentColorway = 'volt';
   const INTRO_MS = 1600;
 
   // ---------- touch devices: scratch the frost off with a finger ----------
-  const IS_TOUCH = window.matchMedia('(hover: none) and (pointer: coarse)').matches ||
-                   (navigator.maxTouchPoints > 0 && window.innerWidth < 640);
+  // A touch-capable desktop can report a coarse primary pointer even when a
+  // mouse is in use. Reserve press-and-drag scratching for phone layouts.
+  const IS_TOUCH = window.innerWidth < 640 && (
+    window.matchMedia('(hover: none) and (pointer: coarse)').matches ||
+    navigator.maxTouchPoints > 0
+  );
   // Desktop layers are composited together in canvasReveal, so their alpha
   // weights add up to one even around the soft edge of the reveal.
   if (!IS_TOUCH) canvasBase.style.visibility = 'hidden';
@@ -1939,7 +1943,7 @@ let currentColorway = 'volt';
       smooth.y += (mouse.y - smooth.y) * follow;
     }
     if (showBrush) lastBrushAt = ts;
-    if (REDUCE_MOTION || ts - lastBrushAt > TRAIL_LIFETIME_MS * 6) {
+    if (REDUCE_MOTION || ts - lastBrushAt > TRAIL_LIFETIME_MS * 4) {
       trailCtx.clearRect(0, 0, rectW, rectH);
       previousBrush = null;
     }
